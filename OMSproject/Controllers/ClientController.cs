@@ -24,16 +24,17 @@ namespace OMSproject.Controllers
             return View(clients);
         }
 
-        // GET: ClientController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+        //// GET: ClientController/Details/5
+        //public ActionResult Details(int id)
+        //{
+        //    return View();
+        //}
 
         // GET: ClientController/Create
         public ActionResult Create()
         {
-            return View();
+            Client model = new Client();
+            return View(GetClasfcnList(model));
         }
 
         // POST: ClientController/Create
@@ -41,8 +42,8 @@ namespace OMSproject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Client model)
         {
-            
-            var id = _db.Clients.Max(x => x.Client_id );
+
+            var id = _db.Clients.Max(x => x.Client_id);
 
             if (id == null)
             {
@@ -74,43 +75,75 @@ namespace OMSproject.Controllers
         // GET: ClientController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var client = _db.Clients.SingleOrDefault(x => x.Client_id == id);
+            return View(GetClasfcnList(client));
         }
 
         // POST: ClientController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Client model)
         {
             try
             {
+
+                var client = _db.Clients.SingleOrDefault(x => x.Client_id == id);
+
+                if (client != null)
+                {
+                    client.ClientName = model.ClientName;
+                    client.Phone = model.Phone;
+                    client.Claasification = model.Claasification;
+                }
+                _db.SaveChanges();
+
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                return View(GetClasfcnList(model));
             }
         }
 
-        // GET: ClientController/Delete/5
-        public ActionResult Delete(int id)
+        //// GET: ClientController/Delete/5
+        //public ActionResult Delete(int id)
+        //{
+        //    return View();
+        //}
+
+        //// POST: ClientController/Delete/5
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Delete(int id, IFormCollection collection)
+        //{
+        //    try
+        //    {
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
+
+        public ActionResult Search(string term)
         {
-            return View();
+            var result = _db.Clients.Where(x => x.ClientName.Contains(term)
+                                            || x.Phone.Contains(term)
+                                            || x.Claasification.Contains(term));
+            return View("index",result);
         }
 
-        // POST: ClientController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+
+        // this metod return the classification list of clients
+        Client GetClasfcnList(Client model)
         {
-            try
+            model.ClaasificationList.AddRange(new List<string>
             {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+                "New","Vip","BlackList"
+            });
+            return model;
         }
+ 
     }
 }

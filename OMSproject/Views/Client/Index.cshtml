@@ -4,6 +4,12 @@
     ViewData["Title"] = "Index";
 }
 
+
+<form class="d-flex nav-search" asp-action="Search" asp-controller="Client">
+    <input class="form-control me-2" name="term" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success" type="submit">Search</button>
+</form>
+
 <h1>Index</h1>
 
 <p>
@@ -50,5 +56,7 @@
             </td>
         </tr>
       }
+
+       
     </tbody>
 </table>

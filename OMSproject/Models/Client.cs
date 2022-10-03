@@ -26,5 +26,8 @@ namespace OMSproject.Models
         IList<Order>? orders { get; set; } 
         ICollection<Order>? Orders { get; set; }
 
+        [NotMapped]
+        public List<string>? ClaasificationList { get;private set; } = new List<string>();
+
     }
 }
