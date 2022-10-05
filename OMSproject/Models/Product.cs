@@ -10,16 +10,16 @@ namespace OMSproject.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int? Product_Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "You must enter product name")]
         [Column(TypeName = "varchar(200)")]
         public string Product_Name { get; set; } = string.Empty;
 
-        [Required]
+        [Required(ErrorMessage = "You must enter product cost")]
         public float Cost { get; set; }
 
+        [Required(ErrorMessage = "You must enter product price")]
         public float? Price { get; set; }
 
-        [Required]
         public int Total_QTY { get; set; }
 
         [Column(TypeName = "varchar(250)")]

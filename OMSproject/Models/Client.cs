@@ -11,12 +11,14 @@ namespace OMSproject.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int? Client_id { get; set; }
 
-        [Required]
-        [StringLength(10)]
+        [Required(ErrorMessage = "You must enter phone number")]
+        [Display(Name = "Phone")]
+        [DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid phone number")]
         [Column(TypeName = "varchar(100)")]
         public string Phone { get; set; } = string.Empty;
 
-        [Required]
+        [Required(ErrorMessage = "You must enter client name")]
         [Column(TypeName = "varchar(100)")]
         public string ClientName { get; set; } = string.Empty;
 
