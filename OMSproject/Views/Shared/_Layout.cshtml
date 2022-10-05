@@ -4,9 +4,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - OMSproject</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/OMSproject.styles.css" asp-append-version="true" />
+    @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
+    @*<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />*@
+    <link rel="stylesheet" href="~/css/Style.css" asp-append-version="true" />
+    <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
+@*    <link rel="stylesheet" href="~/OMSproject.styles.css" asp-append-version="true" />
 	<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
 	<link href="~/lib/bootstrap/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
 	<link href="~/lib/bootstrap/dist/css/bootstrap.rtl.css" rel="stylesheet" />
@@ -22,11 +24,12 @@
 	<link href="~/lib/bootstrap/dist/css/bootstrap-utilities.min.css" rel="stylesheet" />
 	<link href="~/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css" rel="stylesheet" />
 	<link href="~/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css" rel="stylesheet" />
-	<link href="~/lib/bootstrap/dist/css/bootstrap-utilities.css" rel="stylesheet" />
+	<link href="~/lib/bootstrap/dist/css/bootstrap-utilities.css" rel="stylesheet" />*@
+
 </head>
 
 <body>
-    <header>
+    @*<header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">OMSproject</a>
@@ -51,19 +54,79 @@
                 </div>
             </div>
         </nav>
-    </header>
+    </header>*@
+    <main>
+        <div class="side-menu">
+            <nav class="navbar">
+                <!-- <div class="logo">
+                  <a href="#">
+                    <img src="#" alt="">
+                    <span class="nav-span">Logo</span>
+                  </a>
+                </div> -->
+                <ul class="navbar-nav">
+                    <!-- <li>
+                                  <a href="#" class="logo">
+                                      <img src="#" alt="">
+                                      <span class="nav-span">Logo</span>
+                                  </a>
+                              </li> -->
+                    <li class="nav-item">
+                        <a href="/Views/Home/Index.html">
+                            <i class="bx bxs-home"></i>
+                            <span class="nav-span">Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">
+                            <i class="bx bxs-add-to-queue"></i>
+                            <span class="nav-span">Orders</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">
+                            <i class="bx bxs-box"></i>
+                            <span class="nav-span">Products</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">
+                            <i class="bx bxs-user-account"></i>
+                            <span class="nav-span">Clients</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">
+                            <i class="bx bx-log-out"></i>
+                            <span class="nav-span">Log Out</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     <div class="container">
-        <main role="main" class="pb-3">
+                <div class="header">
+          <div class="header-container">
+            <div class="welcome-msg">
+
+            </div>
+            <div class="box-container">
+
+            </div>
+          </div>
+        </div>
+            <div class="content-main">
             @RenderBody()
-        </main>
+        </div>
     </div>
     <br>
     <br>
-    <footer class="border-top footer text-muted">
+@*    <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2022 - OMSproject - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
-    </footer>
+    </footer>*@
+    </main>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

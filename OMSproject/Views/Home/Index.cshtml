@@ -1,0 +1,119 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="summary-cards">
+    <div class="card">
+        <div class="card-icon">
+            <svg width="46"
+                 height="46"
+                 fill="currentColor"
+                 viewBox="0 0 24 24"
+                 xmlns="http://www.w3.org/2000/svg">
+                <path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2h6Z"></path>
+            </svg>
+        </div>
+        <div class="card-info">
+            <h2>1,320</h2>
+            <p>New Orders</p>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-icon">
+            <svg width="46"
+                 height="46"
+                 fill="currentColor"
+                 viewBox="0 0 24 24"
+                 xmlns="http://www.w3.org/2000/svg">
+                <path d="M11 2.048V4.06a8.001 8.001 0 1 0 5.906 14.258l1.423 1.423A9.966 9.966 0 0 1 12 21.998c-5.523 0-10-4.477-10-10 0-5.185 3.947-9.45 9-9.95Zm10.95 10.95a9.948 9.948 0 0 1-2.207 5.328l-1.423-1.422a7.962 7.962 0 0 0 1.618-3.906h2.013-.001Zm-8.948-10.95a10.004 10.004 0 0 1 8.95 8.95h-2.013a8.005 8.005 0 0 0-6.937-6.938V2.047Z"></path>
+            </svg>
+        </div>
+        <div class="card-info">
+            <h2>300</h2>
+            <p>Inprogress</p>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-icon">
+            <svg width="46"
+                 height="46"
+                 fill="currentColor"
+                 viewBox="0 0 24 24"
+                 xmlns="http://www.w3.org/2000/svg">
+                <path d="m10 15.17 9.192-9.193 1.415 1.414L10 17.998l-6.364-6.364L5.05 10.22 10 15.17Z"></path>
+            </svg>
+        </div>
+        <div class="card-info">
+            <h2>1,010</h2>
+            <p>Delivered</p>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-icon">
+            <svg width="46"
+                 height="46"
+                 fill="currentColor"
+                 viewBox="0 0 24 24"
+                 xmlns="http://www.w3.org/2000/svg">
+                <path d="m12 10.583 4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414L12 13.41l-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.633l4.95 4.95Z"></path>
+            </svg>
+        </div>
+        <div class="card-info">
+            <h2>10</h2>
+            <p>Canceled</p>
+        </div>
+    </div>
+</div>
+<div class="unkown-class">
+
+    <div class="empty-box">
+    </div>
+    <!-- Chart Hidden for A Reason -->
+    <!-- <div class="chart-st">
+      <div id="chart"></div>
+    </div> -->
+    <div class="side-btns">
+        <div class="operation-btn">
+            <div class="btn">
+                <div class="btn-info">
+                    <a href="../Order/Create">
+                        @*<@a class="nav-link text-dark" asp-area="" asp-controller="Order" asp-action="Index">Products</a>*@
+                        <h3>Add New Order</h3>
+                </div>
+                <div class="btn-icon">
+                    <svg width="46" height="46" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="m12.172 12-2.83-2.827 1.415-1.415L15 12l-4.243 4.243-1.414-1.415L12.172 12Z"></path>
+                    </svg>
+                </div>
+            </div>
+        </div></a>
+        <div class="operation-btn">
+            <div class="btn">
+                <div class="btn-info">
+                    <a href="/Views/Orders/Details.html">
+                        <h3> Order's Status</h3>
+                </div>
+                <div class="btn-icon">
+                    <svg width="46" height="46" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="m12.172 12-2.83-2.827 1.415-1.415L15 12l-4.243 4.243-1.414-1.415L12.172 12Z"></path>
+                    </svg>
+                </div>
+            </div>
+        </div></a>
+        <div class="operation-btn">
+            <div class="btn">
+                <div class="btn-info">
+                    <a href="#">
+                        <h3>Check Client</h3>
+                </div>
+                <div class="btn-icon">
+                    <svg width="46" height="46" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="m12.172 12-2.83-2.827 1.415-1.415L15 12l-4.243 4.243-1.414-1.415L12.172 12Z"></path>
+                    </svg>
+                </div>
+            </div></a>
+        </div>
+    </div>
+</div>
+
