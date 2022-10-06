@@ -47,11 +47,7 @@ namespace OMSproject.Controllers
             try
             {
 
-                //foreach(Color colrs in model.colors)
-                //{
-                //    if (colrs.ColorName == null || colrs.ColorName.Length == 0 || colrs.IsDeleted == true)
-                //        model.colors.Remove(colrs);
-                //}
+               
                 model.colors.RemoveAll(x => x.ColorName == null);
                 model.colors.RemoveAll(x => x.IsDeleted == true);
 
@@ -110,16 +106,66 @@ namespace OMSproject.Controllers
         // GET: ProductController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Product model = db.Products.SingleOrDefault(x => x.Product_Id == id);
+            List<Color> colors = new List<Color>();
+            colors.AddRange(db.Colors.Where(x=>x.Product_Id == id));
+
+            return View(model);
         }
 
         // POST: ProductController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Product model)
         {
             try
             {
+
+                model.colors.RemoveAll(x => x.ColorName == null);
+                model.colors.RemoveAll(x => x.IsDeleted == true);
+
+                List<Color> oldcolors = db.Colors.Where(x => x.Product_Id == id).ToList();
+                db.Colors.RemoveRange(oldcolors);
+                db.SaveChanges();
+
+                var product = db.Products.SingleOrDefault(x => x.Product_Id == id);
+
+                if (product != null)
+                {
+
+
+
+                    product.Product_Name = model.Product_Name;
+                    product.Cost = model.Cost;
+                    product.Price = model.Price;
+                    product.Total_QTY = model.Total_QTY;
+                    product.Notes = model.Notes;
+
+                  
+
+                    List<Color> color = new List<Color>();
+
+                    if (model.colors != null)
+                    {
+                        foreach (var item in model.colors)
+                        {
+                            color.Add(new Color
+                            {
+                                Product_Id = id,
+                                ColorName = item.ColorName,
+                                Quantity = item.Quantity
+                            });
+                        }
+
+                        //db.Products.Add(prodcts);
+                        db.Colors.AddRange(color);
+
+                    }
+                }
+
+                db.SaveChanges();
+
+
                 return RedirectToAction(nameof(Index));
             }
             catch
