@@ -47,11 +47,14 @@ namespace OMSproject.Controllers
             try
             {
 
-                foreach(Color colrs in model.colors)
-                {
-                    if (colrs.ColorName == null || colrs.ColorName.Length == 0)
-                        model.colors.Remove(colrs);
-                }
+                //foreach(Color colrs in model.colors)
+                //{
+                //    if (colrs.ColorName == null || colrs.ColorName.Length == 0 || colrs.IsDeleted == true)
+                //        model.colors.Remove(colrs);
+                //}
+                model.colors.RemoveAll(x => x.ColorName == null);
+                model.colors.RemoveAll(x => x.IsDeleted == true);
+
 
                 var id = db.Products.Max(x => x.Product_Id);
                 if (id == null)
