@@ -36,7 +36,7 @@ fieldset {
 
     .triple-input > div {
         float: left;
-        width: 30%;
+        width: 28%;
         margin: 0 1% 10px;
     }
 label {
@@ -163,3 +163,12 @@ textarea {
         text-align: left;
         color: hsl(var(--accent));
     }
+.warning {
+    color: red;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.lbl-padding {
+    padding: .5rem .5rem;
+}
