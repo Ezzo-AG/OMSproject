@@ -4,15 +4,15 @@
     ViewData["Title"] = "Create";
 }
 
+<link rel="stylesheet" href="~/css/OrderStyle/order.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/Table/TablesStyle.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/Table/FormControl.css" asp-append-version="true" />
+<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 
-<h1>Create</h1>
-
-<h4>Product</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
         
-        <form asp-action="Create" enctype="multipart/form-data" name="table" id="table">
+        <form asp-action="Create" name="table" id="table">
+ 
+        <fieldset>
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
            @* <div class="form-group">
                 <label asp-for="Product_Id" class="control-label"></label>
@@ -58,6 +58,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                        
                         @*@foreach (var item in Model)*@
                         @for (int i = 0; i < Model.colors.Count; i++)
                         {
@@ -90,14 +91,9 @@
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
 
-
+            </fieldset>
         </form>
-    </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{

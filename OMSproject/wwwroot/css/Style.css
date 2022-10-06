@@ -318,6 +318,7 @@ main {
     font-weight: 500;
     border-radius: 10px;
     background-color: #fff;
+    padding: 2rem;
 }
 
 .card-icon {
@@ -330,7 +331,10 @@ main {
 }
 
     .card-icon svg {
-        margin: 10%;
+        /*position: absolute;*/
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
 
 .card-info p {

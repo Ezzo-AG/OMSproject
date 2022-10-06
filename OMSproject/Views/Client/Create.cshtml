@@ -3,46 +3,45 @@
 @{
     ViewData["Title"] = "Create";
 }
+<link rel="stylesheet" href="~/css/OrderStyle/order.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/Table/TablesStyle.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/Table/FormControl.css" asp-append-version="true" />
+<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 
-<h1>Create</h1>
-
-<h4>Client</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
         <form asp-action="Create">
+             <fieldset>
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
            @* <div class="form-group">
                 <label asp-for="Client_id" class="control-label"></label>
                 <input asp-for="Client_id" class="form-control" />
                 <span asp-validation-for="Client_id" class="text-danger"></span>
             </div>*@
-            <div class="form-group">
-                <label asp-for="Phone" class="control-label"></label>
+        <h1 style="font-size: 2rem;font-weight: 500;padding: 1rem 1rem 2rem;"> Add New Clients</h1>
+        <div class="triple-input">
+            <div class="form-input-container">
+                <label asp-for="Phone" class="control-label">Phone Number</label>
                 <input asp-for="Phone" class="form-control" />
                 <span asp-validation-for="Phone" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="ClientName" class="control-label"></label>
-                <input asp-for="ClientName" class="form-control" />
+            <div class="form-input-container">
+                <label asp-for="ClientName" class="control-label">Client Name</label>
+                <input asp-for="ClientName" class="form-control" style="padding: 6px" />
                 <span asp-validation-for="ClientName" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Claasification" class="control-label"></label>
+                <div class="form-input-container">
+                <label asp-for="Claasification" class="control-label">Rate</label>
                 <select asp-for="Claasification" class="form-control"
                         asp-items="@(new SelectList(Model.ClaasificationList))"></select>
                 <span asp-validation-for="Claasification" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
             </div>
-        </form>
-    </div>
-</div>
+            <div class="form-group" >
+            <input type="submit" value="Add Client" style="width: 10%;margin: 1rem;" class="form-btn save" />
+            </div>
+            </fieldset>  
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+        </form>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

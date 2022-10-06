@@ -1,0 +1,165 @@
+﻿form {
+    padding: 25px 0;
+    margin: auto;
+    font-size: 1rem;
+    font-weight: 500;
+    /* max-width: 1000px; */
+    display: block;
+    width: 100%;
+}
+
+fieldset {
+    /* font-family: 'Poppins', sans-serif; */
+    background: #fff;
+    padding: 2em;
+    border-radius: 10px;
+    border: 2px solid rgb(242, 242, 242);
+    width: 100%;
+    color: hsl(var(--txt));
+    font-size: 1.3rem;
+    font-weight: 500;
+    /* margin: 10px auto; */
+}
+
+.double-input {
+    margin: 2px auto;
+}
+
+    .double-input > div {
+        float: left;
+        width: 48%;
+        margin: 0 1% 10px;
+    }
+.triple-input {
+    margin: 2px auto;
+}
+
+    .triple-input > div {
+        float: left;
+        width: 30%;
+        margin: 0 1% 10px;
+    }
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+p {
+    padding: 1em;
+}
+
+input[type="text"],
+select,
+textarea {
+    /* font-family: 'Poppins', sans-serif; */
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: block;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    font-weight: 400;
+    /* color: red; */
+}
+
+.one-row {
+    display: flex;
+}
+
+.field {
+    color: #b1b1b1;
+    /* background: #000; */
+    margin: 5px;
+}
+
+.drop-down #lang {
+    border: none;
+    border-radius: var(--_radius);
+    padding: 0.8em 0.55em;
+    width: 100%;
+    background-color: hsl(var(--muted));
+    caret-color: hsl(var(--accent));
+    box-shadow: 0 0 0 -0.1em hsl(var(--bg)), 0 0 0 -0.2em hsl(var(--accent) / 0.8);
+    transition: box-shadow var(--_tspeed_slow) var(--_ttype_squish);
+}
+
+.form-btn {
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 500;
+    color: hsl(4, 10%, 10%);
+    text-decoration: none;
+    padding: 0.7em 1.8em;
+    border-radius: var(--_radius);
+    /*box-shadow: 0.05em 0.1em 0.9em hsl(var(--accent) / 0.3), 0 0 0 -0.1em hsl(var(--bg)), 0 0 0 -0.2em hsl(var(--accent));*/
+    transition: box-shadow var(--_tspeed_slow) var(--_ttype_squish);
+    cursor: pointer;
+    margin: 0 0.4rem;
+}
+
+.save {
+    background-color: hsla(112, 39%, 62%, 0.3);
+    border: 1px solid hsl(111, 51%, 50%);
+}
+
+.cancel {
+    background-color: hsla(2, 60%, 62%, 0.3);
+    border: 1px solid hsl(4, 83%, 57%);
+    margin-right: auto;
+}
+
+.add {
+    background-color: hsla(218, 39%, 62%, 0.3);
+    border: 1px solid hsl(202, 51%, 50%);
+}
+
+.btn :where(svg, img, span) {
+    pointer-events: none;
+}
+
+.btn :where(svg, img) {
+    width: var(--_size);
+}
+
+.btn:where(:active, :hover) {
+    background-color: hsl(var(--accent) / 0.7);
+    box-shadow: 0 0 0 hsl(var(--accent) / 0.3), 0 0 0 -0.1em hsl(var(--bg)), 0 0 0 -0.2em hsl(var(--accent));
+}
+
+.btn:focus {
+    outline: none;
+}
+
+.btn:focus-visible {
+    box-shadow: 0 0 0 hsl(var(--accent) / 0.3), 0 0 0 0.2em hsl(var(--bg)), 0 0 0 0.4em hsl(var(--accent) / 0.7);
+}
+
+#products {
+    border-collapse: collapse;
+    width: 100%;
+    /* margin: 20px; */
+    margin-top: 5rem;
+}
+
+    #products td,
+    #products th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #products tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    #products tr:hover {
+        background-color: #ddd;
+    }
+
+    #products th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        color: hsl(var(--accent));
+    }
