@@ -4,30 +4,42 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<link rel="stylesheet" href="~/css/OrderStyle/order.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/Table/TablesStyle.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/Table/FormControl.css" asp-append-version="true" />
+<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+<style>
+    .th-padding {
+        padding: 1rem;
+    }
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
+</style>
+<form class="d-flex nav-search" asp-action="Search" asp-controller="Product">
+    <fieldset>
+        <h1 style="font-size: 2rem;font-weight: 500;padding: 1rem 1rem 2rem;">Orders Index</h1>
+        <input class="form-control me-2" name="term" type="search" placeholder="Search" aria-label="Search" style="float: left;width: 40%;padding: .6rem;margin: 0 0.5rem 1rem 1rem;">
+    <button class="form-btn save" type="submit">Search</button>
+
+
+        <table class="table table-bordered" style="width: 98%;padding: 0 2rem;margin: 0px 1rem;">
+            <thead style="background: #212529; color: #fff">
         <tr>
-            <th>
+                    <th class="th-padding">
                 @Html.DisplayNameFor(model => model.Product_Id)
             </th>
-            <th>
+                    <th class="th-padding">
                 @Html.DisplayNameFor(model => model.Product_Name)
             </th>
-            <th>
+                    <th class="th-padding">
                 @Html.DisplayNameFor(model => model.Cost)
             </th>
-            <th>
+                    <th class="th-padding">
                 @Html.DisplayNameFor(model => model.Price)
             </th>
-            <th>
+            <th class="th-padding">
                 @Html.DisplayNameFor(model => model.Total_QTY)
             </th>
-            <th>
+                    <th class="th-padding">
                 @Html.DisplayNameFor(model => model.Notes)
             </th>
             <th></th>
@@ -63,3 +75,5 @@
 }
     </tbody>
 </table>
+</fieldset>
+</form>
