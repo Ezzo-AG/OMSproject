@@ -11,37 +11,37 @@
         <form asp-action="Create">
             <fieldset>
 
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div asp-validation-summary="ModelOnly" class="warning"></div>
         <h1 style="font-size: 2rem;font-weight: 500;padding: 1rem 1rem 2rem;"> Create New Order</h1>
                 <div class="double-input">
                 <div class="form-input-container">
                     <label asp-for="Client_id" class="control-label">Client Name</label>
                     <select asp-for="Client_id" class="form-control"
                             asp-items="@(new SelectList(Model.Clients,"Client_id","ClientName"))"></select>
-                    <span asp-validation-for="Client_id" class="text-danger"></span>
+                <span asp-validation-for="Client_id" class="warning"></span>
                 </div>
                     <div class="form-input-container">
             @*<div class="form-group">*@
                 <label asp-for="Total_price" class="control-label">Total Price</label>
                 <input asp-for="Total_price" class="form-control" />
-                <span asp-validation-for="Total_price" class="text-danger"></span>
+                <span asp-validation-for="Total_price" class="warning"></span>
             </div>
                     <div class="form-input-container">
                 <label asp-for="SellPrice" class="control-label">Sell Price</label>
                 <input asp-for="SellPrice" class="form-control" />
-                <span asp-validation-for="SellPrice" class="text-danger"></span>
+                <span asp-validation-for="SellPrice" class="warning"></span>
             </div>
             </div>
                 <div class="double-input">
                     <div class="form-input-container">
                 <label asp-for="Address" class="control-label">CLient Address</label>
                 <input asp-for="Address" class="form-control" />
-                <span asp-validation-for="Address" class="text-danger"></span>
+                <span asp-validation-for="Address" class="warning"></span>
             </div>
                     <div class="form-input-container">
                 <label asp-for="DateOFOrder" class="control-label">Orders Date</label>
                 <input asp-for="DateOFOrder"  type="date" class="form-control" />
-                <span asp-validation-for="DateOFOrder" class="text-danger"></span>
+                <span asp-validation-for="DateOFOrder" class="warning"></span>
                     </div>
                 </div>
                             <div class="double-input">
@@ -50,19 +50,18 @@
                 <select asp-for="OrderStatus" class="form-control"
                         asp-items="@(new SelectList(Model.Status))"></select>
              
-                <span asp-validation-for="OrderStatus" class="text-danger"></span>
+                <span asp-validation-for="OrderStatus" class="warning"></span>
             </div>
-                    <div class="form-input-container">
+
+                </div>  
+                <div class="form-input-container" style="margin: 14rem 1rem 2rem;">
                 <label asp-for="Notes" class="control-label">Notes</label>
                 <input asp-for="Notes" class="form-control" />
-                <span asp-validation-for="Notes" class="text-danger"></span>
+            <span asp-validation-for="Notes" class="warning"></span>
                     </div>
-                </div>
-            <div class="double-input">
-
-            </div>
-            </fieldset>
-            <table id="tableHa" class="table table-bordered" >
+ 
+            <div class="col-md-12" style="height: 25rem; overflow-y:auto;">
+            <table id="tableHa" class="table table-bordered" style="width: 98%;padding: 0 2rem;margin: 0px 1rem;">
         <thead style="background: #212529; color: #fff">
                     <tr>
                 <th style="padding: 1rem;">ProductName</th>
@@ -109,10 +108,13 @@
 
                 </tbody>
             </table>
+            </div>
 
-        <div class="form-group" style="width: 10%;">
+        <div class="form-group" style="width: 10%;margin: 1rem .5rem;">
                 <input type="submit" value="Create Order" class="form-btn save" />
             </div>
+            </fieldset>
+
         </form>
     @*</div>*@
 
