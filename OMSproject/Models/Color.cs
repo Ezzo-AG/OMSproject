@@ -19,8 +19,9 @@ namespace OMSproject.Models
 
        
         [ForeignKey("Product_Id")]
-        public virtual Product? Product { get; private set; } 
+        public virtual Product? Product { get; private set; }
 
-
+        [NotMapped]
+        public bool IsDeleted { get; set; } = false;
     }
 }

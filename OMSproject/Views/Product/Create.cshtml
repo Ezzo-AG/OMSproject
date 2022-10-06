@@ -69,6 +69,7 @@
 
                                 </td>
                                 <td>
+                                    <input type="hidden" asp-for="@Model.colors[i].IsDeleted" />
                                      <input asp-for="@Model.colors[i].Quantity" class="form-control Quantity" />
                                      <span asp-validation-for="@Model.colors[i].Quantity" class="text-danger"></span>
                                 </td>

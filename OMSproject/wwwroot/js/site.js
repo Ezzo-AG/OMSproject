@@ -27,7 +27,7 @@ function AddItem(btn) {
 
 }
 
-function DeleteItem(btn, id) {
+function DeleteItem(btn) {
 
     var table = document.getElementById('tableHa')
     var rows = table.getElementsByTagName('tr')
@@ -37,7 +37,17 @@ function DeleteItem(btn, id) {
         return;
     }
 
-    $(btn).closest('tr').remove();
+    
+    var btnIdx = btn.id.replaceAll('btnremove', '');
+    var idofIsDeleted = btnIdx + "__IsDeleted";
+
+    var hidIsDelId = document.querySelector("[id$='" + idofIsDeleted + "']").id;
+    document.getElementById(hidIsDelId).value ="true";
+
+    //$(btn).closest('tr').remove();
+    
+    $(btn).closest('tr').hide();
+       
     CalculateQuantity();
 }
 

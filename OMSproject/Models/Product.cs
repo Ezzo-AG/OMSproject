@@ -31,5 +31,7 @@ namespace OMSproject.Models
 
         public List<OrderDetails>? OrderDetails { get; set; }
 
+        
+
     }
 }
