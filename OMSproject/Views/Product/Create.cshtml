@@ -14,7 +14,7 @@
  
         <fieldset>
         <div asp-validation-summary="ModelOnly" class="warning"></div>
-        <h1 style="font-size: 2rem;font-weight: 500;padding: 1rem 1rem 2rem;">Create New Product</h1>
+        <h1 class="head-title">Create New Product</h1>
            @* <div class="form-group">
                 <label asp-for="Product_Id" class="control-label"></label>
                 <input asp-for="Product_Id" class="form-control" name="product_id" />
@@ -34,7 +34,7 @@
             </div>
         <div class="double-input">
             <div class="form-input-container">
-                <label asp-for="Price" class="control-label">Total Price</label>
+                <label asp-for="Price" class="control-label">Price</label>
                 <input asp-for="Price" class="form-control" name="price" />
                 <span asp-validation-for="Price" class="warning"></span>
             </div>
@@ -54,7 +54,7 @@
           
             <div class="col-md-12" style="height: 25rem; overflow-y:auto;">
             <table id="tableHa" class="table table-bordered" style="width: 98%;padding: 0 2rem;margin: 0px 1rem;">
-                <thead style="background: #212529; color: #fff">
+                <thead class="theads-con">
                         <tr>
                         <th style="padding: 1rem;">Color</th>
                             <th style="padding: 1rem;">Quantity</th>
