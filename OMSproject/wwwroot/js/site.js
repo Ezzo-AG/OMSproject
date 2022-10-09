@@ -1,17 +1,19 @@
 ﻿
+function hasClass(elem, className) {
+    return elem.classList.contains(className);
+}
 
 function AddItem(btn) {
 
     var table = document.getElementById('tableHa');
     var rows = document.getElementsByTagName('tr');
 
+    var lastrowIdx = rows.length - 1;
 
-    var rowHtml = rows[rows.length - 1].outerHTML;
-
-
-    var lastrowIdx = rows.length - 2;
+    var rowHtml = rows[lastrowIdx].outerHTML;
 
 
+    lastrowIdx = lastrowIdx - 1;
 
     var nextrowIdx = eval(lastrowIdx) + 1;
 
@@ -24,27 +26,41 @@ function AddItem(btn) {
 
     newRow.innerHTML = rowHtml;
 
+    var x = document.getElementsByTagName("INPUT");
 
+
+    for (var cnt = 0; cnt < x.length; cnt++) {
+        if (x[cnt].type == "text" && x[cnt].id.indexOf('_' + nextrowIdx + '_') > 0)
+            x[cnt].value = "";
+        else if (x[cnt].type == "number" && x[cnt].id.indexOf('_' + nextrowIdx + '_') > 0)
+            x[cnt].value = 0;
+        else if (x[cnt].type == "bool" && x[cnt].id.indexOf('_' + nextrowIdx + '_') > 0)
+            x[cnt].value = false;
+
+    }
 }
 
 function DeleteItem(btn) {
 
     var table = document.getElementById('tableHa')
     var rows = table.getElementsByTagName('tr')
+    var notHidItems = document.getElementsByClassName('nothidden');
 
-    if (rows.length == 2) {
+
+    if (rows.length == 2 || notHidItems.length == 1 ) {
         alert("This row cannot be deleted")
         return;
     }
 
     
-    var btnIdx = btn.id.replaceAll('btnremove', '');
+    var btnIdx = btn.id.replaceAll('btnremove-', '');
     var idofIsDeleted = btnIdx + "__IsDeleted";
 
     var hidIsDelId = document.querySelector("[id$='" + idofIsDeleted + "']").id;
+   
     document.getElementById(hidIsDelId).value ="true";
+    document.getElementById(hidIsDelId).className ="hidden";
 
-    //$(btn).closest('tr').remove();
     
     $(btn).closest('tr').hide();
        
@@ -60,6 +76,11 @@ function CalculateQuantity() {
     var i;
 
     for (i = 0; i < x.length; i++) {
+
+        var idofIsDeleted = i + "__IsDeleted";
+
+        var hidIsDelId = document.querySelector("[id$='" + idofIsDeleted + "']").id;
+       if( document.getElementById(hidIsDelId).value != "true")
         totalQuantity = totalQuantity + eval(x[i].value);
     }
 
@@ -70,12 +91,18 @@ function CalculateQuantity() {
 
 
 document.addEventListener('change', function (e) {
-    if (e.target.classList.contains('Quantity')) {
+    if (hasClass(e.target,'Quantity')) {
         CalculateQuantity();
     }
-}
-
-    , false);
+}, false);
 
 
+
+//document.addEventListener('onClick', function (e) {
+//    if (e.target.classList.contains('Quantity')) {
+//        CalculateQuantity();
+//    }
+//}
+
+//    , false);
 

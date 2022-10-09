@@ -69,13 +69,12 @@
 
                                 </td>
                                 <td>
-                                    <input type="hidden" asp-for="@Model.colors[i].IsDeleted" />
                                      <input asp-for="@Model.colors[i].Quantity" class="form-control Quantity" />
                                      <span asp-validation-for="@Model.colors[i].Quantity" class="text-danger"></span>
                                 </td>
                                 <td>
-
-                                    <button id="btnremove" type="button" class="btn btn-sm btn-danger visible" onclick="DeleteItem(this)">Delete</button>
+                                <input type="hidden" asp-for="@Model.colors[i].IsDeleted" />
+                                    <button id="btnremove-@i" type="button" class="btn btn-sm btn-danger visible" onclick="DeleteItem(this)">Delete</button>
                                     <input type="hidden" id="mm" value=i />
                                 </td>
                             </tr>

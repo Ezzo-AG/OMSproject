@@ -26,7 +26,11 @@ namespace OMSproject.Controllers
         // GET: ProductController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            Product model = db.Products.SingleOrDefault(x => x.Product_Id == id);
+            List<Color> colors = new List<Color>();
+            colors.AddRange(db.Colors.Where(x => x.Product_Id == id));
+
+            return View(model);
         }
 
         // GET: ProductController/Create
@@ -121,12 +125,13 @@ namespace OMSproject.Controllers
             try
             {
 
-                model.colors.RemoveAll(x => x.ColorName == null);
-                model.colors.RemoveAll(x => x.IsDeleted == true);
 
                 List<Color> oldcolors = db.Colors.Where(x => x.Product_Id == id).ToList();
                 db.Colors.RemoveRange(oldcolors);
                 db.SaveChanges();
+
+                model.colors.RemoveAll(x => x.ColorName == null);
+                model.colors.RemoveAll(x => x.IsDeleted == true);
 
                 var product = db.Products.SingleOrDefault(x => x.Product_Id == id);
 
@@ -193,6 +198,12 @@ namespace OMSproject.Controllers
             {
                 return View();
             }
+        }
+
+        public ActionResult Search(string term)
+        {
+            var result = db.Products.Where(x => x.Product_Name.Contains(term));
+            return View("index", result);
         }
     }
 }
