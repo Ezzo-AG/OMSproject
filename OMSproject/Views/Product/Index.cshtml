@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="~/css/Table/TablesStyle.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/css/Table/FormControl.css" asp-append-version="true" />
 <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+
 <style>
     .th-padding {
         padding: 1rem;
@@ -16,9 +17,10 @@
 </style>
 <form class="d-flex nav-search" asp-action="Search" asp-controller="Product">
     <fieldset>
-        <h1 style="font-size: 2rem;font-weight: 500;padding: 1rem 1rem 2rem;">Orders Index</h1>
-        <input class="form-control me-2" name="term" type="search" placeholder="Search" aria-label="Search" style="float: left;width: 40%;padding: .6rem;margin: 0 0.5rem 1rem 1rem;">
-    <button class="form-btn save" type="submit">Search</button>
+        <h1 style="font-size: 1.9rem;font-weight: 500;padding: 0rem 1rem 2rem; float: left">Product Index</h1>
+        <button class="form-btn save" type="submit"style="float: right;">Search</button>
+        <input class="form-control me-2" name="term" type="search" placeholder="Search" aria-label="Search" style="float: right;width: 30%;padding: .6rem;margin: 0 0.5rem 1rem 1rem;  ">
+    
 
 
         <table class="table table-bordered" style="width: 98%;padding: 0 2rem;margin: 0px 1rem;">
@@ -68,9 +70,9 @@
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Product_Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Product_Id">Details</a> |
-@*                <a asp-action="Delete" asp-route-id="@item.Product_Id">Delete</a>
-*@            </td>
+                <a asp-action="Details" asp-route-id="@item.Product_Id">Details</a> 
+               @*| <a asp-action="Delete" asp-route-id="@item.Product_Id">Delete</a>*@
+            </td>
         </tr>
 }
     </tbody>

@@ -12,7 +12,7 @@
             <fieldset>
 
         <div asp-validation-summary="ModelOnly" class="warning"></div>
-        <h1 style="font-size: 2rem;font-weight: 500;padding: 1rem 1rem 2rem;"> Create New Order</h1>
+        <h1 class="head-title"> Create New Order</h1>
                 <div class="double-input">
                 <div class="form-input-container">
                     <label asp-for="Client_id" class="control-label">Client Name</label>
@@ -62,14 +62,14 @@
  
             <div class="col-md-12" style="height: 25rem; overflow-y:auto;">
             <table id="tableHa" class="table table-bordered" style="width: 98%;padding: 0 2rem;margin: 0px 1rem;">
-        <thead style="background: #212529; color: #fff">
+        <thead class="theads-con">
                     <tr>
                 <th style="padding: 1rem;">ProductName</th>
                 <th style="padding: 1rem;">Color</th>
                 <th style="width: 15%; padding: 1rem;">Quantity</th>
                     <th style="width: 10%">
                     <button type="button" id="addOrder" class="form-btn " onClick="AddItem(this)" style="border-radius: 50%;height: 2.5rem;width: 3.5rem;padding: 0;background: transparent;border: transparent;">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 30px; "><path fill="hsl(202, 100%, 100%)" d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z" /></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 30px; "><path fill="hsl(var(--bg))" d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z" /></svg>
                         </button>
                         </th>
                     </tr>

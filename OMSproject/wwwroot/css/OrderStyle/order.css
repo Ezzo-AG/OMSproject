@@ -10,10 +10,11 @@
 
 fieldset {
     /* font-family: 'Poppins', sans-serif; */
-    background: #fff;
+    background: hsl(var(--sec-bg));
     padding: 2em;
     border-radius: 10px;
-    border: 2px solid rgb(242, 242, 242);
+    /*border: 2px solid rgb(242, 242, 242);*/
+    border: 2px solid hsl(var(--thd-bg));
     width: 100%;
     color: hsl(var(--txt));
     font-size: 1.3rem;
@@ -171,4 +172,22 @@ textarea {
 
 .lbl-padding {
     padding: .5rem .5rem;
+}
+fieldset h1 .head-title{
+    font-size: 2rem;
+    font-weight: 500;
+    padding: 1rem 1rem 2rem;
+}
+.theads-con {
+    background: hsl(var(--txt));
+    color: hsl(var(--bg));
+}
+svg path{
+    fill: hsl(var(--bg));
+}
+tbody tr{
+    background: hsl(var(--txt) / .15);
+}
+tbody tr td input {
+    background: hsl(var(--txt) / .15);
 }
