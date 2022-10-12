@@ -6,7 +6,6 @@ namespace OMSproject.DTO
     {
         [Key]
         public int Product_Id { get; set; }
-
         public string ColorName { get; set; } = String.Empty;
     }
 }

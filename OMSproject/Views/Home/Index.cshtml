@@ -1,4 +1,4 @@
-﻿
+﻿@model OMSproject.DTO.Home
 @{
     ViewData["Title"] = "Index";
 }
@@ -15,7 +15,7 @@
             </svg>
         </div>
         <div class="card-info">
-            <h2>1,320</h2>
+            <h2>@Model.New</h2>
             <p>New Orders</p>
         </div>
     </div>
@@ -30,7 +30,7 @@
             </svg>
         </div>
         <div class="card-info">
-            <h2>300</h2>
+            <h2>@Model.InProgress</h2>
             <p>Inprogress</p>
         </div>
     </div>
@@ -45,7 +45,7 @@
             </svg>
         </div>
         <div class="card-info">
-            <h2>1,010</h2>
+            <h2>@Model.Delivred</h2>
             <p>Delivered</p>
         </div>
     </div>
@@ -60,7 +60,7 @@
             </svg>
         </div>
         <div class="card-info">
-            <h2>10</h2>
+            <h2>@Model.Canceled</h2>
             <p>Canceled</p>
         </div>
     </div>

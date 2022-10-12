@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.VisualBasic.Syntax;
+using OMSproject.Data;
+using OMSproject.DTO;
 using OMSproject.Models;
 using System.Diagnostics;
 
@@ -6,16 +9,23 @@ namespace OMSproject.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        readonly ApplicationDbContext? db;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ApplicationDbContext db)
         {
-            _logger = logger;
+            this.db = db;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var home = new Home()
+            {
+                InProgress = OrderStatus("Inprogress"),
+                Canceled = OrderStatus("Canceled"),
+                Delivred = OrderStatus("Delivered"),
+                New = OrderStatus("New"),
+            };
+            return View(home);
         }
 
         public IActionResult Privacy()
@@ -27,6 +37,13 @@ namespace OMSproject.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public int OrderStatus(string status)
+        {
+           var sum = db.Orders.Where(x => x.OrderStatus == status).Select(x => x.OrderId).Count();
+            return sum;
+
         }
     }
 }

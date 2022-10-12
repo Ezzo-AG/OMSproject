@@ -23,5 +23,7 @@ namespace OMSproject.Models
 
         [NotMapped]
         public bool IsDeleted { get; set; } = false;
+
+       
     }
-}
+} 

@@ -6,6 +6,14 @@ function hasClass(elem, className) {
 function AddItem(btn) {
 
     var table = document.getElementById('tableHa');
+
+    if (btn.id == "addOrder")
+        table = document.getElementById('OrderTable')
+    else 
+        table = document.getElementById('tableHa')
+
+
+
     var rows = document.getElementsByTagName('tr');
 
     var lastrowIdx = rows.length - 1;
@@ -30,9 +38,9 @@ function AddItem(btn) {
 
 
     for (var cnt = 0; cnt < x.length; cnt++) {
-        if (x[cnt].type == "text" && x[cnt].id.indexOf('_' + nextrowIdx + '_') > 0)
-            x[cnt].value = "";
-        else if (x[cnt].type == "number" && x[cnt].id.indexOf('_' + nextrowIdx + '_') > 0)
+    //    if (x[cnt].type == "text" && x[cnt].id.indexOf('_' + nextrowIdx + '_') > 0)
+    //        x[cnt].value = "";
+        if (x[cnt].type == "number" && x[cnt].id.indexOf('_' + nextrowIdx + '_') > 0)
             x[cnt].value = 0;
         else if (x[cnt].type == "bool" && x[cnt].id.indexOf('_' + nextrowIdx + '_') > 0)
             x[cnt].value = false;
@@ -43,28 +51,49 @@ function AddItem(btn) {
 function DeleteItem(btn) {
 
     var table = document.getElementById('tableHa')
-    var rows = table.getElementsByTagName('tr')
+
+    if (btn.id.indexOf("Orde") > 0)
+        table = document.getElementById('OrderTable')
+    else 
+        table = document.getElementById('tableHa')
+
+
+    var rows = table.getElementsByTagName('tr');
     var notHidItems = document.getElementsByClassName('nothidden');
 
 
-    if (rows.length == 2 || notHidItems.length == 1 ) {
+    if (rows.length == 2 || notHidItems.length <= 1 ) {
         alert("This row cannot be deleted")
         return;
     }
 
     
     var btnIdx = btn.id.replaceAll('btnremove-', '');
+
     var idofIsDeleted = btnIdx + "__IsDeleted";
 
+    if (btn.id.indexOf("Orde") > 0) {
+        btnIdx = btn.id.replaceAll('btnremoveOrder-', '');
+    }
+      
+    var idofIsDeleted = btnIdx + "__IsDeleted";
+
+    if (btn.id.indexOf("Orde") > 0) {
+        idofIsDeleted = btnIdx + "__IsHidden";
+    }
+       
     var hidIsDelId = document.querySelector("[id$='" + idofIsDeleted + "']").id;
-   
-    document.getElementById(hidIsDelId).value ="true";
+
+
+    document.getElementById(hidIsDelId).value = true;
     document.getElementById(hidIsDelId).className ="hidden";
 
     
     $(btn).closest('tr').hide();
-       
-    CalculateQuantity();
+
+    if (btn.id.indexOf("Order") > 0)
+        CalculateQuantity();
+    
 }
 
 
@@ -98,11 +127,5 @@ document.addEventListener('change', function (e) {
 
 
 
-//document.addEventListener('onClick', function (e) {
-//    if (e.target.classList.contains('Quantity')) {
-//        CalculateQuantity();
-//    }
-//}
 
-//    , false);
 

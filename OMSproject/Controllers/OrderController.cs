@@ -52,14 +52,14 @@ namespace OMSproject.Controllers
         {
             
             OrderClientViewModel view = new OrderClientViewModel();
-            view.Items.Add(new ItemDTO { OrderId = 0 });
+            view.Items.Add(new ItemDTO { Product_Id = 1 });
             view.Clients.AddRange(db.Clients.Select(x => new ClientDTO { Client_id = x.Client_id, ClientName = x.ClientName }));
 
             foreach (var item in view.Items)
             {
 
                 item.Products.AddRange(db.Products.Select(x => new ProductDTO { Product_Id = x.Product_Id, Product_Name = x.Product_Name }));
-                item.Colors.AddRange(db.Colors.Select(x => new ColorDTO{ Product_Id = x.Product_Id , ColorName = x.ColorName }));
+                item.Colors.AddRange(db.Colors.Where(p => p.Product_Id == item.Product_Id ).Select(x =>  new ColorDTO { ColorName = x.ColorName }));
             }
             view.Status.AddRange(new List<string>
             {
@@ -71,7 +71,7 @@ namespace OMSproject.Controllers
         public ActionResult getcolors(int productId)
         {
 
-            var colors = db.Colors.Where(x => x.Product_Id == productId).Select(x => new { x.Product_Id,x.ColorName });
+            var colors = db.Colors.Where(x => x.Product_Id == productId).Select(x => new {x.ColorName });
 
             return Ok(colors);
         }
@@ -120,11 +120,22 @@ namespace OMSproject.Controllers
                         {
                             OrderId = (int)id,
                             ProductId = (int)item.Product_Id,
-                            ClrName = item.ColorName.ToString(),
-                            SubQty = item.Quantity,
-                            
+                            ClrName = item.ColorName,
+                            SubQty = item.Quantity
                         });
-                      
+
+                        var color = db.Colors.SingleOrDefault(x => x.Product_Id == item.Product_Id && x.ColorName == item.ColorName);
+
+                        if (color.Quantity >= item.Quantity)
+                        {
+                            color.Quantity = color.Quantity - item.Quantity;
+                        }
+                        else
+                        {
+                            ViewBag.message = "the quantity you ordered don't exist in inventory";
+                            return View(getView());
+                        }
+
                     }
 
                     
@@ -202,5 +213,7 @@ namespace OMSproject.Controllers
         //    };
         //    return order;
         //}
+ 
     }
+   
 }
