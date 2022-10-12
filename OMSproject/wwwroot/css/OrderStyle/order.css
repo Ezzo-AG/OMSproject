@@ -173,7 +173,7 @@ textarea {
 .lbl-padding {
     padding: .5rem .5rem;
 }
-fieldset h1 .head-title{
+.head-title{
     font-size: 2rem;
     font-weight: 500;
     padding: 1rem 1rem 2rem;
@@ -182,9 +182,9 @@ fieldset h1 .head-title{
     background: hsl(var(--txt));
     color: hsl(var(--bg));
 }
-svg path{
-    fill: hsl(var(--bg));
-}
+/*svg path{
+    fill: hsl(var(--txt));
+}*/
 tbody tr{
     background: hsl(var(--txt) / .15);
 }

@@ -8,69 +8,69 @@
 <link rel="stylesheet" href="~/css/Table/FormControl.css" asp-append-version="true" />
 <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 
-        <form asp-action="Create">
-            <fieldset>
+<form asp-action="Create">
+    <fieldset>
 
         <div asp-validation-summary="ModelOnly" class="warning"></div>
         <h1 class="head-title"> Create New Order</h1>
-                <div class="double-input">
-                <div class="form-input-container">
-                    <label asp-for="Client_id" class="control-label">Client Name</label>
-                    <select asp-for="Client_id" class="form-control"
-                            asp-items="@(new SelectList(Model.Clients,"Client_id","ClientName"))"></select>
+        <div class="double-input">
+            <div class="form-input-container">
+                <label asp-for="Client_id" class="control-label">Client Name</label>
+                <select asp-for="Client_id" class="form-control"
+                        asp-items="@(new SelectList(Model.Clients,"Client_id","ClientName"))"></select>
                 <span asp-validation-for="Client_id" class="warning"></span>
-                </div>
-                    <div class="form-input-container">
-            @*<div class="form-group">*@
+            </div>
+            <div class="form-input-container">
+                @*<div class="form-group">*@
                 <label asp-for="Total_price" class="control-label">Total Price</label>
                 <input asp-for="Total_price" class="form-control" />
                 <span asp-validation-for="Total_price" class="warning"></span>
             </div>
-                    <div class="form-input-container">
+            <div class="form-input-container">
                 <label asp-for="SellPrice" class="control-label">Sell Price</label>
                 <input asp-for="SellPrice" class="form-control" />
                 <span asp-validation-for="SellPrice" class="warning"></span>
             </div>
-            </div>
-                <div class="double-input">
-                    <div class="form-input-container">
+        </div>
+        <div class="double-input">
+            <div class="form-input-container">
                 <label asp-for="Address" class="control-label">CLient Address</label>
                 <input asp-for="Address" class="form-control" />
                 <span asp-validation-for="Address" class="warning"></span>
             </div>
-                    <div class="form-input-container">
+            <div class="form-input-container">
                 <label asp-for="DateOFOrder" class="control-label">Orders Date</label>
-                <input asp-for="DateOFOrder"  type="date" class="form-control" />
+                <input asp-for="DateOFOrder" type="date" class="form-control" />
                 <span asp-validation-for="DateOFOrder" class="warning"></span>
-                    </div>
-                </div>
-                            <div class="double-input">
-                    <div class="form-input-container">
+            </div>
+        </div>
+        <div class="double-input">
+            <div class="form-input-container">
                 <label asp-for="OrderStatus" class="control-label">Order State</label>
                 <select asp-for="OrderStatus" class="form-control"
                         asp-items="@(new SelectList(Model.Status))"></select>
-             
+
                 <span asp-validation-for="OrderStatus" class="warning"></span>
             </div>
 
-                </div>  
-                <div class="form-input-container" style="margin: 14rem 1rem 2rem;">
-                <label asp-for="Notes" class="control-label">Notes</label>
-                <input asp-for="Notes" class="form-control" />
+        </div>
+        <div class="form-input-container" style="margin: 14rem 1rem 2rem;">
+            <label asp-for="Notes" class="control-label">Notes</label>
+            <input asp-for="Notes" class="form-control" />
             <span asp-validation-for="Notes" class="warning"></span>
-                    </div>
- 
-            <div class="col-md-12" style="height: 25rem; overflow-y:auto;">
+        </div>
+
+        <div class="col-md-12" style="height: 25rem; overflow-y:auto;">
             <table id="tableHa" class="table table-bordered" style="width: 98%;padding: 0 2rem;margin: 0px 1rem;">
-        <thead class="theads-con">
+                <thead class="theads-con">
                     <tr>
-                <th style="padding: 1rem;">ProductName</th>
-                <th style="padding: 1rem;">Color</th>
-                <th style="width: 15%; padding: 1rem;">Quantity</th>
-                    <th style="width: 10%">
-                    <button type="button" id="addOrder" class="form-btn " onClick="AddItem(this)" style="border-radius: 50%;height: 2.5rem;width: 3.5rem;padding: 0;background: transparent;border: transparent;">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 30px; "><path fill="hsl(var(--bg))" d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z" /></svg>
-                        </button>
+                        <th style="padding: 1rem;">ProductName</th>
+                        <th style="padding: 1rem;">Color</th>
+                        <th style="width: 15%; padding: 1rem;">Quantity</th>
+                        <th style="width: 10%">
+                            <button type="button" id="addOrder" class="form-btn " onClick="AddItem(this)" style="border-radius: 50%;height: 2.5rem;width: 3.5rem;padding: 0;background: transparent;border: transparent;">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 30px; "><path fill="hsl(var(--bg))" d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z" /></svg>
+                            </button>
                         </th>
                     </tr>
                 </thead>
@@ -78,12 +78,12 @@
                     @*@foreach (var item in Model)*@
                     @for (int i = 0; i < Model.Items.Count; i++)
                     {
-                        
+
                         <tr>
-                            <td> 
-                                <div >
+                            <td>
+                                <div>
                                     <select asp-for="@Model.Items[i].Product_Id" class="form-control" id="item-0"
-                                    asp-items="@(new SelectList(Model.Items[i].Products,"Product_Id","Product_Name"))"></select>
+                                        asp-items="@(new SelectList(Model.Items[i].Products,"Product_Id","Product_Name"))"></select>
                                 </div>
                             </td>
                             <td>
@@ -97,10 +97,10 @@
 
                             <td style="width: 10%;">
                                 @*<button id="btnadd-@i" type="button" class="btn btn-sm btn-secondary visible" onClick="AddItem(this)">Add</button>*@
-                        <button id="btnremove-@i" type="button" class="form-btn cancel " onclick="DeleteItem(this,'ids-'+@i)" style="padding: .5rem 1rem;">
-                            @*<i class="fa-regular fa-trash"></i>*@
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="width: 22px;"><path fill="rgb(236, 66, 54)" d="M160 400C160 408.8 152.8 416 144 416C135.2 416 128 408.8 128 400V192C128 183.2 135.2 176 144 176C152.8 176 160 183.2 160 192V400zM240 400C240 408.8 232.8 416 224 416C215.2 416 208 408.8 208 400V192C208 183.2 215.2 176 224 176C232.8 176 240 183.2 240 192V400zM320 400C320 408.8 312.8 416 304 416C295.2 416 288 408.8 288 400V192C288 183.2 295.2 176 304 176C312.8 176 320 183.2 320 192V400zM317.5 24.94L354.2 80H424C437.3 80 448 90.75 448 104C448 117.3 437.3 128 424 128H416V432C416 476.2 380.2 512 336 512H112C67.82 512 32 476.2 32 432V128H24C10.75 128 0 117.3 0 104C0 90.75 10.75 80 24 80H93.82L130.5 24.94C140.9 9.357 158.4 0 177.1 0H270.9C289.6 0 307.1 9.358 317.5 24.94H317.5zM151.5 80H296.5L277.5 51.56C276 49.34 273.5 48 270.9 48H177.1C174.5 48 171.1 49.34 170.5 51.56L151.5 80zM80 432C80 449.7 94.33 464 112 464H336C353.7 464 368 449.7 368 432V128H80V432z" /></svg>
-                        </button>
+                                <button id="btnremove-@i" type="button" class="form-btn cancel " onclick="DeleteItem(this,'ids-'+@i)" style="padding: .5rem 1rem;">
+                                    @*<i class="fa-regular fa-trash"></i>*@
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="width: 22px;"><path fill="rgb(236, 66, 54)" d="M160 400C160 408.8 152.8 416 144 416C135.2 416 128 408.8 128 400V192C128 183.2 135.2 176 144 176C152.8 176 160 183.2 160 192V400zM240 400C240 408.8 232.8 416 224 416C215.2 416 208 408.8 208 400V192C208 183.2 215.2 176 224 176C232.8 176 240 183.2 240 192V400zM320 400C320 408.8 312.8 416 304 416C295.2 416 288 408.8 288 400V192C288 183.2 295.2 176 304 176C312.8 176 320 183.2 320 192V400zM317.5 24.94L354.2 80H424C437.3 80 448 90.75 448 104C448 117.3 437.3 128 424 128H416V432C416 476.2 380.2 512 336 512H112C67.82 512 32 476.2 32 432V128H24C10.75 128 0 117.3 0 104C0 90.75 10.75 80 24 80H93.82L130.5 24.94C140.9 9.357 158.4 0 177.1 0H270.9C289.6 0 307.1 9.358 317.5 24.94H317.5zM151.5 80H296.5L277.5 51.56C276 49.34 273.5 48 270.9 48H177.1C174.5 48 171.1 49.34 170.5 51.56L151.5 80zM80 432C80 449.7 94.33 464 112 464H336C353.7 464 368 449.7 368 432V128H80V432z" /></svg>
+                                </button>
                                 <input type="hidden" id="mm" value=i />
                             </td>
                         </tr>
@@ -108,15 +108,15 @@
 
                 </tbody>
             </table>
-            </div>
+        </div>
 
         <div class="form-group" style="width: 10%;margin: 1rem .5rem;">
-                <input type="submit" value="Create Order" class="form-btn save" />
-            </div>
-            </fieldset>
+            <input type="submit" value="Create Order" class="form-btn save" />
+        </div>
+    </fieldset>
 
-        </form>
-    @*</div>*@
+</form>
+@*</div>*@
 
 @*
 <div>
@@ -124,22 +124,24 @@
 </div>
 *@
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 
     <script>
-        $(document).ready(function(){
+        $(document).ready(function () {
             $('#item-0').on('change', function () {
                 var colorId = eval($(this).val());
                 var productId = $('#item-1')
-               
+
 
                 productId.empty();
                 productId.append('<option></option>');
                 $.ajax({
                     url: '/Order/getcolors?productId=' + colorId,
                     success: function (colors) {
-                        $.each(colors, function(i,color ){
-                           productId.append($('<option></option>').attr('value', color.product_Id).text(color.colorName));
+                        $.each(colors, function (i, color) {
+                            productId.append($('<option></option>').attr('value', color.product_Id).text(color.colorName));
                         });
                     },
                     error: function () {

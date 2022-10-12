@@ -7,9 +7,9 @@
 <link rel="stylesheet" href="~/css/Table/TablesStyle.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/css/Table/FormControl.css" asp-append-version="true" />
 <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-<style >
+<style>
 
-    form{
+    form {
         padding: 2em;
         border-radius: 10px;
         border: 2px solid rgb(242, 242, 242);
@@ -18,61 +18,53 @@
         font-size: 1.3rem;
         font-weight: 500;
     }
+
     fieldset {
         padding: 0em;
         border-radius: 0px;
         width: 100%;
-        border: 0px ;
-       color: hsl(var(--txt));
+        border: 0px;
+        color: hsl(var(--txt));
         font-size: 1.3rem;
         font-weight: 500;
     }
 
 </style>
-        <form asp-action="Create" style="background:#fff">
-             <fieldset>
+<form asp-action="Create" style="background:#fff">
+    <fieldset>
         <div asp-validation-summary="ModelOnly" class="warning"></div>
         <h1 class="head-title"> Add New Clients</h1>
         <div>
-        <div class="triple-input">
-            <div class="form-input-container">
+            <div class="triple-input">
+                <div class="form-input-container">
                     <label asp-for="Phone" class="control-label lbl-padding">Phone Number</label>
-                <input asp-for="Phone" class="form-control"  />
-                <span asp-validation-for="Phone" class="warning"></span>
-            </div>
-            <div class="form-input-container">
+                    <input asp-for="Phone" class="form-control" />
+                    <span asp-validation-for="Phone" class="warning"></span>
+                </div>
+                <div class="form-input-container">
                     <label asp-for="ClientName" class="control-label lbl-padding">Client Name</label>
-                <input asp-for="ClientName" class="form-control" style="padding: 6px" />
-                <span asp-validation-for="ClientName" class="warning"></span>
-            </div>
+                    <input asp-for="ClientName" class="form-control" style="padding: 6px" />
+                    <span asp-validation-for="ClientName" class="warning"></span>
+                </div>
                 <div class="form-input-container">
                     <label asp-for="Claasification" class="control-label lbl-padding">Rate</label>
-                <select asp-for="Claasification" class="form-control"
-                        asp-items="@(new SelectList(Model.ClaasificationList))"></select>
-                <span asp-validation-for="Claasification" class="warning"></span>
+                    <select asp-for="Claasification" class="form-control"
+                            asp-items="@(new SelectList(Model.ClaasificationList))"></select>
+                    <span asp-validation-for="Claasification" class="warning"></span>
+                </div>
             </div>
-
-
-            </div>          
             <div class="form-input-container" style="margin: 0;padding: 0;">
-            @*    <input type="submit" value="Add Client" style="width: 10%;margin: 1.7rem 0 0 2rem;padding: 1rem 0;" class="form-btn save" />
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
-                    <path d="M352 128c0 70.7-57.3 128-128 128s-128-57.3-128-128S153.3 0 224 0s128 57.3 128 128zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3zM504 312V248H440c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V136c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H552v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z" /></svg>
-            *@
                 <button type="submit" value="Add Client" style="width: 3%;margin: 3.5rem 0 0 2rem;padding: 0.5rem 0.8rem;float: left;" class="form-btn save">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" style="width: 22px;">
                         <path fill="rgb(1, 66, 54)" d="M352 128c0 70.7-57.3 128-128 128s-128-57.3-128-128S153.3 0 224 0s128 57.3 128 128zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3zM504 312V248H440c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V136c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H552v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z" />
                     </svg>
                 </button>
-                        </div>
-            @*<p></p>*@
+            </div>
         </div>
-
-            </fieldset>  
-
-        </form>
-
-
+    </fieldset>
+</form>
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

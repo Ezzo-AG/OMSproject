@@ -3,12 +3,11 @@
 @{
     ViewData["Title"] = "Details";
 }
+<link rel="stylesheet" href="~/css/OrderStyle/order.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/Table/TablesStyle.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/Table/FormControl.css" asp-append-version="true" />
 
-<h1>Details</h1>
 
-<div>
-    <h4>Product</h4>
-    <hr />
     <form asp-action="Edit" name="table" id="table">
 
         <fieldset>
@@ -72,8 +71,6 @@
     </form>
 
 
-</div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.Product_Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
 </div>
