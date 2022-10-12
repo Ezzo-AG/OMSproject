@@ -7,12 +7,7 @@
 <link rel="stylesheet" href="~/css/Table/TablesStyle.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/css/Table/FormControl.css" asp-append-version="true" />
 <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-<style>
-    .th-padding {
-        padding: 1rem;
-    }
 
-</style>
 <form class="d-flex nav-search" asp-action="Search" asp-controller="Order">
     <fieldset>
         <h1 style="font-size: 1.9rem;font-weight: 500;padding: 0rem 1rem 2rem; float: left">Orders Index</h1>
@@ -22,28 +17,28 @@
 
 
 
-        <table class="table table-bordered" style="width: 98%;padding: 0 2rem;margin: 0px 1rem;">
-            <thead style="background: #212529; color: #fff">
+        <table class="table">
+            <thead >
         <tr>
-                    <th class="th-padding">
+                    <th>
                 @Html.DisplayNameFor(model => model.Client)
             </th >
-            <th>
+                    <th>
                 @Html.DisplayNameFor(model => model.Address)
             </th>
-                    <th class ="th-padding">
+                    <th>
                 @Html.DisplayNameFor(model => model.DateOFOrder)
             </th>
-                    <th class="th-padding">
+                    <th>
                 @Html.DisplayNameFor(model => model.Total_price)
             </th>
-                    <th class="th-padding">
+                    <th>
                 @Html.DisplayNameFor(model => model.SellPrice)
             </th>
-                    <th class="th-padding">
+                    <th>
                 @Html.DisplayNameFor(model => model.OrderStatus)
             </th>
-                    <th class="th-padding">
+                    <th>
                 @Html.DisplayNameFor(model => model.Notes)
             </th>
            

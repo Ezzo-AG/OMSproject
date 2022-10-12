@@ -15,11 +15,7 @@
         <fieldset>
         <div asp-validation-summary="ModelOnly" class="warning"></div>
         <h1 class="head-title">Create New Product</h1>
-           @* <div class="form-group">
-                <label asp-for="Product_Id" class="control-label"></label>
-                <input asp-for="Product_Id" class="form-control" name="product_id" />
-                <span asp-validation-for="Product_Id" class="text-danger"></span>
-            </div>*@
+
         <div class="double-input">
             <div class="form-input-container">
                 <label asp-for="Product_Name" class="control-label">Product Name</label>
@@ -41,7 +37,6 @@
             <div class="form-input-container">
                 <label asp-for="Total_QTY" class="control-label">Total Quantity</label>
                 <input asp-for="Total_QTY" id="total" class="form-control" name="total_qty" style="height: 3rem;" readonly />
-                @*<span asp-validation-for="Total_QTY" class="text-danger"></span>*@
             </div>
             </div>
 
