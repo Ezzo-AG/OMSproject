@@ -17,31 +17,35 @@
 </style>
 <form class="d-flex nav-search" asp-action="Search" asp-controller="Product">
     <fieldset>
-        <h1 style="font-size: 1.9rem;font-weight: 500;padding: 0rem 1rem 2rem; float: left">Product Index</h1>
-        <button class="form-btn save" type="submit"style="float: right;">Search</button>
+        <h1 class="head-title headers">Product Index</h1>
+        <button class="form-btn save" type="submit"style="float: right;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="9" fill="none"></circle>
+                <line x1="17.5" y1="17.5" x2="22" y2="22"></line></svg>
+        </button>
         <input class="form-control me-2" name="term" type="search" placeholder="Search" aria-label="Search" style="float: right;width: 30%;padding: .6rem;margin: 0 0.5rem 1rem 1rem;  ">
     
 
 
-        <table class="table table-bordered" style="width: 98%;padding: 0 2rem;margin: 0px 1rem;">
-            <thead style="background: #212529; color: #fff">
+        <table class="table">
+            <thead>
         <tr>
-                    <th class="th-padding">
+                    <th>
                 @Html.DisplayNameFor(model => model.Product_Id)
             </th>
-                    <th class="th-padding">
+                    <th>
                 @Html.DisplayNameFor(model => model.Product_Name)
             </th>
-                    <th class="th-padding">
+                    <th>
                 @Html.DisplayNameFor(model => model.Cost)
             </th>
-                    <th class="th-padding">
+                    <th>
                 @Html.DisplayNameFor(model => model.Price)
             </th>
-            <th class="th-padding">
+            <th>
                 @Html.DisplayNameFor(model => model.Total_QTY)
             </th>
-                    <th class="th-padding">
+                    <th>
                 @Html.DisplayNameFor(model => model.Notes)
             </th>
             <th></th>
