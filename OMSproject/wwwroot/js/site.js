@@ -17,7 +17,6 @@ function AddItem(btn) {
     var rows = document.getElementsByTagName('tr');
 
     var lastrowIdx = rows.length - 1;
-
     var rowHtml = rows[lastrowIdx].outerHTML;
 
 
@@ -34,16 +33,22 @@ function AddItem(btn) {
 
     newRow.innerHTML = rowHtml;
 
-    var x = document.getElementsByTagName("INPUT");
+    var x = document.getElementsByTagName("input");
 
 
-    for (var cnt = 0; cnt < x.length; cnt++) {
-    //    if (x[cnt].type == "text" && x[cnt].id.indexOf('_' + nextrowIdx + '_') > 0)
-    //        x[cnt].value = "";
+    for (var cnt = 0; cnt < x.length; cnt++)
+    {
+
+      //    if (x[cnt].type == "text" && x[cnt].id.indexOf('_' + nextrowIdx + '_') > 0)
+      //        x[cnt].value = "";
         if (x[cnt].type == "number" && x[cnt].id.indexOf('_' + nextrowIdx + '_') > 0)
             x[cnt].value = 0;
-        else if (x[cnt].type == "bool" && x[cnt].id.indexOf('_' + nextrowIdx + '_') > 0)
-            x[cnt].value = false;
+        else if (x[cnt].type == "hidden" && x[cnt].id.indexOf('_' + nextrowIdx + '_') > 0) {
+            x[cnt].value = "false";
+            if (x[cnt].className == "hidden" && x[cnt].id.indexOf('_' + nextrowIdx + '_') > 0)
+                x[cnt].className = "nothidden";
+        }
+        
 
     }
 }
@@ -91,7 +96,9 @@ function DeleteItem(btn) {
     
     $(btn).closest('tr').hide();
 
-    if (btn.id.indexOf("Order") > 0)
+    if (btn.id.indexOf("Orde") > 0)
+        CalculatePrice();
+    else
         CalculateQuantity();
     
 }
@@ -118,10 +125,36 @@ function CalculateQuantity() {
     return;
 }
 
+document.addEventListener('change', function (e) {
+    if (hasClass(e.target, 'Quantity')) {
+        CalculateQuantity();
+    }
+}, false);
+
+
+function CalculatePrice() {
+
+    var x = document.getElementsByClassName('Price')
+    var totalPrice = 0;
+    var i;
+
+    for (i = 0; i < x.length; i++) {
+
+        idofIsDeleted = i + "__IsHidden";
+
+        var hidIsDelId = document.querySelector("[id$='" + idofIsDeleted + "']").id;
+        if (document.getElementById(hidIsDelId).value != "true")
+            totalPrice = totalPrice + eval(x[i].value);
+    }
+
+    document.getElementById('totalPrice').value = totalPrice;
+
+    return;
+}
 
 document.addEventListener('change', function (e) {
-    if (hasClass(e.target,'Quantity')) {
-        CalculateQuantity();
+    if (hasClass(e.target, 'Price')) {
+        CalculatePrice();
     }
 }, false);
 

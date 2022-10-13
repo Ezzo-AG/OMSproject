@@ -1,14 +1,14 @@
 ﻿@model OMSproject.Models.ViewModels.OrderClientViewModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
 }
 <link rel="stylesheet" href="~/css/OrderStyle/order.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/css/Table/TablesStyle.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/css/Table/FormControl.css" asp-append-version="true" />
 <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 
-<form asp-action="Create">
+<form asp-action="Edit">
     <fieldset>
 
         <div asp-validation-summary="ModelOnly" class="warning"></div>
@@ -83,12 +83,12 @@
                         <tr>
                             <td>
                                 <div>
-                                    <select asp-for="@Model.Items[i].Product_Id" class="form-control" id="item-0"
+                                    <select asp-for="@Model.Items[i].Product_Id" class="form-control" id="item-@i"
                                         asp-items="@(new SelectList(Model.Items[i].Products,"Product_Id","Product_Name"))"></select>
                                 </div>
                             </td>
                             <td>
-                                <select asp-for="@Model.Items[i].ColorName" class="form-control" id="item-1"
+                                <select asp-for="@Model.Items[i].ColorName" class="form-control" id="item2-@i"
                                     asp-items="@(new SelectList(Model.Items[i].Colors,"Product_Id","ColorName"))"></select>
                             </td>
                             <td style="padding: 1rem 0">

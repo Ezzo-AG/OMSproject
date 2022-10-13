@@ -158,16 +158,54 @@ namespace OMSproject.Controllers
         // GET: OrderController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Order viewOrder = db.Orders.SingleOrDefault(x => x.OrderId == id);
+            List<OrderDetails> viewDetails = db.Details.Where(x => x.OrderId == id).ToList();
+
+            OrderClientViewModel view = new OrderClientViewModel();
+            view.OrderId = id;
+            view.Clients.AddRange(db.Clients.Select(x => new ClientDTO { Client_id = x.Client_id, ClientName = x.ClientName }));
+            view.Client_id = viewOrder.Client_id;
+            view.Total_price = viewOrder.Total_price;
+            view.Address = viewOrder.Address;
+            view.OrderStatus = viewOrder.OrderStatus;
+            view.SellPrice = viewOrder.SellPrice;
+            view.DateOFOrder = viewOrder.DateOFOrder;
+            view.Notes = viewOrder.Notes;
+            view.Status.AddRange(new List<string>
+            {
+                "New","Inprogress","Canceled","Delivered"
+            });
+
+            foreach (var item in viewDetails)
+            {
+                view.Items.Add(new ItemDTO { Product_Id = item.ProductId , ColorName = item.ClrName , Quantity = item.SubQty , Price = item.Price });
+
+            }
+
+            foreach (var item in view.Items)
+            {
+
+                item.Products.AddRange(db.Products.Select(x => new ProductDTO { Product_Id = x.Product_Id, Product_Name = x.Product_Name }));
+                item.Colors.AddRange(db.Colors.Where(p => p.Product_Id == item.Product_Id).Select(x => new ColorDTO { ColorName = x.ColorName }));
+
+                
+
+            }
+
+            return View(view);
         }
 
         // POST: OrderController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, OrderClientViewModel view)
         {
             try
             {
+                var order = db.Orders.SingleOrDefault(x => x.OrderId == id);
+                order.Address = view.Address;
+                order.SellPrice = view.SellPrice;
+                //view.Client_id = view.
                 return RedirectToAction(nameof(Index));
             }
             catch
