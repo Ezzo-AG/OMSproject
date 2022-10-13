@@ -10,7 +10,7 @@ namespace OMSproject.Controllers
     public class HomeController : Controller
     {
         readonly ApplicationDbContext? db;
-
+        
         public HomeController(ApplicationDbContext db)
         {
             this.db = db;
@@ -18,13 +18,17 @@ namespace OMSproject.Controllers
 
         public IActionResult Index()
         {
+            
             var home = new Home()
             {
                 InProgress = OrderStatus("Inprogress"),
                 Canceled = OrderStatus("Canceled"),
                 Delivred = OrderStatus("Delivered"),
                 New = OrderStatus("New"),
+
+                
             };
+            home.order.AddRange(db.Orders.Where(x => x.OrderStatus == "new").ToList());
             return View(home);
         }
 

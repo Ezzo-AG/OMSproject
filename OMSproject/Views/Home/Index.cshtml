@@ -1,4 +1,5 @@
-﻿@{
+﻿@model OMSproject.DTO.Home
+@{
     ViewData["Title"] = "Index";
 }
 <link rel="stylesheet" href="~/css/Home/Index.css" asp-append-version="true" />
@@ -68,7 +69,76 @@
 
     <div class="empty-box">
         <div style="margin: 5rem 8rem 0; font-size: 9rem; font-weight: 600; color: #ff6767; ">
-            Coming SOON !
+            @*Coming SOON !*@
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @*@Html.DisplayNameFor(model => model.Client)*@
+                            1
+                        </th>
+                        <th>
+                            @*@Html.DisplayNameFor(model => model.Address)*@
+                            2
+                        </th>
+                        <th>
+                            @*@Html.DisplayNameFor(model => model.DateOFOrder)*@
+                            3
+                        </th>
+                        <th>
+                            @*@Html.DisplayNameFor(model => model.Total_price)*@
+                            4
+                        </th>
+                        <th>
+                        sell pro
+                        </th>
+
+                        <th>
+                            status
+                        </th>
+                        <th>
+                            notes
+                        </th>
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.order)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Client.ClientName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Address)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateOFOrder)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Total_price)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SellPrice)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.OrderStatus)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Notes)
+                            </td>
+
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.OrderId">Edit</a> |
+                                <a asp-action="Details" asp-route-id="@item.OrderId">Details</a> |
+                                <a asp-action="Delete" asp-route-id="@item.OrderId">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
         </div>
     </div>
 
@@ -97,7 +167,8 @@
                 <div class="btn-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M2,4v7.17a2,2,0,0,0,.59,1.42l8,8a2,2,0,0,0,2.82,0l7.18-7.18a2,2,0,0,0,0-2.82l-8-8A2,2,0,0,0,11.17,2H4A2,2,0,0,0,2,4Z"></path>
-                        <circle cx="8.5" cy="8.5" r="2.5"></circle></svg>
+                        <circle cx="8.5" cy="8.5" r="2.5"></circle>
+                    </svg>
                 </div>
             </div>
         </div></a>
@@ -111,7 +182,9 @@
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="10" cy="6" r="4"></circle>
                         <path d="M15.67,22a2,2,0,0,0,1.92-2.56A7.8,7.8,0,0,0,10,14a7.8,7.8,0,0,0-7.59,5.44A2,2,0,0,0,4.34,22Z"></path>
-                        <line x1="19" y1="8" x2="19" y2="14"></line><line x1="22" y1="11" x2="16" y2="11"></line></svg>
+                        <line x1="19" y1="8" x2="19" y2="14"></line>
+                        <line x1="22" y1="11" x2="16" y2="11"></line>
+                    </svg>
 
 
                 </div>
