@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using OMSproject.Data;
 using OMSproject.Models;
@@ -24,11 +25,12 @@ namespace OMSproject.Controllers
             return View(clients);
         }
 
-        //// GET: ClientController/Details/5
-        //public ActionResult Details(int id)
-        //{
-        //    return View();
-        //}
+        // GET: ClientController/Details/5
+        public ActionResult History(int id)
+        {
+            var OrderHistory = _db.Orders.Where(o => o.Client_id == id).Include(x => x.Client).ToList();
+            return View(OrderHistory);
+        }
 
         // GET: ClientController/Create
         public ActionResult Create()

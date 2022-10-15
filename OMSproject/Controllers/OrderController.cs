@@ -35,7 +35,30 @@ namespace OMSproject.Controllers
         // GET: OrderController/Details/5
         public ActionResult Details(int id)
         {
-            return View(getEditView(id));
+
+            Order viewOrder = db.Orders.SingleOrDefault(x => x.OrderId == id);
+            List<OrderDetails> viewDetails = db.Details.Where(x => x.OrderId == id).ToList();
+
+            OrderClientViewModel view = new OrderClientViewModel();
+
+            view.OrderId = id;
+            view.Clients.AddRange(db.Clients.Select(x => new ClientDTO { Client_id = x.Client_id, ClientName = x.ClientName }));
+            view.Client_id = viewOrder.Client_id;
+            view.Total_price = viewOrder.Total_price;
+            view.Address = viewOrder.Address;
+            view.OrderStatus = viewOrder.OrderStatus;
+            view.SellPrice = viewOrder.SellPrice;
+            view.DateOFOrder = viewOrder.DateOFOrder;
+            view.Notes = viewOrder.Notes;
+
+
+            foreach (var item in viewDetails)
+            {
+                view.Items.Add(new ItemDTO { Product_Id = item.ProductId, ColorName = item.ClrName, Quantity = item.SubQty, Price = item.Price });
+
+            }
+
+            return View(view);
         }
 
 
@@ -292,6 +315,32 @@ namespace OMSproject.Controllers
             }
         }
 
+        public ActionResult Search(string term)
+        {
+            var result = db.Orders.Where(x => x.OrderStatus.Contains(term));
+            return View("index", result);
+        }
+
+        public ActionResult searchNew()
+        {
+            var result = db.Orders.Where(x => x.OrderStatus == "New").Include(x => x.Client);
+            return View("index", result);
+        } 
+        public ActionResult searchInprogress()
+        {
+            var result = db.Orders.Where(x => x.OrderStatus == "Inprogress").Include(x => x.Client);
+            return View("index", result);
+        } 
+        public ActionResult searchDelivered()
+        {
+            var result = db.Orders.Where(x => x.OrderStatus == "Delivered").Include(x => x.Client);
+            return View("index", result);
+        } 
+        public ActionResult searchCanceled()
+        {
+            var result = db.Orders.Where(x => x.OrderStatus == "Canceled").Include(x => x.Client);
+            return View("index", result);
+        }
     }
    
 }

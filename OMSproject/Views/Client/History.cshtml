@@ -1,7 +1,7 @@
-﻿@model IEnumerable<OMSproject.Models.Order>
+﻿@model  IEnumerable<OMSproject.Models.Order>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "History";
 }
 <link rel="stylesheet" href="~/css/OrderStyle/order.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/css/Table/TablesStyle.css" asp-append-version="true" />
@@ -9,13 +9,13 @@
 <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 <style>
     .cus th {
-        cursor:pointer ;
+        cursor: pointer;
     }
 </style>
 <form class="d-flex nav-search" asp-action="Search" asp-controller="Order">
     <fieldset>
-        <h1 class="headers left-floater">Order Index</h1>
-        <button class="table-item searcher" title="Search Order" type="submit">
+        <h1 class="headers left-floater">History</h1>
+        <button class="table-item searcher" type="submit">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="var(--peachy-red)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="11" cy="11" r="9" fill="none"></circle>
                 <line x1="17.5" y1="17.5" x2="22" y2="22"></line>
@@ -24,21 +24,7 @@
         <input class="form-control me-2" name="term" type="search" placeholder="Search" aria-label="Search" style="float: right;width: 30%;padding: .6rem;margin: 0 0.5rem 1rem 1rem;  ">
 
 
-        <div>
-            <button asp-action="searchNew">
-                NEW
-            </button>
-            <button asp-action="searchInprogress">
-                Inprogress
-            </button>
-            <button asp-action="searchDelivered">
-                Delivered
-            </button>    
-            <button asp-action="searchCanceled">
-                Calnceled
-            </button>
 
-        </div>
 
         <table class="table" id="myTable">
             <thead class="cus">
@@ -102,7 +88,7 @@
                         </td>
 
                         <td class="table-item">
-                            <a asp-action="Edit" asp-route-id="@item.OrderId" title="Edit">
+                            <a asp-action="Edit" asp-route-id="@item.OrderId">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M18.16,3.66l2.18,2.18a2,2,0,0,1,0,2.82l-13,13.05a1,1,0,0,1-.7.29H2V17.41a1,1,0,0,1,.29-.7l13.05-13A2,2,0,0,1,18.16,3.66Z"></path>
                                     <line x1="12.5" y1="6.5" x2="17.5" y2="11.5"></line>
@@ -110,7 +96,7 @@
 
 
                             </a>
-                            <a asp-action="Details" asp-route-id="@item.OrderId" title="Details">
+                            <a asp-action="Details" asp-route-id="@item.OrderId">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                                     <line x1="20" y1="12" x2="8" y2="12"></line>
                                     <line x1="20" y1="6" x2="8" y2="6"></line>
@@ -170,28 +156,4 @@
             }
         }
     }
-
-
-    function getOrdersByStatus(){
-
-    }
 </script>
-
-@*<scriptL>
-
-    document.querySelectorAll(".classy").forEach(function (obj) {
-    if (obj.innerText === "VIP") {
-    // obj.style.backgroundColor = "var(--clr-vip)";
-    obj.classList.add("VIP");
-
-    }
-    if (obj.innerText === "New-Client") {
-    // obj.style.backgroundColor = "var(--clr-new)";
-    obj.classList.add("New-Client");
-    }
-    else if (obj.innerText === "Blacklist") {
-    // obj.style.backgroundColor = "var(--clr-blacklist)";
-    obj.classList.add("Blacklist");
-    }
-    });
-</scriptL>*@

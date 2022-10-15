@@ -4,46 +4,50 @@
     ViewData["Title"] = "Index";
 }
 
-    <link rel="stylesheet" href="~/css/OrderStyle/order.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/Table/TablesStyle.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/Table/FormControl.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/OrderStyle/order.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/Table/TablesStyle.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/Table/FormControl.css" asp-append-version="true" />
 
-    @*<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css" asp-append-version="true" />*@
+@*<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css" asp-append-version="true" />*@
 
 <style>
-    :root {
-/*        --clr-vip: #fff0c2;
-        --clr-vip-font: #a68b00;
-        --clr-blacklist: #ffcdd2;
-        --clr-blacklist-font: #c62828;
-        --clr-new: #c8e6c9;
-        --clr-new-font: #388e3c;*/
+        :root {
+    /*        --clr-vip: #fff0c2;
+            --clr-vip-font: #a68b00;
+            --clr-blacklist: #ffcdd2;
+            --clr-blacklist-font: #c62828;
+            --clr-new: #c8e6c9;
+            --clr-new-font: #388e3c;*/
 
-                --clr-vip: #F1CF73;
-            --clr-vip-font: #32280A;
-            --clr-blacklist: #fe5f55;
-            /*--clr-blacklist-font: #d84727;*/
-            --clr-new: #139a43;
-            /*--clr-new-font: #0b5d1e;*/
-    }
-          .Vip {
-        background: var(--clr-vip);
-        color: v/*ar(--clr-vip-font)*/;
-        border-radius: 3px;
-      }
-      .New {
-        background: var(--clr-new);
-        /*color: var(--clr-new-font);*/
-        border-radius: 3px;
-      }
-      .BlackList {
-        background: var(--clr-blacklist);
-        /*color: var(--clr-blacklist-font);*/
-        border-radius: 3px;
-      }
-    .th-padding {
-        padding: 1rem;
-    }
+                    --clr-vip: #F1CF73;
+                --clr-vip-font: #32280A;
+                --clr-blacklist: #fe5f55;
+                /*--clr-blacklist-font: #d84727;*/
+                --clr-new: #139a43;
+                /*--clr-new-font: #0b5d1e;*/
+        }
+              .Vip {
+            /*background: var(--clr-vip);*/
+            background: #CEB1649C;
+
+            /*color: /*var(--clr-vip-font)*/;*/
+            border-radius: 3px;
+          }
+          .New {
+            /*background: var(--clr-new);*/
+            background: #0d8237cc;
+            /*color: var(--clr-new-font);*/
+            border-radius: 3px;
+          }
+          .BlackList {
+            /*background: var(--clr-blacklist);*/
+            background: #fe5f55a8;
+            /*color: var(--clr-blacklist-font);*/
+            border-radius: 3px;
+          }
+        .th-padding {
+            padding: 1rem;
+        }
 
 
 
@@ -53,7 +57,7 @@
 <form class="d-flex nav-search" asp-action="Search" asp-controller="Client">
 
     @*Next Update Needed Some Work But we don't have time*@
-    @*<fieldset>
+    <fieldset>
         <h1 class="head-title headers"> Add New Clients</h1>
         <div>
             <div class="triple-input">
@@ -83,12 +87,12 @@
                 </button>
             </div>
         </div>
-    </fieldset>*@
-    <br />  
+    </fieldset>
+    <br />
     <fieldset>
 
         <h1 class="headers left-floater">Client Index</h1>
-        <button class="table-item searcher" type="submit" style="float: right;">
+        <button class="table-item searcher" type="submit" style="float: right;" title="Search Client">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="var(--peachy-red)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="11" cy="11" r="9" fill="none"></circle>
                 <line x1="17.5" y1="17.5" x2="22" y2="22"></line>
@@ -99,73 +103,85 @@
 
 
 
-        <table class="table" >
+        <table class="table">
             <thead>
-        <tr>
+                <tr>
                     <th>
-                Client ID
-            </th>
-                    <th >
-                Client Name
-            </th>
-                    <th >
-                Phone 
-            </th>
+                        Client ID
+                    </th>
+                    <th>
+                        Client Name
+                    </th>
+                    <th>
+                        Phone
+                    </th>
                     <th>
                         Classification
                     </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-      @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Client_id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ClientName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Phone)
-            </td>
-            <td id="classifications">
-                <p class="classy"> 
-                @Html.DisplayFor(modelItem => item.Claasification)
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Client_id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ClientName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Phone)
+                        </td>
+                        <td id="classifications">
+                            <p class="classy">
+                                @Html.DisplayFor(modelItem => item.Claasification)
                             </p>
-            </td>
-            <td class="table-item">
-                <a asp-action="Edit" asp-route-id="@item.Client_id">
+                        </td>
+                        <td class="table-item">
+                            <a asp-action="Edit" asp-route-id="@item.Client_id" title="Edit Client">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M18.16,3.66l2.18,2.18a2,2,0,0,1,0,2.82l-13,13.05a1,1,0,0,1-.7.29H2V17.41a1,1,0,0,1,.29-.7l13.05-13A2,2,0,0,1,18.16,3.66Z"></path><line x1="12.5" y1="6.5" x2="17.5" y2="11.5"></line></svg>
+                                    <path d="M18.16,3.66l2.18,2.18a2,2,0,0,1,0,2.82l-13,13.05a1,1,0,0,1-.7.29H2V17.41a1,1,0,0,1,.29-.7l13.05-13A2,2,0,0,1,18.16,3.66Z"></path>
+                                    <line x1="12.5" y1="6.5" x2="17.5" y2="11.5"></line>
+                                </svg>
 
-                </a> 
-                @*<a asp-action="Details" asp-route-id="@item.Client_id">Details</a> | <a asp-action="Delete" asp-route-id="@item.Client_id">Delete</a>*@
-            </td>
-        </tr>
-      }
+                            </a>
+                            @*<a asp-action="Details" asp-route-id="@item.Client_id">Details</a> | <a asp-action="Delete" asp-route-id="@item.Client_id">Delete</a>*@
+                            <a asp-action="History" asp-route-id="@item.Client_id" title="Client History">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3,4V20a2,2,0,0,0,2,2H19a2,2,0,0,0,2-2V9.83a2,2,0,0,0-.59-1.42L14.59,2.59A2,2,0,0,0,13.17,2H5A2,2,0,0,0,3,4Z"></path>
+                                <path d="M20.6,9H16a2,2,0,0,1-2-2V2.4" stroke-linecap="round"></path>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="10" y1="9" x2="8" y2="9"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                            </svg>
+                            </a>
+                        </td>
+                    </tr>
+                }
 
-       
-    </tbody>
-</table>
-</fieldset>
+
+            </tbody>
+        </table>
+    </fieldset>
 </form>
 
 <script>
 
     document.querySelectorAll(".classy").forEach(function (obj) {
-    if (obj.innerText === "Vip") {
-    // obj.style.backgroundColor = "var(--clr-vip)";
-    obj.classList.add("Vip");
+        if (obj.innerText === "Vip") {
+            // obj.style.backgroundColor = "var(--clr-vip)";
+            obj.classList.add("Vip");
 
-    }
-    if (obj.innerText === "New") {
-    // obj.style.backgroundColor = "var(--clr-new)";
-    obj.classList.add("New");
-    }
-    else if (obj.innerText === "BlackList") {
-    // obj.style.backgroundColor = "var(--clr-blacklist)";
-    obj.classList.add("BlackList");
-    }
+        }
+        if (obj.innerText === "New") {
+            // obj.style.backgroundColor = "var(--clr-new)";
+            obj.classList.add("New");
+        }
+        else if (obj.innerText === "BlackList") {
+            // obj.style.backgroundColor = "var(--clr-blacklist)";
+            obj.classList.add("BlackList");
+        }
     });
 </script>

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.VisualBasic.Syntax;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using OMSproject.Data;
 using OMSproject.DTO;
@@ -29,7 +30,7 @@ namespace OMSproject.Controllers
 
                 
             };
-            home.order.AddRange(db.Orders.Where(x => x.OrderStatus == "new").OrderByDescending(x => x.OrderId).ToList());
+            home.order.AddRange(db.Orders.Where(x => x.OrderStatus == "new").OrderByDescending(x => x.OrderId).Include(x => x.Client).ToList());
 
             return View(home);
         }

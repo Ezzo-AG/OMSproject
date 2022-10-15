@@ -8,7 +8,8 @@
 }
 
     .table thead {
-        height: 3em;
+        height: 4em;
+        font-size: 1.3rem;
     }
 
         .table thead tr {
