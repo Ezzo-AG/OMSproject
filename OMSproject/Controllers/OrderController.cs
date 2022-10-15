@@ -35,7 +35,7 @@ namespace OMSproject.Controllers
         // GET: OrderController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            return View(getEditView(id));
         }
 
 
@@ -45,14 +45,14 @@ namespace OMSproject.Controllers
         {
 
              
-            return View(getView());
+            return View(getView(1));
         }
 
-        OrderClientViewModel getView()
+        OrderClientViewModel getView(int id)
         {
             
             OrderClientViewModel view = new OrderClientViewModel();
-            view.Items.Add(new ItemDTO { Product_Id = 1 });
+            view.Items.Add(new ItemDTO { Product_Id = id });
             view.Clients.AddRange(db.Clients.Select(x => new ClientDTO { Client_id = x.Client_id, ClientName = x.ClientName }));
 
             foreach (var item in view.Items)
@@ -83,11 +83,9 @@ namespace OMSproject.Controllers
         {
             try
             {
-                //foreach (var item in order.Items)
-                //{
-                //    if (item.OrderId == 0)
-                //        order.Items.Remove(item);
-                //}
+
+                order.Items.RemoveAll(x => x.IsHidden == true);
+                order.Items.RemoveAll(x => x.Quantity == 0);
 
                 if (ModelState.IsValid)
                 {
@@ -125,15 +123,18 @@ namespace OMSproject.Controllers
                         });
 
                         var color = db.Colors.SingleOrDefault(x => x.Product_Id == item.Product_Id && x.ColorName == item.ColorName);
+                        var product = db.Products.SingleOrDefault(x => x.Product_Id == item.Product_Id);
+
 
                         if (color.Quantity >= item.Quantity)
                         {
-                            color.Quantity = color.Quantity - item.Quantity;
+                            color.Quantity -= item.Quantity;
+                            product.Total_QTY -= item.Quantity;
                         }
                         else
                         {
                             ViewBag.message = "the quantity you ordered don't exist in inventory";
-                            return View(getView());
+                            return View(getView((int)item.Product_Id));
                         }
 
                     }
@@ -149,7 +150,7 @@ namespace OMSproject.Controllers
             }
             catch
             {
-                return View(getView());
+                return View(getView(1));
             }
         }
 
@@ -157,6 +158,14 @@ namespace OMSproject.Controllers
 
         // GET: OrderController/Edit/5
         public ActionResult Edit(int id)
+        {
+            
+
+            return View(getEditView(id));
+        }
+
+
+        OrderClientViewModel getEditView(int id)
         {
             Order viewOrder = db.Orders.SingleOrDefault(x => x.OrderId == id);
             List<OrderDetails> viewDetails = db.Details.Where(x => x.OrderId == id).ToList();
@@ -178,7 +187,7 @@ namespace OMSproject.Controllers
 
             foreach (var item in viewDetails)
             {
-                view.Items.Add(new ItemDTO { Product_Id = item.ProductId , ColorName = item.ClrName , Quantity = item.SubQty , Price = item.Price });
+                view.Items.Add(new ItemDTO { Product_Id = item.ProductId, ColorName = item.ClrName, Quantity = item.SubQty, Price = item.Price });
 
             }
 
@@ -188,12 +197,17 @@ namespace OMSproject.Controllers
                 item.Products.AddRange(db.Products.Select(x => new ProductDTO { Product_Id = x.Product_Id, Product_Name = x.Product_Name }));
                 item.Colors.AddRange(db.Colors.Where(p => p.Product_Id == item.Product_Id).Select(x => new ColorDTO { ColorName = x.ColorName }));
 
-                
+
 
             }
 
-            return View(view);
+            return view;
         }
+
+
+
+
+
 
         // POST: OrderController/Edit/5
         [HttpPost]
@@ -202,56 +216,83 @@ namespace OMSproject.Controllers
         {
             try
             {
+                view.Items.RemoveAll(x => x.IsHidden == true);
+                view.Items.RemoveAll(x => x.Quantity == 0);
+
                 var order = db.Orders.SingleOrDefault(x => x.OrderId == id);
+
+
                 order.Address = view.Address;
                 order.SellPrice = view.SellPrice;
-                //view.Client_id = view.
+                order.Client_id = view.Client_id;
+                order.Total_price = view.Total_price;
+                order.DateOFOrder = view.DateOFOrder;
+                order.OrderStatus = view.OrderStatus;
+                order.Notes = view.Notes;
+
+                List<OrderDetails> orderDetails = db.Details.Where(x => x.OrderId == id).ToList();
+
+                foreach(var item in orderDetails)
+                {
+                    var productColor = db.Colors.Where(x => x.Product_Id == item.ProductId && x.ColorName == item.ClrName).SingleOrDefault();
+                    var product = db.Products.Where(x => x.Product_Id == item.ProductId).SingleOrDefault();
+
+
+                    product.Total_QTY += item.SubQty;
+                    productColor.Quantity += item.SubQty;
+                }
+
+                if (view.OrderStatus != "Canceled")
+                {
+                    db.RemoveRange(orderDetails);
+                    db.SaveChanges();
+
+                    List<OrderDetails> ListItems = new List<OrderDetails>();
+
+                    foreach (var item in view.Items)
+                    {
+                        ListItems.Add(new OrderDetails
+                        {
+                            OrderId = id,
+                            ProductId = (int)item.Product_Id,
+                            ClrName = item.ColorName,
+                            SubQty = item.Quantity
+                        });
+
+                        var color = db.Colors.Where(x => x.Product_Id == item.Product_Id && x.ColorName == item.ColorName).SingleOrDefault();
+                        var product = db.Products.Where(x => x.Product_Id == item.Product_Id).SingleOrDefault();
+
+
+                        if (color.Quantity >= item.Quantity)
+                        {
+                            color.Quantity -= item.Quantity;
+                            product.Total_QTY -= item.Quantity;
+
+                        }
+                        else
+                        {
+                            ViewBag.message = "the quantity you ordered don't exist in inventory";
+                            return View(getEditView(id));
+                        }
+
+                    }
+
+                    db.Details.AddRange(ListItems);
+                    
+                }
+                db.SaveChanges();
+
+
+
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                return View(getEditView(id));
             }
         }
 
-        // GET: OrderController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: OrderController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-
-        //List<ClientDTO> fillClientList()
-        //{
-        //    var clientList = db.Clients(x => x.Client_id, x.ClientName );
-        //    return (List<ClientDTO>)clientList;
-        //}
-
-
-        //OrderClientViewModel getOrderClient()
-        //{
-        //    var order = new OrderClientViewModel
-        //    {
-        //        clients = fillClientList(),
-        //    };
-        //    return order;
-        //}
- 
     }
    
 }
+
