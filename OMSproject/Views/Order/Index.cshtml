@@ -10,8 +10,13 @@
 
 <form class="d-flex nav-search" asp-action="Search" asp-controller="Order">
     <fieldset>
-        <h1 class="head-title">Orders Index</h1>
-        <button class="form-btn save" type="submit"style="float: right;">Search</button>
+        <h1 class="headers left-floater">Client Index</h1>
+        <button class="table-item searcher" type="submit">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="var(--peachy-red)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="9" fill="none"></circle>
+                <line x1="17.5" y1="17.5" x2="22" y2="22"></line>
+            </svg>
+        </button>
         <input class="form-control me-2" name="term" type="search" placeholder="Search" aria-label="Search" style="float: right;width: 30%;padding: .6rem;margin: 0 0.5rem 1rem 1rem;  ">
     
 
@@ -42,7 +47,7 @@
                 @Html.DisplayNameFor(model => model.Notes)
             </th>
            
-            <th></th>
+            <th style="width: 10%"></th>
         </tr>
     </thead>
     <tbody>
@@ -69,11 +74,24 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Notes)
             </td>
-           
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.OrderId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.OrderId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.OrderId">Delete</a>
+
+                        <td class="table-item">
+                <a asp-action="Edit" asp-route-id="@item.OrderId">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M18.16,3.66l2.18,2.18a2,2,0,0,1,0,2.82l-13,13.05a1,1,0,0,1-.7.29H2V17.41a1,1,0,0,1,.29-.7l13.05-13A2,2,0,0,1,18.16,3.66Z"></path>
+                                    <line x1="12.5" y1="6.5" x2="17.5" y2="11.5"></line>
+                                </svg>
+
+
+                            </a> 
+                <a asp-action="Details" asp-route-id="@item.OrderId">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="20" y1="12" x2="8" y2="12"></line><line x1="20" y1="6" x2="8" y2="6"></line><line x1="20" y1="18" x2="8" y2="18">
+                                                            </line><line x1="3.99" y1="6" x2="4" y2="6"></line><line x1="3.99" y1="12" x2="4" y2="12"></line><line x1="3.99" y1="18" x2="4" y2="18"></line></svg>
+
+
+
+                            </a> 
             </td>
         </tr>
 }
@@ -81,3 +99,21 @@
 </table>
 </fieldset>
 </form>
+@*<scriptL>
+
+    document.querySelectorAll(".classy").forEach(function (obj) {
+    if (obj.innerText === "VIP") {
+    // obj.style.backgroundColor = "var(--clr-vip)";
+    obj.classList.add("VIP");
+
+    }
+    if (obj.innerText === "New-Client") {
+    // obj.style.backgroundColor = "var(--clr-new)";
+    obj.classList.add("New-Client");
+    }
+    else if (obj.innerText === "Blacklist") {
+    // obj.style.backgroundColor = "var(--clr-blacklist)";
+    obj.classList.add("Blacklist");
+    }
+    });
+</scriptL>*@

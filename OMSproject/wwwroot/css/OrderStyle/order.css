@@ -191,3 +191,12 @@ tbody tr{
 tbody tr td input {
     background: hsl(var(--txt) / .15);
 }
+.headers {
+    font-size: 1.9rem;
+    font-weight: 500;
+    padding: 0rem 1rem 2rem;
+}
+
+.left-floater {
+    float: left;
+}

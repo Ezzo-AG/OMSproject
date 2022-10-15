@@ -201,6 +201,14 @@ main {
     border-radius: 5px;
     
 }
+.searcher {
+    float: right;
+    padding: .4rem;
+    background: hsl(var(--thd-bg));
+    border: 0px;
+    border-radius: 5px;
+    cursor: pointer;
+}
 .logo {
     text-align: center;
     display: flex;

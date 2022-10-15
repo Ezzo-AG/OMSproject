@@ -11,20 +11,49 @@
     @*<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css" asp-append-version="true" />*@
 
 <style>
+    :root {
+/*        --clr-vip: #fff0c2;
+        --clr-vip-font: #a68b00;
+        --clr-blacklist: #ffcdd2;
+        --clr-blacklist-font: #c62828;
+        --clr-new: #c8e6c9;
+        --clr-new-font: #388e3c;*/
+
+                --clr-vip: #F1CF73;
+            --clr-vip-font: #32280A;
+            --clr-blacklist: #fe5f55;
+            /*--clr-blacklist-font: #d84727;*/
+            --clr-new: #139a43;
+            /*--clr-new-font: #0b5d1e;*/
+    }
+          .Vip {
+        background: var(--clr-vip);
+        color: v/*ar(--clr-vip-font)*/;
+        border-radius: 3px;
+      }
+      .New {
+        background: var(--clr-new);
+        /*color: var(--clr-new-font);*/
+        border-radius: 3px;
+      }
+      .BlackList {
+        background: var(--clr-blacklist);
+        /*color: var(--clr-blacklist-font);*/
+        border-radius: 3px;
+      }
     .th-padding {
         padding: 1rem;
     }
-    .headers {
-        font-size: 1.9rem;font-weight: 500;padding: 0rem 1rem 2rem; 
-    }
-    .left-floater {
-        float: left;
-    }
+
+
+
 </style>
 
 
 <form class="d-flex nav-search" asp-action="Search" asp-controller="Client">
-    <fieldset>
+
+    @*Next Update Needed Some Work But we don't have time*@
+    @*<fieldset>
         <h1 class="head-title headers"> Add New Clients</h1>
         <div>
             <div class="triple-input">
@@ -54,12 +83,17 @@
                 </button>
             </div>
         </div>
-    </fieldset>
+    </fieldset>*@
     <br />  
     <fieldset>
 
         <h1 class="headers left-floater">Client Index</h1>
-        <button class="form-btn save" type="submit" style="float: right;">Search</button>
+        <button class="table-item searcher" type="submit" style="float: right;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="var(--peachy-red)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="9" fill="none"></circle>
+                <line x1="17.5" y1="17.5" x2="22" y2="22"></line>
+            </svg>
+        </button>
         <input class="form-control me-2" name="term" type="search" placeholder="Search" aria-label="Search" style="float: right;width: 30%;padding: .6rem;margin: 0 0.5rem 1rem 1rem;  ">
 
 
@@ -69,17 +103,17 @@
             <thead>
         <tr>
                     <th>
-                @Html.DisplayNameFor(model => model.Client_id)
+                Client ID
             </th>
                     <th >
-                @Html.DisplayNameFor(model => model.ClientName)
+                Client Name
             </th>
                     <th >
-                @Html.DisplayNameFor(model => model.Phone)
+                Phone 
             </th>
                     <th>
-                @Html.DisplayNameFor(model => model.Claasification)
-            </th>
+                        Classification
+                    </th>
             <th></th>
         </tr>
     </thead>
@@ -96,7 +130,9 @@
                 @Html.DisplayFor(modelItem => item.Phone)
             </td>
             <td id="classifications">
+                <p class="classy"> 
                 @Html.DisplayFor(modelItem => item.Claasification)
+                            </p>
             </td>
             <td class="table-item">
                 <a asp-action="Edit" asp-route-id="@item.Client_id">
@@ -114,3 +150,22 @@
 </table>
 </fieldset>
 </form>
+
+<script>
+
+    document.querySelectorAll(".classy").forEach(function (obj) {
+    if (obj.innerText === "Vip") {
+    // obj.style.backgroundColor = "var(--clr-vip)";
+    obj.classList.add("Vip");
+
+    }
+    if (obj.innerText === "New") {
+    // obj.style.backgroundColor = "var(--clr-new)";
+    obj.classList.add("New");
+    }
+    else if (obj.innerText === "BlackList") {
+    // obj.style.backgroundColor = "var(--clr-blacklist)";
+    obj.classList.add("BlackList");
+    }
+    });
+</script>

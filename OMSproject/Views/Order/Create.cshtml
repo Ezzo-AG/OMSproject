@@ -78,6 +78,7 @@
                                 <div>
                                     <select asp-for="@Model.Items[i].Product_Id" class="form-control" id="item-0"
                                         asp-items="@(new SelectList(Model.Items[i].Products,"Product_Id","Product_Name"))"></select>
+
                                 </div>
                             </td>
                             <td>
@@ -88,9 +89,9 @@
                                 <input asp-for="@Model.Items[i].Quantity" class="form-control" />
                                 <span class="warning">@ViewBag.message</span>
 
-                            </td>    
-                            <td style="padding: 1rem 0">
-                                <input asp-for="@Model.Items[i].Price" class="form-control Price" />
+                            </td>
+                            <td style="padding: 1rem 0rem 1rem 1rem;width: 10%;">
+                                <input asp-for="@Model.Items[i].Price" class="form-control Price" style="height: 2.5rem;"  />
                             </td>
                             <td style="width: 10%;">
                                 <input type="hidden" class="nothidden" asp-for="@Model.Items[i].IsHidden" />
