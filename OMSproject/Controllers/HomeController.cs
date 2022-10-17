@@ -30,7 +30,7 @@ namespace OMSproject.Controllers
 
                 
             };
-            home.order.AddRange(db.Orders.Where(x => x.OrderStatus == "new").OrderByDescending(x => x.OrderId).Include(x => x.Client).ToList());
+            home.order.AddRange(db.Orders.Where(x => x.OrderStatus == "new").OrderByDescending(x => x.OrderId).Include(x => x.Client). ToList());
 
             return View(home);
         }
