@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using OMSproject.Data;
 using OMSproject.Models;
+using OMSproject.Models.ViewModels;
 using System.Linq;
 
 namespace OMSproject.Controllers
@@ -21,9 +22,60 @@ namespace OMSproject.Controllers
         // GET: ClientController
         public ActionResult Index()
         {
-            var clients = _db.Clients;
-            return View(clients);
+
+            var model = new ClientViewModel()
+            {
+                ClientsCollection = _db.Clients,
+            };
+            model.ClaasificationList.AddRange(new List<string>
+            {
+                "New","Vip","BlackList"
+            });
+            return View(model);
         }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Index(ClientViewModel model)        
+        {
+            if (ModelState.IsValid)
+            {
+
+                var id = _db.Clients.Max(x => x.Client_id);
+
+                if (id == null)
+                {
+                    id = 0;
+                }
+                id++;
+
+                var clients = new Client()
+                {
+                    Client_id = id,
+                    Phone = model.Phone,
+                    ClientName = model.ClientName,
+                    Claasification = model.Claasification,
+                };
+
+                _db.Clients.Add(clients);
+                _db.SaveChanges();
+
+                return RedirectToAction(nameof(Index));
+
+            }
+            else
+            {
+                model.ClientsCollection = _db.Clients;
+                model.ClaasificationList.AddRange(new List<string>
+            {
+                "New","Vip","BlackList"
+            });
+                return View(model);
+            }
+        }
+
+
 
         // GET: ClientController/Details/5
         public ActionResult History(int id)
@@ -32,7 +84,7 @@ namespace OMSproject.Controllers
             return View(OrderHistory);
         }
 
-        // GET: ClientController/Create
+        //GET: ClientController/Create
         public ActionResult Create()
         {
             Client model = new Client();
@@ -130,9 +182,19 @@ namespace OMSproject.Controllers
 
         public ActionResult Search(string term)
         {
-            var result = _db.Clients.Where(x => x.ClientName.Contains(term)
+            Client model = new Client();
+
+            ClientViewModel result = new()
+            {
+               ClientsCollection = _db.Clients.Where(x => x.ClientName.Contains(term)
                                             || x.Phone.Contains(term)
-                                            || x.Claasification.Contains(term));
+                                            || x.Claasification.Contains(term)),
+
+            };
+            result.ClaasificationList.AddRange(new List<string>
+            {
+                "New","Vip","BlackList"
+            });
             return View("index",result);
         }
 

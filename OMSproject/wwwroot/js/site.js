@@ -13,7 +13,7 @@ function AddItem(btn) {
         table = document.getElementById('tableHa')
 
 
-
+    
     var rows = document.getElementsByTagName('tr');
 
     var lastrowIdx = rows.length - 1;
@@ -48,8 +48,7 @@ function AddItem(btn) {
             if (x[cnt].className == "hidden" && x[cnt].id.indexOf('_' + nextrowIdx + '_') > 0)
                 x[cnt].className = "nothidden";
         }
-        
-
+ 
     }
 }
 

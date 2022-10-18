@@ -76,7 +76,7 @@ namespace OMSproject.Controllers
             
             OrderClientViewModel view = new OrderClientViewModel();
             view.Items.Add(new ItemDTO { Product_Id = id });
-            view.Clients.AddRange(db.Clients.Select(x => new ClientDTO { Client_id = x.Client_id, ClientName = x.ClientName }));
+            view.Clients.AddRange(db.Clients.Where(x => x.Claasification != "blacklist").Select(x => new ClientDTO { Client_id = x.Client_id, ClientName = x.ClientName }));
 
             foreach (var item in view.Items)
             {

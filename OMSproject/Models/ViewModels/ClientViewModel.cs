@@ -1,20 +1,17 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace OMSproject.Models
+namespace OMSproject.Models.ViewModels
 {
-    [Table("Clients")]
-    public class Client
+    public class ClientViewModel
     {
-
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int? Client_id { get; set; }
 
         [Required(ErrorMessage = "You must enter phone number")]
         [Display(Name = "Phone")]
         [DataType(DataType.PhoneNumber)]
-        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid phone number")]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid phone number, most be like(09X-XXX-XXXX)")]
         [Column(TypeName = "varchar(100)")]
         public string Phone { get; set; } = string.Empty;
 
@@ -25,12 +22,9 @@ namespace OMSproject.Models
         [Column(TypeName = "varchar(100)")]
         public string? Claasification { get; set; } = string.Empty;
 
-        IList<Order>? orders { get; set; } 
-        ICollection<Order>? Orders { get; set; }
-
-        [NotMapped]
-        public List<string>? ClaasificationList { get;private set; } = new List<string>();
+        public List<string>? ClaasificationList { get; private set; } = new List<string>();
 
         
+        public IEnumerable<OMSproject.Models.Client>? ClientsCollection { get; set; }
     }
 }
