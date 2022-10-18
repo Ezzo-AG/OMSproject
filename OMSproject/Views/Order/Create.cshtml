@@ -55,16 +55,15 @@
         <div class="double-input">
             <div class="form-input-container">
                 <label asp-for="Client_id" class="control-label">Client Name</label>
-                @*                <select asp-for="Client_id" class="form-control"
-                asp-items="@(new SelectList(Model.Clients,"Client_id","ClientName"))"></select>*@
-                <input class="form-control" list="Client" asp-for="Client_id" />
+                <select asp-for="Client_id" class="form-control" asp-items="@(new SelectList(Model.Clients,"Client_id","ClientName"))" ></select>
+                @*                <input class="form-control" list="Client" asp-for="Client_id" />
 
                 <datalist id="Client" role="listbox">
-                    @foreach (var item in Model.Clients)
-                    {
-                        <option>@item.ClientName</option>
-                    }
-                </datalist>
+                @foreach (var item in Model.Clients)
+                {
+                <option>@item.ClientName</option>
+                }
+                </datalist>*@
 
 
                 @*<datalist id="Client" asp-items="@(new SelectList(Model.Clients,"Client_id","ClientName"))"></datalist>*@
@@ -132,7 +131,9 @@
                             <td>
                                 <div>
                                     <select asp-for="@Model.Items[i].Product_Id" class="form-control" id="item-0"
-                                        asp-items="@(new SelectList(Model.Items[i].Products,"Product_Id","Product_Name"))"></select>
+                                        asp-items="@(new SelectList(Model.Items[i].Products,"Product_Id","Product_Name"))">
+                                   @* <option value="" disabled selected hidden>Choose .... </option>*@
+                                    </select>
 
                                 </div>
                             </td>
