@@ -7,68 +7,82 @@
 <link rel="stylesheet" href="~/css/Table/TablesStyle.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/css/Table/FormControl.css" asp-append-version="true" />
 <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+
 <style>
+    .btn-Status {
+    font-size: 1.5rem;
+    margin: auto 0.2rem;
+    padding: .2rem 1rem;
+    background: hsl(var(--thd-bg)/ .2);
+    color: var(--peachy-red);
+    border: 1px solid var(--peachy-red);
+    border-radius: .7rem;
+    cursor: pointer;
+    }
     .cus th {
         cursor:pointer ;
     }
 </style>
+
 <form class="d-flex nav-search" asp-action="Search" asp-controller="Order">
     <fieldset>
         <h1 class="headers left-floater">Order Index</h1>
-        <button class="table-item searcher" title="Search Order" type="submit">
+        <div>
+            <button class="table-item searcher" title="Add Order" type="submit">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="var(--peachy-red)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="9" fill="none"></circle>
+                    <line x1="17.5" y1="17.5" x2="22" y2="22"></line>
+                </svg>
+            </button>
+            <button class="table-item searcher" title="Search Order" type="submit" style="margin: 0 1rem;">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="var(--peachy-red)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="11" cy="11" r="9" fill="none"></circle>
                 <line x1="17.5" y1="17.5" x2="22" y2="22"></line>
             </svg>
         </button>
         <input class="form-control me-2" name="term" type="search" placeholder="Search" aria-label="Search" style="float: right;width: 30%;padding: .6rem;margin: 0 0.5rem 1rem 1rem;  ">
-
-
-        <div>
-            <button asp-action="searchNew">
-                NEW
-            </button>
-            <button asp-action="searchInprogress">
-                Inprogress
-            </button>
-            <button asp-action="searchDelivered">
-                Delivered
-            </button>    
-            <button asp-action="searchCanceled">
-                Calnceled
-            </button>
-
         </div>
 
-        <table class="table" id="myTable">
+        <div style=" clear: both; margin: 1rem;">
+            <h4 style="font-weight: 400;color: hsl(var(--txt) /.5);margin: 1.5rem 0rem;"> 
+                Select Status
+            </h4>
+            @*<hr />*@
+            <button asp-action="searchNew" class="btn-Status">
+                NEW
+            </button>
+            <button asp-action="searchInprogress" class="btn-Status">
+                Inprogress
+            </button>
+            <button asp-action="searchDelivered" class="btn-Status">
+                Delivered
+            </button>    
+            <button asp-action="searchCanceled" class="btn-Status">
+                Calnceled
+            </button>
+        </div>
+        <table class="table" id="myTable" style="margin: 3rem auto 0;">
             <thead class="cus">
                 <tr>
                     <th onclick="sortTable(0)">
-                        @*@Html.DisplayNameFor(model => model.Client)*@
                         Client Name
                     </th>
                     <th onclick="sortTable(1)">
-                        @*@Html.DisplayNameFor(model => model.Address)*@
                         Address
                     </th>
                     <th onclick="sortTable(2)">
-                        @*@Html.DisplayNameFor(model => model.DateOFOrder)*@
                         Order Date
                     </th>
                     <th onclick="sortTable(3)">
-                        @*@Html.DisplayNameFor(model => model.Total_price)*@
                         Price
                     </th>
                     <th onclick="sortTable(4)">
-                        @*@Html.DisplayNameFor(model => model.SellPrice)*@
                         Sell Price
                     </th>
                     <th onclick="sortTable(5)">
-                        @*@Html.DisplayNameFor(model => model.OrderStatus)*@
                         Status
                     </th>
                     <th onclick="sortTable(6)">
-                        @*@Html.DisplayNameFor(model => model.Notes)*@
                         Notes
                     </th>
 
@@ -88,10 +102,10 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.DateOFOrder)
                         </td>
-                        <td>
+                        <td class="currency">
                             @Html.DisplayFor(modelItem => item.Total_price)
                         </td>
-                        <td>
+                        <td class="currency">
                             @Html.DisplayFor(modelItem => item.SellPrice)
                         </td>
                         <td>
@@ -128,70 +142,3 @@
         </table>
     </fieldset>
 </form>
-<script>
-    function sortTable(n) {
-        var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-        table = document.getElementById("myTable");
-        switching = true;
-        dir = "asc";
-        while (switching) {
-            switching = false;
-            rows = table.rows;
-            for (i = 1; i < (rows.length - 1); i++) {
-                shouldSwitch = false;
-                x = rows[i].getElementsByTagName("TD")[n];
-                y = rows[i + 1].getElementsByTagName("TD")[n];
-                if (dir == "asc") {
-                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                        shouldSwitch = true;
-                        break;
-                    }
-                } else if (dir == "desc") {
-                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-                        shouldSwitch = true;
-                        break;
-                    }
-                }
-            }
-            if (shouldSwitch) {
-                /* If a switch has been marked, make the switch
-                and mark that a switch has been done: */
-                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                switching = true;
-                // Each time a switch is done, increase this count by 1:
-                switchcount++;
-            } else {
-                /* If no switching has been done AND the direction is "asc",
-                set the direction to "desc" and run the while loop again. */
-                if (switchcount == 0 && dir == "asc") {
-                    dir = "desc";
-                    switching = true;
-                }
-            }
-        }
-    }
-
-
-    function getOrdersByStatus(){
-
-    }
-</script>
-
-@*<scriptL>
-
-    document.querySelectorAll(".classy").forEach(function (obj) {
-    if (obj.innerText === "VIP") {
-    // obj.style.backgroundColor = "var(--clr-vip)";
-    obj.classList.add("VIP");
-
-    }
-    if (obj.innerText === "New-Client") {
-    // obj.style.backgroundColor = "var(--clr-new)";
-    obj.classList.add("New-Client");
-    }
-    else if (obj.innerText === "Blacklist") {
-    // obj.style.backgroundColor = "var(--clr-blacklist)";
-    obj.classList.add("Blacklist");
-    }
-    });
-</scriptL>*@

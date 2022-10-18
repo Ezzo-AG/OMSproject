@@ -1,9 +1,7 @@
 ﻿@model IEnumerable<OMSproject.Models.Product>
-
 @{
     ViewData["Title"] = "Index";
 }
-
 <link rel="stylesheet" href="~/css/OrderStyle/order.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/css/Table/TablesStyle.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/css/Table/FormControl.css" asp-append-version="true" />
@@ -14,70 +12,67 @@
         padding: 1rem;
     }
 
+    .alertTable {
+        background: #e6394682;
+    }
 </style>
 <form class="d-flex nav-search" asp-action="Search" asp-controller="Product">
+
     <fieldset>
         <h1 class="headers left-floater">Product Index</h1>
         <button class="table-item searcher" type="submit" title="Search Product">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="var(--peachy-red)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="11" cy="11" r="9" fill="none"></circle>
-                <line x1="17.5" y1="17.5" x2="22" y2="22"></line></svg>
+                <line x1="17.5" y1="17.5" x2="22" y2="22"></line>
+            </svg>
         </button>
         <input class="form-control me-2" name="term" type="search" placeholder="Search" aria-label="Search" style="float: right;width: 30%;padding: .6rem;margin: 0 0.5rem 1rem 1rem;  ">
-    
-
-
-        <table class="table">
+        <table class="table" id="myTable">
             <thead>
-        <tr>
-                    <th>
-                @*@Html.DisplayNameFor(model => model.Product_Id)*@
-                Product ID
-            </th>
-                    <th>
-                @*@Html.DisplayNameFor(model => model.Product_Name)*@
-                Product Name
-            </th>
-                    <th>
-                @*@Html.DisplayNameFor(model => model.Cost)*@
-                Cost
-            </th>
-                    <th>
-                @*@Html.DisplayNameFor(model => model.Price)*@
-                Price
-            </th>
-            <th>
-                @*@Html.DisplayNameFor(model => model.Total_QTY)*@
-                Total Quantity
-            </th>
-                    <th>
-                @*@Html.DisplayNameFor(model => model.Notes)*@
-                Note
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                    @Html.DisplayFor(modelItem => item.Product_Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Product_Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cost)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Total_QTY)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Notes)
-            </td>
+                <tr>
+                    <th onclick="sortTable(0)">
+                        Product ID
+                    </th>
+                    <th onclick ="sortTable(1)">
+                        Product Name
+                    </th>
+                    <th onclick="sortTable(2)">
+                        Cost
+                    </th>
+                    <th onclick="sortTable(3)">
+                        Price
+                    </th>
+                    <th onclick="sortTable(4)">
+                        Total Quantity
+                    </th>
+                    <th onclick="sortTable(5)">
+                        Note
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="row">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Product_Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Product_Name)
+                        </td>
+                        <td class="currency">
+                            @Html.DisplayFor(modelItem => item.Cost)
+                        </td>
+                        <td class="currency">
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td class="quantity">
+                            @Html.DisplayFor(modelItem => item.Total_QTY)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Notes)
+                        </td>
                         <td class="table-item">
                             <a asp-action="Edit" asp-route-id="@item.Product_Id" title="Edit">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
@@ -97,11 +92,11 @@
                                     <line x1="3.99" y1="18" x2="4" y2="18"></line>
                                 </svg>
                             </a>
-                            @*| <a asp-action="Delete" asp-route-id="@item.Product_Id">Delete</a>*@
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
-</fieldset>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </fieldset>
 </form>
+<script src="~/js/productAlerts.js"></script>

@@ -7,7 +7,47 @@
 <link rel="stylesheet" href="~/css/Table/TablesStyle.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/css/Table/FormControl.css" asp-append-version="true" />
 <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+<style>
+    input {
+        font-size: 18px;
+        padding: 5px;
+        height: 35px;
+        width: 350px;
+        border: 1px solid rgb(42, 42, 42);
+        outline: none;
+        border-radius: 5px;
+        color: rgb(42, 42, 42);
+        /*   border-bottom: none; */
+    }
 
+    datalist {
+        position: absolute;
+        background-color: white;
+        border: 1px solid rgb(42, 42, 42);
+        border-radius: 0 0 5px 5px;
+        border-top: none;
+        font-family: sans-serif;
+        width: 350px;
+        padding: 5px;
+        max-height: 10rem;
+        overflow-y: auto;
+    }
+
+    option {
+        background-color: white;
+        padding: 4px;
+        color: rgb(42, 42, 42);
+        margin-bottom: 1px;
+        font-size: 18px;
+        cursor: pointer;
+    }
+
+        option:hover,
+        .active {
+            background-color: rgb(255, 163, 163);
+        }
+
+</style>
 <form asp-action="Create">
     <fieldset>
         <div asp-validation-summary="ModelOnly" class="warning"></div>
@@ -65,7 +105,8 @@
                         <th>
                             <button type="button" id="addOrder" class="form-btn " onClick="AddItem(this)" style="background: transparent;border: transparent;">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 30px; ">
-                                    <path fill="hsl(var(--txt))" d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z" /></svg>
+                                    <path fill="hsl(var(--txt))" d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z" />
+                                </svg>
                             </button>
                         </th>
                     </tr>
@@ -91,7 +132,7 @@
 
                             </td>
                             <td style="padding: 1rem 0rem 1rem 1rem;width: 10%;">
-                                <input asp-for="@Model.Items[i].Price" class="form-control Price" style="height: 2.5rem;"  />
+                                <input asp-for="@Model.Items[i].Price" class="form-control Price" style="height: 2.5rem;" />
                             </td>
                             <td style="width: 10%;">
                                 <input type="hidden" class="nothidden" asp-for="@Model.Items[i].IsHidden" />
@@ -105,7 +146,7 @@
 
                 </tbody>
             </table>
-            </div>
+        </div>
         <input type="hidden" id="hdnLastIndex" value="0" />
 
         <div class="form-group" style="width: 10%;margin: 1rem .5rem;">
@@ -120,14 +161,6 @@
     }
 
     <script>
-        //function getid(){
-        //    var table = document.getElementById('OrderTable')
-        //    var rows = document.getElementsByTagName('tr');
-
-        //    var lastrowIdx = rows.length - 1;
-        //    return lastrowIdx;
-        //}
-
         $(document).ready(function () {
             $('#Pname').on('change', function () {
                 var colorId = eval($(this).val());
@@ -147,5 +180,6 @@
                 });
             });
         });
+
     </script>
 }
