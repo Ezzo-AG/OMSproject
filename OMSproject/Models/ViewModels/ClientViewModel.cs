@@ -11,7 +11,7 @@ namespace OMSproject.Models.ViewModels
         [Required(ErrorMessage = "You must enter phone number")]
         [Display(Name = "Phone")]
         [DataType(DataType.PhoneNumber)]
-        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid phone number, most be like(09X-XXX-XXXX)")]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid phone number, most be like (09X-XXX-XXXX)")]
         [Column(TypeName = "varchar(100)")]
         public string Phone { get; set; } = string.Empty;
 

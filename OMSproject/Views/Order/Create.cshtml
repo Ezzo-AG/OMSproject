@@ -114,21 +114,22 @@
                 <tbody>
                     @for (int i = 0; i < Model.Items.Count; i++)
                     {
-                        <tr>
+                        <tr id="mainrow">
                             <td>
                                 <div>
-                                    <select asp-for="@Model.Items[i].Product_Id" class="form-control Pname" id="Pname"
+                                    <select asp-for="@Model.Items[i].Product_Id" class="form-control Pname" id="ProductName-@i" onchange="LoudProduct(this)"
                                         asp-items="@(new SelectList(Model.Items[i].Products,"Product_Id","Product_Name"))"></select>
 
                                 </div>
                             </td>
                             <td>
-                                <select asp-for="@Model.Items[i].ColorName" class="form-control " id="Cname" value=""
+                                <select asp-for="@Model.Items[i].ColorName" class="form-control " id="ColorName-@i"
                                     asp-items="@(new SelectList(Model.Items[i].Colors,"Product_Id","ColorName"))"></select>
                             </td>
                             <td style="padding: 1rem 0">
                                 <input asp-for="@Model.Items[i].Quantity" class="form-control" />
-                                <span class="warning">@ViewBag.message</span>
+                                <span asp-validation-for="@Model.Items[i].Quantity" class="warning">@ViewBag.message</span>
+                                @*<span class="warning">@ViewBag.message</span>*@
 
                             </td>
                             <td style="padding: 1rem 0rem 1rem 1rem;width: 10%;">
@@ -161,25 +162,51 @@
     }
 
     <script>
-        $(document).ready(function () {
-            $('#Pname').on('change', function () {
-                var colorId = eval($(this).val());
-                var productId = $('#Cname');
-                productId.empty();
-                $.ajax({
-                    url: '/Order/getcolors?productId=' + colorId,
-                    success: function (colors) {
-                        $.each(colors, function (i, color) {
-                            productId.append($('<option></option>').attr('value', color.product_Id).text(color.colorName));
-                        });
-                    },
-                    error: function () 
-                    {
-                        alert('Error>...  ');
-                    }
-                });
+        //$(document).ready(function () {
+        //    $('#ProductName').on('change', function () {
+        //        var colorId = eval($(this).val());
+        //        var productId = $('#ColorName');
+        //        productId.empty();
+        //        $.ajax({
+        //            url: '/Order/getcolors?productId=' + colorId,
+        //            success: function (colors) {
+        //                $.each(colors, function (i, color) {
+        //                    productId.append($('<option></option>').attr('value', color.product_Id).text(color.colorName));
+        //                    console.log(colorId);
+
+        //                });
+        //            },
+        //            error: function () 
+        //            {
+        //                alert('Error>...  ');
+        //            }
+        //        });
+        //    });
+        //    console.log(colorId);
+        //});
+
+
+        function LoudProduct(element){
+            var colorId = eval(element.value);
+            console.log(colorId);
+            var productId = $('#'+element.id.replaceAll('ProductName', 'ColorName'));
+            productId.empty();
+            $.ajax({
+                url: '/Order/getcolors?productId=' + colorId,
+                success: function (colors) {
+                    $.each(colors, function (i, color) {
+                        productId.append($('<option></option>').attr('value', color.product_Id).text(color.colorName));
+                    });
+                },
+                error: function () {
+                    alert('Error>...  ');
+                }
             });
-        });
+        }
 
     </script>
+
+    
 }
+
+                       

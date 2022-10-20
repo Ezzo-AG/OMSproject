@@ -25,7 +25,7 @@ namespace OMSproject.Controllers
 
             var model = new ClientViewModel()
             {
-                ClientsCollection = _db.Clients,
+                ClientsCollection = _db.Clients.OrderByDescending(x => x.Client_id),
             };
             model.ClaasificationList.AddRange(new List<string>
             {
