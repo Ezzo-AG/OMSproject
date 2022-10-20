@@ -51,7 +51,8 @@
 <form asp-action="Create">
     <fieldset>
         <div asp-validation-summary="ModelOnly" class="warning"></div>
-        <h1 class="head-title"> Create New Order</h1>
+        <h1 class="head-title">Create New Order</h1>
+
         <div class="double-input">
             <div class="form-input-container">
                 <label asp-for="Client_id" class="control-label">Client Name</label>
@@ -71,8 +72,6 @@
                 <input asp-for="SellPrice" class="form-control" />
                 <span asp-validation-for="SellPrice" class="warning"></span>
             </div>
-        </div>
-        <div class="double-input">
             <div class="form-input-container">
                 <label asp-for="Address" class="control-label">CLient Address</label>
                 <input asp-for="Address" class="form-control" />
@@ -85,15 +84,14 @@
                 <input asp-for="DateOFOrder" type="date" class="form-control" />
                 <span asp-validation-for="DateOFOrder" class="warning"></span>
             </div>
-        </div>
-        <div class="double-input">
             <div class="form-input-container">
                 <label asp-for="OrderStatus" class="control-label">Order State</label>
                 <select asp-for="OrderStatus" class="form-control" asp-items="@(new SelectList(Model.Status))"></select>
                 <span asp-validation-for="OrderStatus" class="warning"></span>
             </div>
         </div>
-        <div class="form-input-container" style="margin: 0 1rem ;">
+
+        <div class="form-input-container" style="margin: 14rem 1rem 2rem;">
             <label asp-for="Notes" class="control-label">Notes</label>
             <input asp-for="Notes" class="form-control" />
             <span asp-validation-for="Notes" class="warning"></span>
