@@ -8,10 +8,12 @@ namespace OMSproject.DTO
         [Key]
         public int? OrderId { get; set; }
 
+        
         public int? Product_Id { get; set; }
 
         public string ColorName { get; set; } = String.Empty;
 
+        [Required(ErrorMessage = "Quantity feild is required")]
         public int Quantity { get; set; }
 
         public float Price { get; set; }
