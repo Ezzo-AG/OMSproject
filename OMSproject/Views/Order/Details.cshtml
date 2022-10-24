@@ -18,33 +18,33 @@
         <div class="double-input">
             <div class="form-input-container">
                 <label asp-for="Client_id" class="control-label">Client Name</label>
-                <select asp-for="Client_id" class="form-control"
-                        asp-items="@(new SelectList(Model.Clients,"Client_id","ClientName"))"></select>
+                <select  asp-for="Client_id" class="form-control" disabled
+                        asp-items="@(new SelectList  (Model.Clients,"Client_id","ClientName"))" ></select>
             </div>
             <div class="form-input-container">
                 @*<div class="form-group">*@
                 <label asp-for="Total_price" class="control-label">Total Price</label>
-                <input asp-for="Total_price" id="totalPrice" class="form-control" />
+                <input readonly  asp-for="Total_price" id="totalPrice" class="form-control" />
             </div>
             <div class="form-input-container">
                 <label asp-for="SellPrice" class="control-label">Sell Price</label>
-                <input asp-for="SellPrice" class="form-control" />
+                <input readonly asp-for="SellPrice" class="form-control" />
             </div>
         </div>
         <div class="double-input">
             <div class="form-input-container">
                 <label asp-for="Address" class="control-label">CLient Address</label>
-                <input asp-for="Address" class="form-control" />
+                <input readonly asp-for="Address" class="form-control" />
             </div>
             <div class="form-input-container">
                 <label asp-for="DateOFOrder" class="control-label">Orders Date</label>
-                <input asp-for="DateOFOrder" type="date" class="form-control" />
+                <input readonly asp-for="DateOFOrder" type="date" class="form-control" />
             </div>
         </div>
         <div class="double-input">
             <div class="form-input-container">
                 <label asp-for="OrderStatus" class="control-label">Order State</label>
-                <select asp-for="OrderStatus" class="form-control"
+                <select readonly asp-for="OrderStatus" class="form-control"
                         asp-items="@(new SelectList(Model.Status))"></select>
 
             </div>
@@ -52,7 +52,7 @@
         </div>
         <div class="form-input-container" style="margin: 14rem 1rem 2rem;">
             <label asp-for="Notes" class="control-label">Notes</label>
-            <input asp-for="Notes" class="form-control" />
+            <input readonly asp-for="Notes" class="form-control" />
                     </div>
  
             <div class="col-md-12">
@@ -90,7 +90,7 @@
 
                             </td>
                             <td style="padding: 1rem 0rem 1rem 1rem;width: 10%;">
-                                <input asp-for="@Model.Items[i].Price" class="form-control Price" />
+                                <input asp-for="@Model.Items[i].Price" class="form-control Price" style="padding: 6px;width: 90%;" />
                             </td>
                       
                         </tr>
