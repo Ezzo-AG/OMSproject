@@ -50,12 +50,21 @@ namespace OMSproject.Controllers
             view.SellPrice = viewOrder.SellPrice;
             view.DateOFOrder = viewOrder.DateOFOrder;
             view.Notes = viewOrder.Notes;
-
+            view.Status.AddRange(new List<string>
+            {
+                "New","Inprogress","Canceled","Delivered"
+            });
 
             foreach (var item in viewDetails)
             {
                 view.Items.Add(new ItemDTO { Product_Id = item.ProductId, ColorName = item.ClrName, Quantity = item.SubQty, Price = item.Price });
 
+            }
+
+            foreach (var item in view.Items)
+            {
+                item.Products.AddRange(db.Products.Select(x => new ProductDTO { Product_Id = x.Product_Id, Product_Name = x.Product_Name }));
+                item.Colors.AddRange(db.Colors.Where(p => p.Product_Id == item.Product_Id).Select(x => new ColorDTO { ColorName = x.ColorName }));
             }
 
             return View(view);
@@ -104,11 +113,13 @@ namespace OMSproject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(OrderClientViewModel order)
         {
+
             try
             {
 
                 order.Items.RemoveAll(x => x.IsHidden == true);
                 order.Items.RemoveAll(x => x.Quantity == 0);
+
 
                 if (ModelState.IsValid)
                 {
@@ -121,6 +132,38 @@ namespace OMSproject.Controllers
                     }
                     id++;
 
+                    OrderClientViewModel errorView = new OrderClientViewModel();
+                    errorView.Address = order.Address;
+                    errorView.SellPrice = order.SellPrice;
+                    errorView.Client_id = order.Client_id; 
+                    errorView.Total_price = order.Total_price;
+                    errorView.DateOFOrder = order.DateOFOrder;
+                    errorView.OrderStatus = order.OrderStatus;
+                    errorView.Notes = order.Notes;
+                    errorView.Clients.AddRange(db.Clients.Where(x => x.Claasification != "blacklist").Select(x => new ClientDTO { Client_id = x.Client_id, ClientName = x.ClientName }));
+                    
+                    errorView.Status.AddRange(new List<string>
+                            {
+                              "New","Inprogress","Canceled","Delivered"
+                            });
+
+                    foreach (var item in order.Items)
+                    {
+                        errorView.Items.Add(new ItemDTO { Product_Id = item.Product_Id, ColorName = item.ColorName, Quantity = item.Quantity, Price = item.Price });
+
+                    }
+
+                    for (var i = 0; i < order.Items.Count ; i++)
+                    {
+
+                        errorView.Items[i].Products.AddRange(db.Products.Select(x => new ProductDTO { Product_Id = x.Product_Id, Product_Name = x.Product_Name }));
+                        errorView.Items[i].Colors.AddRange(db.Colors.Where(p => p.Product_Id == errorView.Items[i].Product_Id).Select(x => new ColorDTO { ColorName = x.ColorName }));
+                        //errorView.Items[i].Product_Id = order.Items[i].Product_Id;
+                        //errorView.Items[i].ColorName = order.Items[i].ColorName;
+                      
+                    }
+
+
                     Order clientorder = new Order
                     {
                         OrderId = id,
@@ -132,7 +175,8 @@ namespace OMSproject.Controllers
                         Notes = order.Notes,
                         Client_id = order.Client_id,
                     };
-
+                    
+                 
                     List<OrderDetails> ListItems = new List<OrderDetails>();
 
                     foreach(var item in order.Items)
@@ -157,7 +201,8 @@ namespace OMSproject.Controllers
                         else
                         {
                             ViewBag.message = "the quantity you ordered don't exist in inventory";
-                            return View(getView((int)item.Product_Id));
+                            return View(errorView);
+                
                         }
 
                     }
@@ -214,13 +259,17 @@ namespace OMSproject.Controllers
 
             }
 
+            for (var i = 0; i < viewDetails.Count; i++)
+            {
+                view.Items[i].Product_Id = viewDetails[i].ProductId;
+                view.Items[i].ColorName = viewDetails[i].ClrName;
+            }
+
             foreach (var item in view.Items)
             {
 
                 item.Products.AddRange(db.Products.Select(x => new ProductDTO { Product_Id = x.Product_Id, Product_Name = x.Product_Name }));
                 item.Colors.AddRange(db.Colors.Where(p => p.Product_Id == item.Product_Id).Select(x => new ColorDTO { ColorName = x.ColorName }));
-
-
 
             }
 
@@ -252,23 +301,24 @@ namespace OMSproject.Controllers
                 order.DateOFOrder = view.DateOFOrder;
                 order.OrderStatus = view.OrderStatus;
                 order.Notes = view.Notes;
+                
 
                 List<OrderDetails> orderDetails = db.Details.Where(x => x.OrderId == id).ToList();
 
-                foreach(var item in orderDetails)
+                foreach(var i in orderDetails)
                 {
-                    var productColor = db.Colors.Where(x => x.Product_Id == item.ProductId && x.ColorName == item.ClrName).SingleOrDefault();
-                    var product = db.Products.Where(x => x.Product_Id == item.ProductId).SingleOrDefault();
+                    var productColor = db.Colors.Where(x => x.Product_Id == i.ProductId && x.ColorName == i.ClrName).SingleOrDefault();
+                    var product = db.Products.Where(x => x.Product_Id == i.ProductId).SingleOrDefault();
 
 
-                    product.Total_QTY += item.SubQty;
-                    productColor.Quantity += item.SubQty;
+                    product.Total_QTY += i.SubQty;
+                    productColor.Quantity += i.SubQty;
                 }
 
                 if (view.OrderStatus != "Canceled")
                 {
                     db.RemoveRange(orderDetails);
-                    db.SaveChanges();
+                    
 
                     List<OrderDetails> ListItems = new List<OrderDetails>();
 
@@ -317,7 +367,7 @@ namespace OMSproject.Controllers
 
         public ActionResult Search(string term)
         {
-            var result = db.Orders.Where(x => x.OrderStatus.Contains(term));
+            var result = db.Orders.Where(x => x.OrderStatus.Contains(term)).Include(x => x.Client);
             return View("index", result);
         }
 
