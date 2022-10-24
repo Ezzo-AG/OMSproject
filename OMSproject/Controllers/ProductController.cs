@@ -29,7 +29,7 @@ namespace OMSproject.Controllers
             Product model = db.Products.SingleOrDefault(x => x.Product_Id == id);
             List<Color> colors = new List<Color>();
             colors.AddRange(db.Colors.Where(x => x.Product_Id == id));
-
+           
             return View(model);
         }
 
@@ -179,27 +179,7 @@ namespace OMSproject.Controllers
             }
         }
 
-        // GET: ProductController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: ProductController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
+ 
         public ActionResult Search(string term)
         {
             var result = db.Products.Where(x => x.Product_Name.Contains(term));

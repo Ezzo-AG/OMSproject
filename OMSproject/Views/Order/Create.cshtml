@@ -162,49 +162,5 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
-
-    <script>
-        //$(document).ready(function () {
-        //    $('#ProductName').on('change', function () {
-        //        var colorId = eval($(this).val());
-        //        var productId = $('#ColorName');
-        //        productId.empty();
-        //        $.ajax({
-        //            url: '/Order/getcolors?productId=' + colorId,
-        //            success: function (colors) {
-        //                $.each(colors, function (i, color) {
-        //                    productId.append($('<option></option>').attr('value', color.product_Id).text(color.colorName));
-        //                    console.log(colorId);
-
-        //                });
-        //            },
-        //            error: function () 
-        //            {
-        //                alert('Error>...  ');
-        //            }
-        //        });
-        //    });
-        //    console.log(colorId);
-        //});
-
-
-        function LoudProduct(element){
-            var colorId = eval(element.value);
-            console.log(colorId);
-            var productId = $('#'+element.id.replaceAll('ProductName', 'ColorName'));
-            productId.empty();
-            $.ajax({
-                url: '/Order/getcolors?productId=' + colorId,
-                success: function (colors) {
-                    $.each(colors, function (i, color) {
-                        productId.append($('<option></option>').attr('value', color.product_Id).text(color.colorName));
-                    });
-                },
-                error: function () {
-                    alert('Error>...  ');
-                }
-            });
-        }
-
-    </script>
 }
+

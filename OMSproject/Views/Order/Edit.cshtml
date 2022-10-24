@@ -84,12 +84,12 @@
                             <td>
                                 <div>
 
-                                    <select asp-for="@Model.Items[i].Product_Id" class="form-control" id="item-@i"
+                                    <select asp-for="@Model.Items[i].Product_Id" class="form-control" id="ProductName-@i" onchange="LoudProduct(this)"
                                         asp-items="@(new SelectList(Model.Items[i].Products,"Product_Id","Product_Name"))"></select>
                                 </div>
                             </td>
                             <td>
-                                <select asp-for="@Model.Items[i].ColorName" class="form-control" id="item2-@i"
+                                <select asp-for="@Model.Items[i].ColorName" class="form-control" id="ColorName-@i"
                                     asp-items="@(new SelectList(Model.Items[i].Colors,"Product_Id","ColorName"))"></select>
                             </td>
                             <td style="padding: 1rem 0">
@@ -133,28 +133,5 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 
-    <script>
-        $(document).ready(function () {
-            $('#item-0').on('change', function () {
-                var colorId = eval($(this).val());
-                var productId = $('#item-1')
-
-
-                productId.empty();
-                //productId.append('<option></option>');
-                $.ajax({
-                    url: '/Order/getcolors?productId=' + colorId,
-                    success: function (colors) {
-                        $.each(colors, function (i, color) {
-                            productId.append($('<option></option>').attr('value', color.product_Id).text(color.colorName));
-                        });
-                    },
-                    error: function () {
-                        alert('Error>...  ');
-                    }
-                });
-
-            });
-        });
-    </script>
+   
 }

@@ -159,5 +159,21 @@ document.addEventListener('change', function (e) {
 
 
 
-
+function LoudProduct(element) {
+    var colorId = eval(element.value);
+    console.log(colorId);
+    var productId = $('#' + element.id.replaceAll('ProductName', 'ColorName'));
+    productId.empty();
+    $.ajax({
+        url: '/Order/getcolors?productId=' + colorId,
+        success: function (colors) {
+            $.each(colors, function (i, color) {
+                productId.append($('<option></option>').attr('value', color.product_Id).text(color.colorName));
+            });
+        },
+        error: function () {
+            alert('Error>...  ');
+        }
+    });
+}
 
