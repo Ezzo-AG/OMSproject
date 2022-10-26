@@ -11,7 +11,7 @@ namespace OMSproject.Models
         public int? Product_Id { get; set; }
 
         [Required(ErrorMessage = "You must enter product name")]
-        [Column(TypeName = "varchar(200)")]
+        [Column(TypeName = "nvarchar(200)")]
         public string Product_Name { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "You must enter product cost")]
@@ -22,7 +22,7 @@ namespace OMSproject.Models
 
         public int Total_QTY { get; set; }
 
-        [Column(TypeName = "varchar(250)")]
+        [Column(TypeName = "nvarchar(250)")]
         public string? Notes { get; set; }
 
         public virtual List<Color> colors { get; set; } = new List<Color>();

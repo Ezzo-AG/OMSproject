@@ -11,7 +11,7 @@ namespace OMSproject.Models
         public int Product_Id { get; set; }
 
         [Key]
-        [Column(TypeName = "varchar(150)")]
+        [Column(TypeName = "nvarchar(150)")]
         public string ColorName { get; set; } = String.Empty;
         
         [Required]

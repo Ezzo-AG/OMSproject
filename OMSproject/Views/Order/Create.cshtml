@@ -120,23 +120,23 @@
                         <tr id="mainrow">
                             <td>
                                 <div>
-                                    <select asp-for="@Model.Items[i].Product_Id" class="form-control Pname" id="ProductName-@i" onchange="LoudProduct(this)"
+                                    <select asp-for="@Model.Items[i].Product_Id" class="form-control Pname" id="ProductName-@i" onClick="LoudProduct(this)" onchange="GetProductPrice(this)"
                                         asp-items="@(new SelectList(Model.Items[i].Products,"Product_Id","Product_Name"))"></select>
 
                                 </div>
                             </td>
                             <td>
                                 <select asp-for="@Model.Items[i].ColorName" class="form-control " id="ColorName-@i"
-                                    asp-items="@(new SelectList(Model.Items[i].Colors,"Product_Id","ColorName"))"></select>
+                                    asp-items="@(new SelectList(Model.Items[i].Colors,"ColorName","ColorName"))"></select>
                             </td>
                             <td style="padding: 1rem 0">
-                                <input asp-for="@Model.Items[i].Quantity" class="form-control" />
+                                <input asp-for="@Model.Items[i].Quantity" class="form-control" id="Quantity-@i" onchange="ChangePrice(this)" />
                                 <span asp-validation-for="@Model.Items[i].Quantity" class="warning">@ViewBag.message</span>
                                 @*<span class="warning">@ViewBag.message</span>*@
 
                             </td>
                             <td style="padding: 1rem 0rem 1rem 1rem;width: 10%;">
-                                <input asp-for="@Model.Items[i].Price" class="form-control Price" style="height: 2.5rem;" />
+                                <input asp-for="@Model.Items[i].Price" class="form-control Price" id="Price-@i" style="height: 2.5rem;" />
                             </td>
                             <td style="width: 10%;">
                                 <input type="hidden" class="nothidden" asp-for="@Model.Items[i].IsHidden" />

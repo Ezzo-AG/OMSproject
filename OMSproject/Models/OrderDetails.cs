@@ -8,6 +8,7 @@ namespace OMSproject.Models
     public class OrderDetails
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int OrderId { get; set; }
 
         public Order? Orders { get; set; }
@@ -20,7 +21,7 @@ namespace OMSproject.Models
 
         [Key]
         [Required]
-        [Column(TypeName = "varchar(100)")]
+        [Column(TypeName = "nvarchar(100)")]
         public string?  ClrName { get; set; }
 
         public int SubQty { get; set; }

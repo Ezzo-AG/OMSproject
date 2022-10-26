@@ -7,10 +7,12 @@ namespace OMSproject.Models
     public class Order
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int? OrderId { get; set; }
 
         public int Client_id { get; set; }
 
+        [Column(TypeName = "nvarchar(150)")]
         public string? Address { get; set; }
 
         [DataType(DataType.Date)]
@@ -21,10 +23,10 @@ namespace OMSproject.Models
 
         public float SellPrice { get; set; }
 
-        [Column(TypeName = "varchar(150)")]
+        [Column(TypeName = "nvarchar(150)")]
         public string? OrderStatus { get; set; }
 
-        [Column(TypeName = "varchar(250)")]
+        [Column(TypeName = "nvarchar(250)")]
         public string? Notes { get; set; }
 
 

@@ -82,26 +82,21 @@
                     @for (int i = 0; i < Model.Items.Count; i++)
                     {
 
-                        <tr>
+                        <tr >
                             <td>
                                 <div>
-                                    @*onclick="idGrapper()"*@
-@*                                    <select asp-for="@Model.Items[i].Product_Id" class="form-control" id="ProductName-@i" onclick="LoudProduct(this)"
-                                        asp-items="@(new SelectList(Model.Items[i].Products,"Product_Id","Product_Name"))"></select>*@
-                                    <select asp-for="@Model.Items[i].Product_Id" class="form-control" id="ProductName"  asp-items="@(new SelectList(Model.Items[i].Products,"Product_Id","Product_Name"))"></select>
 
+                                    <select asp-for="@Model.Items[i].Product_Id" class="form-control" id="ProductName-@i" onClick="LoudProduct(this)" onchange="GetProductPrice(this)"
+                                        asp-items="@(new SelectList(Model.Items[i].Products,"Product_Id","Product_Name"))"></select>
                                 </div>
                             </td>
                             <td>
-@*                                <select asp-for="@Model.Items[i].ColorName" class="form-control" id="ColorName-@i"
-                                    asp-items="@(new SelectList(Model.Items[i].Colors,"Product_Id","ColorName"))"></select>*@
-                                                                    <select asp-for="@Model.Items[i].ColorName" class="form-control" id="ColorName"
+                                <select asp-for="@Model.Items[i].ColorName" class="form-control" id="ColorName-@i"
                                     asp-items="@(new SelectList(Model.Items[i].Colors,"Product_Id","ColorName"))"></select>
-
                             </td>
                             <td style="padding: 1rem 0">
-                                <input asp-for="@Model.Items[i].Quantity" class="form-control" id="Quantity-id-@i" />
-                                <span  class="warning">@ViewBag.message</span>
+                                <input asp-for="@Model.Items[i].Quantity" class="form-control" id="Quantity-@i" onchange="ChangePrice(this)" />
+                                <span asp-validation-for="@Model.Items[i].Quantity" class="warning">@ViewBag.message</span>
 
                             </td>    
                             <td style="padding: 1rem 0">
@@ -142,8 +137,3 @@
 
    
 }
-<script>
-        //window.onload = (event) => {
-        //    //console.log('page is fully loaded');
-        //};
-</script>
