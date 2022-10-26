@@ -50,6 +50,7 @@ function AddItem(btn) {
         }
  
     }
+    idGrapper()
 }
 
 function DeleteItem(btn) {
@@ -156,13 +157,78 @@ document.addEventListener('change', function (e) {
         CalculatePrice();
     }
 }, false);
+//for (i = 0; i < x.; i++) {
+//var quntity = document.getElementById("Quantity-id-");
+//    if (quntity) {
+//        quntity.addEventListener('click', function () {
+//            LoudProduct(colorId)
+//        });
+//        quntity.addEventListener('focus', function () {
+//            searchBoxClicked();
+//        });
+//    }
 
+//function getSelectValues(select) {
+//    var result = [];
+//    var options = select && select.options;
+//    var opt;
 
+//    for (var i = 0, iLen = options.length; i < iLen; i++) {
+//        opt = options[i];
+
+//        if (opt.selected) {
+//            result.push(opt.value || opt.text);
+//        }
+//    }
+//    return result;
+//}
+function idGrapper() {
+
+    const selected = document.querySelectorAll('#ProductName');
+    const values = Array.from(selected).map(el => el.value);
+
+    const selectedTwo = document.querySelectorAll('#ColorName');
+    const valuesTwo = Array.from(selectedTwo).map(el => el.value);
+
+    let select = document.getElementById("ProductName");
+    let choices = document.getElementById("ColorName");
+
+    //options.forEach(function addOption(item) {
+    //    let option = document.createElement("option");
+    //    option.text = item;
+    //    option.value = item;
+    //    select.appendChild(option);
+    //});
+    function addToChoices(values) {
+        values.forEach(function (item) {
+            let option = document.createElement("option");
+            option.text = item;
+            option.value = item;
+            choices.appendChild(option);
+        });
+    }
+    select.onchange = function () {
+        choices.innerHTML = choices + values;
+        if (this.value == values) {
+            addToChoices(valuesTwo);
+        }
+        else {
+            alert("Nothing to Show in here");
+        }
+    };
+    console.log(values)
+    console.log(valuesTwo)
+    console.log(select.innerHTML)
+    console.log(choices.innerHTML)
+    
+    
+}
 
 function LoudProduct(element) {
     var colorId = eval(element.value);
     console.log(colorId);
     var productId = $('#' + element.id.replaceAll('ProductName', 'ColorName'));
+    console.log(productId );
     productId.empty();
     $.ajax({
         url: '/Order/getcolors?productId=' + colorId,
@@ -175,5 +241,25 @@ function LoudProduct(element) {
             alert('Error>...  ');
         }
     });
+    //window.onload = (event) => {
+    //    //console.log('page is fully loaded');
+    //    //LoudProduct(ProductName - @i)
+    //    LoudProduct(colorId)
+    //};
 }
 
+//function quntom(element) {
+
+//}
+function searchBoxClicked() {
+    console.log('focus');
+}
+
+function startSearch() {
+    console.log('click');
+}
+window.onload = (event) => {
+    //console.log('page is fully loaded');
+    //LoudProduct(ProductName - @i)
+    idGrapper()
+};

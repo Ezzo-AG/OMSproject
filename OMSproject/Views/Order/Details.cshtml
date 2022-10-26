@@ -10,11 +10,23 @@
 <link rel="stylesheet" href="~/css/Table/FormControl.css" asp-append-version="true" />
 <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 
+<style>
+    .brdrles {
+        border: 0 !important;
+        background: hsl(var(--txt)/.05) !important;
+        width: 30% !important;
+    }
+    .brdrless {
+                border: 0 !important;
+        background: hsl(var(--txt)/.05) !important;
+    }
+</style>
+
 <form asp-action="Details">
     <fieldset>
 
         <div asp-validation-summary="ModelOnly" class="warning"></div>
-        <h1 class="head-title"> Create New Order</h1>
+        <h1 class="head-title">Order Details</h1>
         <div class="double-input">
             <div class="form-input-container">
                 <label asp-for="Client_id" class="control-label">Client Name</label>
@@ -24,27 +36,27 @@
             <div class="form-input-container">
                 @*<div class="form-group">*@
                 <label asp-for="Total_price" class="control-label">Total Price</label>
-                <input readonly  asp-for="Total_price" id="totalPrice" class="form-control" />
+                <input readonly asp-for="Total_price" id="totalPrice" class="form-control brdrles" />
             </div>
             <div class="form-input-container">
                 <label asp-for="SellPrice" class="control-label">Sell Price</label>
-                <input readonly asp-for="SellPrice" class="form-control" />
+                <input readonly asp-for="SellPrice" class="form-control brdrles" />
             </div>
         </div>
         <div class="double-input">
             <div class="form-input-container">
                 <label asp-for="Address" class="control-label">CLient Address</label>
-                <input readonly asp-for="Address" class="form-control" />
+                <input readonly asp-for="Address" class="form-control brdrles" />
             </div>
             <div class="form-input-container">
                 <label asp-for="DateOFOrder" class="control-label">Orders Date</label>
-                <input readonly asp-for="DateOFOrder" type="date" class="form-control" />
+                <input readonly asp-for="DateOFOrder" type="date" class="form-control brdrles" />
             </div>
         </div>
         <div class="double-input">
             <div class="form-input-container">
                 <label asp-for="OrderStatus" class="control-label">Order State</label>
-                <select readonly asp-for="OrderStatus" class="form-control"
+                <select disabled asp-for="OrderStatus" class="form-control brdrles"
                         asp-items="@(new SelectList(Model.Status))"></select>
 
             </div>
@@ -52,7 +64,7 @@
         </div>
         <div class="form-input-container" style="margin: 14rem 1rem 2rem;">
             <label asp-for="Notes" class="control-label">Notes</label>
-            <input readonly asp-for="Notes" class="form-control" />
+            <input readonly asp-for="Notes" class="form-control brdrless" />
                     </div>
  
             <div class="col-md-12">
@@ -77,20 +89,20 @@
                                     <label asp-for="@Model.Items[i].Product_Id">
                                         
                                     </label>*@
-                                    <select asp-for="@Model.Items[i].Product_Id" class="form-control" id="item-@i"
-                                        asp-items="@(new SelectList(Model.Items[i].Products,"Product_Id","Product_Name"))" class="select-label" ></select>
+                                    <select disabled asp-for="@Model.Items[i].Product_Id" class="form-control" id="item-@i"
+                                        asp-items="@(new SelectList(Model.Items[i].Products,"Product_Id","Product_Name"))" class="select-label brdrles"></select>
                                 </div>
                             </td>
                             <td>
-                                <select asp-for="@Model.Items[i].ColorName" class="form-control" id="item2-@i"
+                                <select disabled asp-for="@Model.Items[i].ColorName" class="form-control brdrles" id="item2-@i"
                                     asp-items="@(new SelectList(Model.Items[i].Colors,"Product_Id","ColorName"))"></select>
                             </td>
                             <td style="padding: 1rem 0">
-                                <input asp-for="@Model.Items[i].Quantity" class="form-control" />
+                                <input readonly asp-for="@Model.Items[i].Quantity" class="form-control brdrles" />
 
                             </td>
                             <td style="padding: 1rem 0rem 1rem 1rem;width: 10%;">
-                                <input asp-for="@Model.Items[i].Price" class="form-control Price" style="padding: 6px;width: 90%;" />
+                                <input readonly asp-for="@Model.Items[i].Price" class="form-control Price brdrles" style="padding: 6px;width: 90%;" />
                             </td>
                       
                         </tr>

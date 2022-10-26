@@ -22,7 +22,7 @@
         <h1 class="head-title"> Add New Clients</h1>
         <div>
             <div class="triple-input">
-                <div class="form-input-container" style="margin: 8px 16px 0px 0;">
+                <div class="form-input-container" style="margin: 8px 0px 0px 0;">
                     @*<label asp-for="Phone" class="control-label lbl-padding" title="Phone Number"></label>*@
                     <input asp-for="Phone" class="form-control" placeholder="Phone Number" />
                     <span asp-validation-for="Phone" class="warning"></span>
@@ -66,16 +66,16 @@
             <thead>
                 <tr>
                     <th onclick="sortTable(0)">
-                        Client ID
+                        ID
                     </th>
                     <th onclick="sortTable(1)">
-                        Client Name
+                        Name
                     </th>
                     <th onclick="sortTable(2)">
                         Phone
                     </th>
                     <th onclick="sortTable(3)">
-                        Classification
+                        Rating
                     </th>
                     <th></th>
                 </tr>

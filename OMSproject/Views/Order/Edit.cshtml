@@ -8,11 +8,11 @@
 <link rel="stylesheet" href="~/css/Table/FormControl.css" asp-append-version="true" />
 <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 
-<form asp-action="Edit">
+<form asp-action="Edit" >
     <fieldset>
 
         <div asp-validation-summary="ModelOnly" class="warning"></div>
-        <h1 class="head-title"> Create New Order</h1>
+        <h1 class="head-title">Edit Orders</h1>
         <div class="double-input">
             <div class="form-input-container">
                 <label asp-for="Client_id" class="control-label">Client Name</label>
@@ -85,17 +85,22 @@
                         <tr>
                             <td>
                                 <div>
+                                    @*onclick="idGrapper()"*@
+@*                                    <select asp-for="@Model.Items[i].Product_Id" class="form-control" id="ProductName-@i" onclick="LoudProduct(this)"
+                                        asp-items="@(new SelectList(Model.Items[i].Products,"Product_Id","Product_Name"))"></select>*@
+                                    <select asp-for="@Model.Items[i].Product_Id" class="form-control" id="ProductName"  asp-items="@(new SelectList(Model.Items[i].Products,"Product_Id","Product_Name"))"></select>
 
-                                    <select asp-for="@Model.Items[i].Product_Id" class="form-control" id="ProductName-@i" onchange="LoudProduct(this)"
-                                        asp-items="@(new SelectList(Model.Items[i].Products,"Product_Id","Product_Name"))"></select>
                                 </div>
                             </td>
                             <td>
-                                <select asp-for="@Model.Items[i].ColorName" class="form-control" id="ColorName-@i"
+@*                                <select asp-for="@Model.Items[i].ColorName" class="form-control" id="ColorName-@i"
+                                    asp-items="@(new SelectList(Model.Items[i].Colors,"Product_Id","ColorName"))"></select>*@
+                                                                    <select asp-for="@Model.Items[i].ColorName" class="form-control" id="ColorName"
                                     asp-items="@(new SelectList(Model.Items[i].Colors,"Product_Id","ColorName"))"></select>
+
                             </td>
                             <td style="padding: 1rem 0">
-                                <input asp-for="@Model.Items[i].Quantity" class="form-control" />
+                                <input asp-for="@Model.Items[i].Quantity" class="form-control" id="Quantity-id-@i" />
                                 <span  class="warning">@ViewBag.message</span>
 
                             </td>    
@@ -137,3 +142,8 @@
 
    
 }
+<script>
+        //window.onload = (event) => {
+        //    //console.log('page is fully loaded');
+        //};
+</script>
