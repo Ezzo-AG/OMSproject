@@ -83,7 +83,7 @@
                             </td>
                             <td>
                                 <select asp-for="@Model.Items[i].ColorName" class="form-control" id="item2-@i"
-                                    asp-items="@(new SelectList(Model.Items[i].Colors,"Product_Id","ColorName"))"></select>
+                                    asp-items="@(new SelectList(Model.Items[i].Colors,"ColorName","ColorName"))"></select>
                             </td>
                             <td style="padding: 1rem 0">
                                 <input asp-for="@Model.Items[i].Quantity" class="form-control" />

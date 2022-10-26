@@ -50,7 +50,6 @@ namespace OMSproject.Controllers
         {
            var sum = db.Orders.Where(x => x.OrderStatus == status).Select(x => x.OrderId).Count();
             return sum;
-
         }
     }
 }

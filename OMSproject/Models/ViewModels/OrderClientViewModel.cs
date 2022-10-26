@@ -12,8 +12,10 @@ namespace OMSproject.Models.ViewModels
 
         public float Total_price { get; set; }
 
+        [Required(ErrorMessage = "You must enter sell price")]
         public float SellPrice { get; set; }
 
+        [Required(ErrorMessage = "You must enter the address")]
         public string? Address { get; set; }
 
         [DataType(DataType.Date)]

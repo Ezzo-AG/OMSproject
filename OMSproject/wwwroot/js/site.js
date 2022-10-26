@@ -39,8 +39,8 @@ function AddItem(btn) {
     for (var cnt = 0; cnt < x.length; cnt++)
     {
 
-      //    if (x[cnt].type == "text" && x[cnt].id.indexOf('_' + nextrowIdx + '_') > 0)
-      //        x[cnt].value = "";
+      //    if (x[cnt].type == "Select" && x[cnt].id.indexOf('_' + nextrowIdx + '_') > 0)
+      //        x[cnt].value = "" ;
         if (x[cnt].type == "number" && x[cnt].id.indexOf('_' + nextrowIdx + '_') > 0)
             x[cnt].value = 0;
         else if (x[cnt].type == "hidden" && x[cnt].id.indexOf('_' + nextrowIdx + '_') > 0) {
@@ -161,7 +161,6 @@ document.addEventListener('change', function (e) {
 
 function LoudProduct(element) {
     var colorId = eval(element.value);
-    console.log(colorId);
     var productId = $('#' + element.id.replaceAll('ProductName', 'ColorName'));
     productId.empty();
     $.ajax({
@@ -177,3 +176,42 @@ function LoudProduct(element) {
     });
 }
 
+function GetProductPrice(element) {
+   /* if (element.id.indexOf("ProductN") > 0) {*/
+
+        var ProductId = eval(element.value);
+        var priceId = document.getElementById(element.id.replaceAll('ProductName', 'Price'));
+        //var QuantityId = document.getElementById(element.id.replaceAll('ProductName', 'Quantity'));
+
+        $.ajax({
+            url: '/Order/getProductPrice?productId=' + ProductId,
+            success: function (price) {
+                priceId.value = price;
+                CalculatePrice();
+            },
+            error: function () {
+                alert('Error>...  ');
+            }
+        });
+  /*  }*/
+   
+}
+
+
+function ChangePrice(element) {
+    var ProductId = document.getElementById(element.id.replaceAll('Quantity', 'ProductName')).value;
+    var priceId = document.getElementById(element.id.replaceAll('Quantity', 'Price'));
+    
+
+
+    $.ajax({
+        url: '/Order/getProductPrice?productId=' + ProductId,
+        success: function (price) {
+            priceId.value = price * element.value;
+            CalculatePrice();
+        },
+        error: function () {
+            alert('Error>...  ');
+        }
+    });
+}

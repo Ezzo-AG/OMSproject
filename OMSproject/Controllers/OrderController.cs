@@ -104,7 +104,6 @@ namespace OMSproject.Controllers
         {
 
             var colors = db.Colors.Where(x => x.Product_Id == productId).Select(x => new {x.ColorName });
-
             return Ok(colors);
         }
 
@@ -131,37 +130,6 @@ namespace OMSproject.Controllers
                         id = 0;
                     }
                     id++;
-
-                    OrderClientViewModel errorView = new OrderClientViewModel();
-                    errorView.Address = order.Address;
-                    errorView.SellPrice = order.SellPrice;
-                    errorView.Client_id = order.Client_id; 
-                    errorView.Total_price = order.Total_price;
-                    errorView.DateOFOrder = order.DateOFOrder;
-                    errorView.OrderStatus = order.OrderStatus;
-                    errorView.Notes = order.Notes;
-                    errorView.Clients.AddRange(db.Clients.Where(x => x.Claasification != "blacklist").Select(x => new ClientDTO { Client_id = x.Client_id, ClientName = x.ClientName }));
-                    
-                    errorView.Status.AddRange(new List<string>
-                            {
-                              "New","Inprogress","Canceled","Delivered"
-                            });
-
-                    foreach (var item in order.Items)
-                    {
-                        errorView.Items.Add(new ItemDTO { Product_Id = item.Product_Id, ColorName = item.ColorName, Quantity = item.Quantity, Price = item.Price });
-
-                    }
-
-                    for (var i = 0; i < order.Items.Count ; i++)
-                    {
-
-                        errorView.Items[i].Products.AddRange(db.Products.Select(x => new ProductDTO { Product_Id = x.Product_Id, Product_Name = x.Product_Name }));
-                        errorView.Items[i].Colors.AddRange(db.Colors.Where(p => p.Product_Id == errorView.Items[i].Product_Id).Select(x => new ColorDTO { ColorName = x.ColorName }));
-                        //errorView.Items[i].Product_Id = order.Items[i].Product_Id;
-                        //errorView.Items[i].ColorName = order.Items[i].ColorName;
-                      
-                    }
 
 
                     Order clientorder = new Order
@@ -201,7 +169,21 @@ namespace OMSproject.Controllers
                         else
                         {
                             ViewBag.message = "the quantity you ordered don't exist in inventory";
-                            return View(errorView);
+
+                            order.Clients.AddRange(db.Clients.Where(x => x.Claasification != "blacklist").Select(x => new ClientDTO { Client_id = x.Client_id, ClientName = x.ClientName }));
+                            order.Status.AddRange(new List<string>
+                                    {
+                                      "New","Inprogress","Canceled","Delivered"
+                                    });
+
+                            foreach (var i in order.Items)
+                            {
+
+                                i.Products.AddRange(db.Products.Select(x => new ProductDTO { Product_Id = x.Product_Id, Product_Name = x.Product_Name }));
+                                i.Colors.AddRange(db.Colors.Where(p => p.Product_Id == i.Product_Id).Select(x => new ColorDTO { ColorName = x.ColorName }));
+                            }
+
+                            return View(order);
                 
                         }
 
@@ -227,14 +209,6 @@ namespace OMSproject.Controllers
         // GET: OrderController/Edit/5
         public ActionResult Edit(int id)
         {
-            
-
-            return View(getEditView(id));
-        }
-
-
-        OrderClientViewModel getEditView(int id)
-        {
             Order viewOrder = db.Orders.SingleOrDefault(x => x.OrderId == id);
             List<OrderDetails> viewDetails = db.Details.Where(x => x.OrderId == id).ToList();
 
@@ -248,6 +222,7 @@ namespace OMSproject.Controllers
             view.SellPrice = viewOrder.SellPrice;
             view.DateOFOrder = viewOrder.DateOFOrder;
             view.Notes = viewOrder.Notes;
+
             view.Status.AddRange(new List<string>
             {
                 "New","Inprogress","Canceled","Delivered"
@@ -258,27 +233,16 @@ namespace OMSproject.Controllers
                 view.Items.Add(new ItemDTO { Product_Id = item.ProductId, ColorName = item.ClrName, Quantity = item.SubQty, Price = item.Price });
 
             }
-
-            for (var i = 0; i < viewDetails.Count; i++)
-            {
-                view.Items[i].Product_Id = viewDetails[i].ProductId;
-                view.Items[i].ColorName = viewDetails[i].ClrName;
-            }
-
             foreach (var item in view.Items)
             {
 
                 item.Products.AddRange(db.Products.Select(x => new ProductDTO { Product_Id = x.Product_Id, Product_Name = x.Product_Name }));
                 item.Colors.AddRange(db.Colors.Where(p => p.Product_Id == item.Product_Id).Select(x => new ColorDTO { ColorName = x.ColorName }));
-
+                
             }
 
-            return view;
+            return View(view);
         }
-
-
-
-
 
 
         // POST: OrderController/Edit/5
@@ -322,30 +286,34 @@ namespace OMSproject.Controllers
 
                     List<OrderDetails> ListItems = new List<OrderDetails>();
 
-                    foreach (var item in view.Items)
+                    for(var i = 0; i < view.Items.Count;i++)
                     {
+                        var color = db.Colors.Where(x => x.Product_Id == view.Items[i].Product_Id && x.ColorName == view.Items[i].ColorName).SingleOrDefault();
+                        var product = db.Products.Where(x => x.Product_Id == view.Items[i].Product_Id).SingleOrDefault();
+
+                        if (color == null)
+                            color = db.Colors.Where(x => x.Product_Id == orderDetails[i].ProductId && x.ColorName == orderDetails[i].ClrName).SingleOrDefault();
+
+
                         ListItems.Add(new OrderDetails
                         {
                             OrderId = id,
-                            ProductId = (int)item.Product_Id,
-                            ClrName = item.ColorName,
-                            SubQty = item.Quantity
+                            ProductId = (int)product.Product_Id,
+                            ClrName = color.ColorName,
+                            SubQty = view.Items[i].Quantity,
+                            Price = view.Items[i].Price
+                            
                         });
 
-                        var color = db.Colors.Where(x => x.Product_Id == item.Product_Id && x.ColorName == item.ColorName).SingleOrDefault();
-                        var product = db.Products.Where(x => x.Product_Id == item.Product_Id).SingleOrDefault();
-
-
-                        if (color.Quantity >= item.Quantity)
+                        if (color.Quantity >= view.Items[i].Quantity)
                         {
-                            color.Quantity -= item.Quantity;
-                            product.Total_QTY -= item.Quantity;
-
+                            color.Quantity -= view.Items[i].Quantity;
+                            product.Total_QTY -= view.Items[i].Quantity;
                         }
                         else
                         {
                             ViewBag.message = "the quantity you ordered don't exist in inventory";
-                            return View(getEditView(id));
+                            return View();
                         }
 
                     }
@@ -361,7 +329,7 @@ namespace OMSproject.Controllers
             }
             catch
             {
-                return View(getEditView(id));
+                return View(view);
             }
         }
 
@@ -390,6 +358,12 @@ namespace OMSproject.Controllers
         {
             var result = db.Orders.Where(x => x.OrderStatus == "Canceled").Include(x => x.Client);
             return View("index", result);
+        }
+
+        public ActionResult getProductPrice(int productId)
+        {
+            var price = db.Products.Where(x => x.Product_Id == productId).Select(x => x.Price);
+            return Ok(price);
         }
     }
    
