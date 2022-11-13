@@ -12,8 +12,8 @@ using OMSproject.Data;
 namespace OMSproject.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221025095424_DatabaseV2")]
-    partial class DatabaseV2
+    [Migration("20221031122529_intialDatabase")]
+    partial class intialDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
