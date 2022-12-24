@@ -37,32 +37,45 @@ namespace OMSproject.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index(ClientViewModel model)        
+        public ActionResult Index(ClientViewModel model)
         {
             if (ModelState.IsValid)
             {
-
-                var id = _db.Clients.Max(x => x.Client_id);
-
-                if (id == null)
+                var check = _db.Clients.Where(x => x.ClientName == model.ClientName).Count();
+                if (check > 0)
                 {
-                    id = 0;
+                    model.ClientsCollection = _db.Clients;
+                    model.ClaasificationList.AddRange(new List<string>
+                     {
+                        "New","Vip","BlackList"
+                     });
+                    ViewBag.message = "The client name is already exist";
+                    return View(model);
                 }
-                id++;
-
-                var clients = new Client()
+                else
                 {
-                    Client_id = id,
-                    Phone = model.Phone,
-                    ClientName = model.ClientName,
-                    Claasification = model.Claasification,
-                };
+                    var id = _db.Clients.Max(x => x.Client_id);
 
-                _db.Clients.Add(clients);
-                _db.SaveChanges();
+                    if (id == null)
+                    {
+                        id = 0;
+                    }
+                    id++;
 
-                return RedirectToAction(nameof(Index));
+                    var clients = new Client()
+                    {
+                        Client_id = id,
+                        Phone = model.Phone,
+                        ClientName = model.ClientName,
+                        Claasification = model.Claasification,
+                    };
 
+                    _db.Clients.Add(clients);
+                    _db.SaveChanges();
+
+                    return RedirectToAction(nameof(Index));
+
+                }
             }
             else
             {
@@ -186,16 +199,16 @@ namespace OMSproject.Controllers
 
             ClientViewModel result = new()
             {
-               ClientsCollection = _db.Clients.Where(x => x.ClientName.Contains(term)
-                                            || x.Phone.Contains(term)
-                                            || x.Claasification.Contains(term)),
+                ClientsCollection = _db.Clients.Where(x => x.ClientName.Contains(term)
+                                             || x.Phone.Contains(term)
+                                             || x.Claasification.Contains(term)),
 
             };
             result.ClaasificationList.AddRange(new List<string>
             {
                 "New","Vip","BlackList"
             });
-            return View("index",result);
+            return View("index", result);
         }
 
 
@@ -208,6 +221,6 @@ namespace OMSproject.Controllers
             });
             return model;
         }
- 
+
     }
 }

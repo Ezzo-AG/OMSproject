@@ -147,6 +147,7 @@ function CalculatePrice() {
     }
 
     document.getElementById('totalPrice').value = totalPrice;
+    document.getElementById('sellprice').value = totalPrice;
 
     return;
 }
@@ -215,3 +216,4 @@ function ChangePrice(element) {
         }
     });
 }
+

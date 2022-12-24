@@ -27,8 +27,8 @@
                 <span asp-validation-for="Total_price" class="warning"></span>
             </div>
             <div class="form-input-container">
-                <label asp-for="SellPrice" class="control-label">Sell Price</label>
-                <input asp-for="SellPrice" class="form-control" />
+                <label asp-for="SellPrice"  class="control-label">Sell Price</label>
+                <input asp-for="SellPrice" id="sellprice" class="form-control" />
                 <span asp-validation-for="SellPrice" class="warning"></span>
             </div>
         </div>
@@ -92,7 +92,7 @@
                             </td>
                             <td>
                                 <select asp-for="@Model.Items[i].ColorName" class="form-control" id="ColorName-@i"
-                                    asp-items="@(new SelectList(Model.Items[i].Colors,"Product_Id","ColorName"))"></select>
+                                    asp-items="@(new SelectList(Model.Items[i].Colors,"ColorName","ColorName"))"></select>
                             </td>
                             <td style="padding: 1rem 0">
                                 <input asp-for="@Model.Items[i].Quantity" class="form-control" id="Quantity-@i" onchange="ChangePrice(this)" />

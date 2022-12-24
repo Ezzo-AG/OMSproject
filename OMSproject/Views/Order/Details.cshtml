@@ -77,13 +77,15 @@
                                     <label asp-for="@Model.Items[i].Product_Id">
                                         
                                     </label>*@
-                                    <select disabled asp-for="@Model.Items[i].Product_Id" class="form-control" id="item-@i"
-                                        asp-items="@(new SelectList(Model.Items[i].Products,"Product_Id","Product_Name"))" class="select-label brdrles"></select>
+                                    <input readonly asp-for="@Model.Items[i].Product_Id" class="form-control brdrles" />
+                                 @*   <select disabled asp-for="@Model.Items[i].Product_Id" class="form-control" id="item-@i"
+                                        asp-items="@(new SelectList(Model.Items[i].Products,"Product_Id","Product_Name"))" class="select-label brdrles"></select>*@
                                 </div>
                             </td>
                             <td>
-                                <select disabled asp-for="@Model.Items[i].ColorName" class="form-control brdrles" id="item2-@i"
-                                    asp-items="@(new SelectList(Model.Items[i].Colors,"Product_Id","ColorName"))"></select>
+                                <input readonly asp-for="@Model.Items[i].ColorName" class="form-control brdrles" />
+                               @* <select disabled asp-for="@Model.Items[i].ColorName" class="form-control brdrles" id="item2-@i"
+                                    asp-items="@(new SelectList(Model.Items[i].Colors,"Product_Id","ColorName"))"></select>*@
                             </td>
                             <td style="padding: 1rem 0">
                                 <input readonly asp-for="@Model.Items[i].Quantity" class="form-control brdrles" />
