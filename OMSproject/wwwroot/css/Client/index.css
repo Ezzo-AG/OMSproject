@@ -1,10 +1,19 @@
 ﻿:root {
-    --clr-vip-light: #7e61dd82;
-    --clr-vip-dark: #533f9482;
-    --clr-blacklist-light: #fb6e7982;
-    --clr-blacklist-dark: #e6394682;
-    --clr-new-light: #0d823745;
-    --clr-new-dark: #1ccc5b45;
+    --clr-vip-light: 
+        ;
+    /*--clr-vip-dark: #533f9482;*/
+/*    --clr-blacklist-light: #fb6e7982;
+    --clr-blacklist-dark: #e6394682;*/
+/*    --clr-new-light: #0d823745;
+    --clr-new-dark: #1ccc5b45;*/
+
+    /*--clr-vip-light: #ff63e5;*/
+    --clr-vip-dark: #a91fff;
+    --clr-blacklist-light: #ff3652;
+    --clr-blacklist-dark: #a30813;
+    --clr-new-light: #4bff8c;
+    --clr-new-dark: #18cba2;
+
     --clr-vip: var(--clr-vip-light);
     --clr-blacklist: var(--clr-blacklist-light);
     --clr-new: var(--clr-new-light);
