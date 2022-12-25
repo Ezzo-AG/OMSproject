@@ -101,6 +101,7 @@
                                 </button>
                                 <input type="hidden" id="mm" class="nn" value=@i />
                             </td>
+                            
                         </tr>
                     }
 
@@ -112,11 +113,16 @@
     <br />
     <fieldset>
         <div class="double-input">
-            <div class="form-input-container">
-                <label asp-for="Client_id" class="control-label">Client Name</label>
-                <select asp-for="Client_id" class="form-control"
-                        asp-items="@(new SelectList(Model.Clients,"Client_id","ClientName"))"></select>
-                <span asp-validation-for="Client_id" class="warning"></span>
+            <div class="form-floating">
+                <label for="ClientName" class="control-label">Client Name</label>
+                <input asp-for="ClientName" value=""  type="text" list="browsers" class="form-select dark-control" />
+                <datalist id="browsers">
+                    @foreach (var item in Model.Clients)
+                    {
+                        <option value="@item.ClientName"></option>
+                    }
+                </datalist>
+                <span asp-validation-for="ClientName" class="warning"></span>
             </div>
             <div class="form-input-container">
                 <label asp-for="Total_price" class="control-label">Total Price</label>
@@ -127,7 +133,7 @@
         <div class="double-input">
             <div class="form-input-container">
                 <label asp-for="SellPrice" class="control-label">Sell Price</label>
-                <input value="" asp-for="SellPrice" class="form-control" placeholder="Sell Price"/>
+                <input value="" asp-for="SellPrice" id="sellprice" class="form-control" placeholder="Sell Price" />
                 <span asp-validation-for="SellPrice" class="warning"></span>
             </div>
             <div class="form-input-container">
@@ -158,7 +164,7 @@
         <input type="hidden" id="hdnLastIndex" value="0" />
 
         <div class="form-group" style="width: 10%;margin: 1rem .5rem;">
-            <input type="submit" value="Create Order" class="form-btn save" style="color: hsl(var(--txt)); font-weight:500;" />
+            <input id="submit" type="submit" value="Create Order" class="form-btn save" style="color: hsl(var(--txt)); font-weight:500;" />
         </div>
     </fieldset>
 </form>

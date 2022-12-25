@@ -44,7 +44,7 @@
                 <div class="form-input-container">
                     <label asp-for="ClientName" class="control-label lbl-padding">Client Name</label>
                     <input asp-for="ClientName" class="form-control" style="padding: 6px" placeholder="Name"/>
-                    <span asp-validation-for="ClientName" class="warning"></span>
+                    <span asp-validation-for="ClientName" class="warning">@ViewBag.message</span>
                 </div>
                 <div class="form-input-container">
                     <label asp-for="Claasification" class="control-label lbl-padding">Rate</label>
@@ -64,8 +64,13 @@
         </div>
     </fieldset>
 </form>
+
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+
+
     }
+
+    

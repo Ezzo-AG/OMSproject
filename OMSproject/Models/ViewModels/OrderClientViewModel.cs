@@ -28,6 +28,10 @@ namespace OMSproject.Models.ViewModels
 
         public int Client_id { get; set; }
 
+        [NotMapped]
+        [Required(ErrorMessage = "You must enter the client name")]
+        public string? ClientName { get; set; }
+
         public List<ClientDTO>? Clients { get; set; } = new List<ClientDTO>();
 
         public List<ItemDTO>? Items { get; set; } = new List<ItemDTO>();
