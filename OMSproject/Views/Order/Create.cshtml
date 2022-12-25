@@ -18,7 +18,7 @@
         border-radius: 5px;
         color: rgb(42, 42, 42);
         /*   border-bottom: none; */
-    }
+/*    }*/
 
     datalist {
         position: absolute;
@@ -42,11 +42,15 @@
         cursor: pointer;
     }
 
-        option:hover,
+    	option {
+		text-align: right;
+	}
+
+        /*option:hover,
         .active {
             background-color: rgb(255, 163, 163);
         }
-
+        */
 
 </style>
 <form asp-action="Create">
