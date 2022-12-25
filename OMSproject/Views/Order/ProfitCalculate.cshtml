@@ -1,0 +1,123 @@
+﻿@model IEnumerable<OMSproject.Models.ViewModels.ProfetViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<link rel="stylesheet" href="~/css/OrderStyle/order.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/Table/TablesStyle.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/Table/FormControl.css" asp-append-version="true" />
+<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+
+<style>
+    .btn-Status {
+    font-size: 1.5rem;
+    margin: auto 0.2rem;
+    padding: .2rem 1rem;
+    background: hsl(var(--thd-bg)/ .2);
+    color: var(--peachy-red);
+    border: 1px solid var(--peachy-red);
+    border-radius: .7rem;
+    cursor: pointer;
+    }
+    .cus th {
+        cursor:pointer ;
+    }
+</style>
+
+<form class="d-flex nav-search" asp-action="Search" asp-controller="Order">
+    <fieldset>
+        <h1 class="headers left-floater">Order Index</h1>
+        <div>
+            <a class="table-item searcher" title="Add Order" asp-controller="Order" asp-action="Create">
+
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="var(--peachy-red)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2,3H4.23a1,1,0,0,1,1,.74L8.1,14.52A2,2,0,0,0,10,16h6.53a2,2,0,0,0,1.9-1.37l2.1-6.31A1,1,0,0,0,19.61,7H6.1" stroke-linecap="round"></path>
+                    <line x1="9.99" y1="20" x2="10.01" y2="20" stroke-linecap="round" stroke-width="2"></line>
+                <line x1="15.99" y1="20" x2="16.01" y2="20" stroke-linecap="round" stroke-width="2"></line></svg>
+
+            </a>
+            <button class="table-item searcher" title="Search Order" type="submit" style="margin: 0 1rem;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="var(--peachy-red)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="9" fill="none"></circle>
+                <line x1="17.5" y1="17.5" x2="22" y2="22"></line>
+            </svg>
+
+        </button>
+        <input class="form-control me-2" name="term" type="search" placeholder="Search" aria-label="Search" style="float: right;width: 30%;padding: .6rem;margin: 0 0.5rem 1rem 1rem;  ">
+        </div>
+
+        <div style=" clear: both; margin: 1rem;">
+            <h4 style="font-weight: 400;color: hsl(var(--txt) /.5);margin: 1.5rem 0rem;"> 
+                Search 
+            </h4>
+            @*<hr />*@
+@*            <button asp-action="searchNew" class="btn-Status">
+                NEW
+            </button>
+            <button asp-action="searchInprogress" class="btn-Status">
+                Inprogress
+            </button>
+            <button asp-action="searchDelivered" class="btn-Status">
+                Delivered
+            </button>    
+            <button asp-action="searchCanceled" class="btn-Status">
+                Calnceled
+            </button>
+            <button asp-action="/" class="btn-Status">
+                Income
+            </button>*@
+        </div>
+        <table class="table" id="myTable" style="margin: 3rem auto 0;">
+            <thead class="cus">
+                <tr>
+                    <th onclick="sortTable(0)">
+                        # 
+                    </th>
+                    <th onclick="sortTable(1)">
+                        Order Date
+                    </th>
+                    <th onclick="sortTable(2)">
+                        Cost
+                    </th>
+                    <th onclick="sortTable(3)">
+                        Sell Price
+                    </th>
+                    <th onclick="sortTable(4)">
+                        Total Profit
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                        <tr>
+                            <td>
+                            @Html.DisplayFor(modelItem => item.OrderId)
+                            </td>
+                            <td>
+                            @Html.DisplayFor(modelItem => item.OrderDate)
+                            </td>
+                            <td>
+                            @Html.DisplayFor(modelItem => item.OrderCoast)
+                            </td>
+                            <td class="currency">
+                            @Html.DisplayFor(modelItem => item.OrderSellPrice)
+                            </td>
+                            <td class="currency">
+                            @Html.DisplayFor(modelItem => item.Profet)
+                            </td>
+
+                        </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td>
+Total
+                    </td>
+                    </tr>
+            </tfoot>
+        </table>
+    </fieldset>
+</form>

@@ -373,7 +373,7 @@ namespace OMSproject.Controllers
             return Ok(price);
         }
 
-        public ActionResult ProfetCalculate()
+        public ActionResult ProfitCalculate()
         {
             var orders = db.Orders.ToList();
 
