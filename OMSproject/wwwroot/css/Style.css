@@ -280,7 +280,7 @@ main {
     }
 
 .bx-search-alt {
-    font-size: 25;
+    font-size: 25px;
     color: #2980b9;
 }
 @media screen and (min-width: 600px) {
@@ -400,6 +400,7 @@ main {
     grid-template-columns: repeat(4, 1fr);
     align-items: center;
     border-radius: 10px;
+    color: hsl(var(--txt));
 }
 
 .btn-info {
@@ -409,10 +410,12 @@ main {
 }
 
 .operation-btn a {
-    color: hsl(var(--accent));
+    text-decoration: none;
+    color: hsl(var(--peachy-red));
 }
 
 .operation-btn:hover {
+    text-decoration: none;
     background: hsl(var(--thd-bg));
 }
 
@@ -500,3 +503,6 @@ table.rounded-corners {
 .th-padding {
     padding: 1rem;
 }
+/*a {
+
+}*/
