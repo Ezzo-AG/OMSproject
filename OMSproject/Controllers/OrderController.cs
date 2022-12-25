@@ -372,6 +372,32 @@ namespace OMSproject.Controllers
             var price = db.Products.Where(x => x.Product_Id == productId).Select(x => x.Price);
             return Ok(price);
         }
+
+        public ActionResult ProfetCalculate()
+        {
+            var orders = db.Orders.ToList();
+
+            List<ProfetViewModel> profets = new List<ProfetViewModel>();
+            
+            foreach (var order in orders)
+            {
+                var OrderCoast = 0.0;
+                for (int i = 0; i< order.OrderDetails.Count; i++)
+                {
+                     OrderCoast += db.Products.SingleOrDefault(x => x.Product_Id == order.OrderDetails[i].ProductId).Cost; 
+                }
+                profets.Add(new ProfetViewModel
+                {
+                    OrderId = order.OrderId,
+                    OrderDate = order.DateOFOrder,
+                    OrderCoast = (float)OrderCoast,
+                    OrderSellPrice = order.SellPrice,
+                    Profet = (float)(order.SellPrice - OrderCoast)
+                });
+            }
+
+            return View(profets);
+        }
     }
    
 }
