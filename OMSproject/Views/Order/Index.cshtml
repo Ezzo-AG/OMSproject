@@ -53,48 +53,51 @@
         <input class="form-control me-2" name="term" type="search" placeholder="Search" aria-label="Search" style="float: right;width: 30%;padding: .6rem;margin: 0 0.5rem 1rem 1rem;  ">
     </div>
 
-    <div style=" clear: both; margin: 1rem;">
-        <h4 style="font-weight: 400;color: hsl(var(--txt) /.5);margin: 1.5rem 0rem;">
-            Select Status
-        </h4>
-        @*<hr />*@
-        <button asp-action="searchNew" class="btn-Status">
-            NEW
-        </button>
-        <button asp-action="searchInprogress" class="btn-Status">
-            Inprogress
-        </button>
-        <button asp-action="searchDelivered" class="btn-Status">
-            Delivered
-        </button>
-        <button asp-action="searchCanceled" class="btn-Status">
-            Canceled
-        </button>
-    </div>
-    <table class="table" id="myTable" style="margin: 3rem auto 0;">
-        <thead class="cus">
-            <tr>
-                <th onclick="sortTable(0)">
-                    Client Name
-                </th>
-                <th onclick="sortTable(1)">
-                    Address
-                </th>
-                <th onclick="sortTable(2)">
-                    Order Date
-                </th>
-                <th onclick="sortTable(3)">
-                    Price
-                </th>
-                <th onclick="sortTable(4)">
-                    Sell Price
-                </th>
-                <th onclick="sortTable(5)">
-                    Status
-                </th>
-                <th onclick="sortTable(6)">
-                    Notes
-                </th>
+        <div style=" clear: both; margin: 1rem;">
+            <h4 style="font-weight: 400;color: hsl(var(--txt) /.5);margin: 1.5rem 0rem;"> 
+                Select Status
+            </h4>
+            @*<hr />*@
+            <button asp-action="searchNew" class="btn-Status">
+                NEW
+            </button>
+            <button asp-action="searchInprogress" class="btn-Status">
+                Inprogress
+            </button>
+            <button asp-action="searchDelivered" class="btn-Status">
+                Delivered
+            </button>    
+            <button asp-action="searchCanceled" class="btn-Status">
+                Calnceled
+            </button>
+            <button asp-action="/" class="btn-Status">
+                Income
+            </button>
+        </div>
+        <table class="table" id="myTable" style="margin: 3rem auto 0;">
+            <thead class="cus">
+                <tr>
+                    <th onclick="sortTable(0)">
+                        Client Name
+                    </th>
+                    <th onclick="sortTable(1)">
+                        Address
+                    </th>
+                    <th onclick="sortTable(2)">
+                        Order Date
+                    </th>
+                    <th onclick="sortTable(3)">
+                        Price
+                    </th>
+                    <th onclick="sortTable(4)">
+                        Sell Price
+                    </th>
+                    <th onclick="sortTable(5)">
+                        Status
+                    </th>
+                    <th onclick="sortTable(6)">
+                        Notes
+                    </th>
 
                 <th style="width: 10%"></th>
             </tr>

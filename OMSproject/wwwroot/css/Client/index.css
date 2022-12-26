@@ -1,31 +1,35 @@
 ﻿:root {
-    --clr-vip-light: #7e61dd82;
-    --clr-vip-dark: #533f9482;
-    --clr-blacklist-light: #fb6e7982;
-    --clr-blacklist-dark: #e6394682;
-    --clr-new-light: #0d823745;
-    --clr-new-dark: #1ccc5b45;
+    --clr-vip-light: #084298;
+    --clr-vip-dark: #0d6efd;
+    --clr-blacklist-light: #842029;
+    --clr-blacklist-dark: #dc3545;
+    --clr-new-light: #0f5132;
+    --clr-new-dark: #198754;
     --clr-vip: var(--clr-vip-light);
     --clr-blacklist: var(--clr-blacklist-light);
     --clr-new: var(--clr-new-light);
 }
 
 .Vip {
+    font-size: 1rem;
+    color: hsl(var(--sec-bg));
     background: var(--clr-vip);
     border-radius: 3px;
-    border: 2px solid #533f94;
+    border: 2px solid #084298;
 }
 
 .New {
+    color: hsl(var(--sec-bg));
     background: var(--clr-new);
     border-radius: 3px;
-    border: 2px solid #0d8237cc;
+    border: 2px solid #055160;
 }
 
 .BlackList {
+    color: hsl(var(--sec-bg));
     background: var(--clr-blacklist);
     border-radius: 3px;
-    border: 2px solid #e63946;
+    border: 2px solid #842029;
 }
 
 .th-padding {

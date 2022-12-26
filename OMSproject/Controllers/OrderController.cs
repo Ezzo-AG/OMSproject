@@ -1,15 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Features;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using NuGet.Packaging;
 using OMSproject.Data;
 using OMSproject.DTO;
 using OMSproject.Models;
 using OMSproject.Models.ViewModels;
-using System.Linq;
 
 namespace OMSproject.Controllers
 {
@@ -36,7 +31,7 @@ namespace OMSproject.Controllers
         public ActionResult Details(int id)
         {
 
-            Order viewOrder = db.Orders.SingleOrDefault(x => x.OrderId == id);
+            Order viewOrder = db.Orders.Include(x => x.OrderDetails).SingleOrDefault(x => x.OrderId == id);
             List<OrderDetails> viewDetails = db.Details.Where(x => x.OrderId == id).ToList();
 
             OrderClientViewModel view = new OrderClientViewModel();
@@ -61,11 +56,6 @@ namespace OMSproject.Controllers
 
             }
 
-            foreach (var item in view.Items)
-            {
-                item.Products.AddRange(db.Products.Select(x => new ProductDTO { Product_Id = x.Product_Id, Product_Name = x.Product_Name }));
-                item.Colors.AddRange(db.Colors.Where(p => p.Product_Id == item.Product_Id).Select(x => new ColorDTO { ColorName = x.ColorName }));
-            }
 
             return View(view);
         }
@@ -141,7 +131,7 @@ namespace OMSproject.Controllers
                         DateOFOrder = order.DateOFOrder,
                         OrderStatus = order.OrderStatus,
                         Notes = order.Notes,
-                        Client_id = order.Client_id,
+                        Client_id = (int)db.Clients.SingleOrDefault(x => x.ClientName == order.ClientName).Client_id,
                     };
                     
                  
@@ -154,7 +144,8 @@ namespace OMSproject.Controllers
                             OrderId = (int)id,
                             ProductId = (int)item.Product_Id,
                             ClrName = item.ColorName,
-                            SubQty = item.Quantity
+                            SubQty = item.Quantity,
+                            Price = item.Price
                         });
 
                         var color = db.Colors.SingleOrDefault(x => x.Product_Id == item.Product_Id && x.ColorName == item.ColorName);
@@ -168,7 +159,7 @@ namespace OMSproject.Controllers
                         }
                         else
                         {
-                            ViewBag.message = "the quantity you ordered don't exist in inventory";
+                            ViewBag.message = "the quantity you ordered does not exist in inventory";
 
                             order.Clients.AddRange(db.Clients.Where(x => x.Claasification != "blacklist").Select(x => new ClientDTO { Client_id = x.Client_id, ClientName = x.ClientName }));
                             order.Status.AddRange(new List<string>
@@ -233,13 +224,29 @@ namespace OMSproject.Controllers
                 view.Items.Add(new ItemDTO { Product_Id = item.ProductId, ColorName = item.ClrName, Quantity = item.SubQty, Price = item.Price });
 
             }
+
             foreach (var item in view.Items)
             {
-
                 item.Products.AddRange(db.Products.Select(x => new ProductDTO { Product_Id = x.Product_Id, Product_Name = x.Product_Name }));
+
                 item.Colors.AddRange(db.Colors.Where(p => p.Product_Id == item.Product_Id).Select(x => new ColorDTO { ColorName = x.ColorName }));
-                
             }
+
+            for (int i = 0; i < view.Items.Count; i++)
+            //foreach(var item in view.Items)
+            {
+                view.Items[i].ColorName = viewDetails[i].ClrName;
+                view.Items[i].Product_Id = viewDetails[i].ProductId;
+            }
+
+
+            //for (int i = 0; i < view.Items.Count; i++)
+            //{
+            //    view.Items[i].Products.AddRange(db.Products.Select(x => new ProductDTO { Product_Id = x.Product_Id, Product_Name = x.Product_Name }));
+
+            //    view.Items[i].Colors.AddRange(db.Colors.Where(p => p.Product_Id == view.Items[i].Product_Id).Select(x => new ColorDTO { ColorName = view.Items[i].ColorName }));
+            //    //item.ColorName = db.Colors.Where();
+            //}
 
             return View(view);
         }
@@ -364,6 +371,32 @@ namespace OMSproject.Controllers
         {
             var price = db.Products.Where(x => x.Product_Id == productId).Select(x => x.Price);
             return Ok(price);
+        }
+
+        public ActionResult ProfitCalculate()
+        {
+            var orders = db.Orders.ToList();
+
+            List<ProfetViewModel> profets = new List<ProfetViewModel>();
+            
+            foreach (var order in orders)
+            {
+                var OrderCoast = 0.0;
+                for (int i = 0; i< order.OrderDetails.Count; i++)
+                {
+                     OrderCoast += db.Products.SingleOrDefault(x => x.Product_Id == order.OrderDetails[i].ProductId).Cost; 
+                }
+                profets.Add(new ProfetViewModel
+                {
+                    OrderId = order.OrderId,
+                    OrderDate = order.DateOFOrder,
+                    OrderCoast = (float)OrderCoast,
+                    OrderSellPrice = order.SellPrice,
+                    Profet = (float)(order.SellPrice - OrderCoast)
+                });
+            }
+
+            return View(profets);
         }
     }
    

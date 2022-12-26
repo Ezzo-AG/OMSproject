@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace OMSproject.Migrations
 {
-    public partial class InitilazeData : Migration
+    public partial class intialDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,9 +14,9 @@ namespace OMSproject.Migrations
                 columns: table => new
                 {
                     Client_id = table.Column<int>(type: "int", nullable: false),
-                    Phone = table.Column<string>(type: "varchar(10)", maxLength: 10, nullable: false),
-                    ClientName = table.Column<string>(type: "varchar(100)", nullable: false),
-                    Claasification = table.Column<string>(type: "varchar(100)", nullable: true)
+                    Phone = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                    ClientName = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                    Claasification = table.Column<string>(type: "nvarchar(100)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -28,11 +28,11 @@ namespace OMSproject.Migrations
                 columns: table => new
                 {
                     Product_Id = table.Column<int>(type: "int", nullable: false),
-                    Product_Name = table.Column<string>(type: "varchar(200)", nullable: false),
+                    Product_Name = table.Column<string>(type: "nvarchar(200)", nullable: false),
                     Cost = table.Column<float>(type: "real", nullable: false),
-                    Price = table.Column<float>(type: "real", nullable: true),
+                    Price = table.Column<float>(type: "real", nullable: false),
                     Total_QTY = table.Column<int>(type: "int", nullable: false),
-                    Notes = table.Column<string>(type: "varchar(250)", nullable: true)
+                    Notes = table.Column<string>(type: "nvarchar(250)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -43,15 +43,14 @@ namespace OMSproject.Migrations
                 name: "Orders",
                 columns: table => new
                 {
-                    OrderId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    OrderId = table.Column<int>(type: "int", nullable: false),
+                    Client_id = table.Column<int>(type: "int", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(150)", nullable: true),
+                    DateOFOrder = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Total_price = table.Column<float>(type: "real", nullable: false),
                     SellPrice = table.Column<float>(type: "real", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DateOFOrder = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    OrderStatus = table.Column<string>(type: "varchar(150)", nullable: true),
-                    Notes = table.Column<string>(type: "varchar(250)", nullable: true),
-                    Client_id = table.Column<int>(type: "int", nullable: false)
+                    OrderStatus = table.Column<string>(type: "nvarchar(150)", nullable: true),
+                    Notes = table.Column<string>(type: "nvarchar(250)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -69,7 +68,7 @@ namespace OMSproject.Migrations
                 columns: table => new
                 {
                     Product_Id = table.Column<int>(type: "int", nullable: false),
-                    ColorName = table.Column<string>(type: "varchar(150)", nullable: false),
+                    ColorName = table.Column<string>(type: "nvarchar(150)", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -89,7 +88,7 @@ namespace OMSproject.Migrations
                 {
                     OrderId = table.Column<int>(type: "int", nullable: false),
                     ProductId = table.Column<int>(type: "int", nullable: false),
-                    ClrName = table.Column<string>(type: "varchar(100)", nullable: false),
+                    ClrName = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     SubQty = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<float>(type: "real", nullable: false)
                 },

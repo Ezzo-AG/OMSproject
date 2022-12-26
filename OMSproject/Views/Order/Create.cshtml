@@ -18,7 +18,7 @@
         border-radius: 5px;
         color: rgb(42, 42, 42);
         /*   border-bottom: none; */
-    }
+/*    }*/
 
     datalist {
         position: absolute;
@@ -42,63 +42,23 @@
         cursor: pointer;
     }
 
-        option:hover,
+    	option {
+		text-align: right;
+	}
+
+        /*option:hover,
         .active {
             background-color: rgb(255, 163, 163);
         }
-*/
+        */
 
 </style>
 <form asp-action="Create">
     <fieldset>
         <div asp-validation-summary="ModelOnly" class="warning"></div>
         <h1 class="head-title">Create New Order</h1>
-
-        <div class="double-input">
-            <div class="form-input-container">
-                <label asp-for="Client_id" class="control-label">Client Name</label>
-                <select asp-for="Client_id" class="form-control"
-                        asp-items="@(new SelectList(Model.Clients,"Client_id","ClientName"))"></select>
-                <span asp-validation-for="Client_id" class="warning"></span>
-            </div>
-            <div class="form-input-container">
-                <label asp-for="Total_price" class="control-label">Total Price</label>
-                <input asp-for="Total_price" id="totalPrice" class="form-control" />
-                <span asp-validation-for="Total_price" class="warning"></span>
-            </div>
-        </div>
-        <div class="double-input">
-            <div class="form-input-container">
-                <label asp-for="SellPrice" class="control-label">Sell Price</label>
-                <input asp-for="SellPrice" class="form-control" />
-                <span asp-validation-for="SellPrice" class="warning"></span>
-            </div>
-            <div class="form-input-container">
-                <label asp-for="Address" class="control-label">Client Address</label>
-                <input asp-for="Address" class="form-control" />
-                <span asp-validation-for="Address" class="warning"></span>
-            </div>
-        </div>
-        <div class="double-input">
-            <div class="form-input-container">
-                <label asp-for="DateOFOrder" class="control-label">Orders Date</label>
-                <input asp-for="DateOFOrder" type="date" class="form-control" />
-                <span asp-validation-for="DateOFOrder" class="warning"></span>
-            </div>
-            <div class="form-input-container">
-                <label asp-for="OrderStatus" class="control-label">Order State</label>
-                <select asp-for="OrderStatus" class="form-control" asp-items="@(new SelectList(Model.Status))"></select>
-                <span asp-validation-for="OrderStatus" class="warning"></span>
-            </div>
-        </div>
-
-        <div class="form-input-container" style="margin: 14rem 1rem 2rem;">
-            <label asp-for="Notes" class="control-label">Notes</label>
-            <input asp-for="Notes" class="form-control" />
-            <span asp-validation-for="Notes" class="warning"></span>
-        </div>
-        <div style="height: 25rem; overflow-y:auto;">
-            <table id="OrderTable" class="table">
+        <div style=" overflow-y:auto;">
+            <table id="OrderTable" class="table" style="height: 20rem;">
                 <thead>
                     <tr>
                         <th>ProductName</th>
@@ -145,16 +105,70 @@
                                 </button>
                                 <input type="hidden" id="mm" class="nn" value=@i />
                             </td>
+                            
                         </tr>
                     }
 
                 </tbody>
             </table>
         </div>
+    </fieldset>
+
+    <br />
+    <fieldset>
+        <div class="double-input">
+            <div class="form-floating">
+                <label for="ClientName" class="control-label">Client Name</label>
+                <input asp-for="ClientName" value=""  type="text" list="browsers" class="form-select dark-control" />
+                <datalist id="browsers">
+                    @foreach (var item in Model.Clients)
+                    {
+                        <option value="@item.ClientName"></option>
+                    }
+                </datalist>
+                <span asp-validation-for="ClientName" class="warning"></span>
+            </div>
+            <div class="form-input-container">
+                <label asp-for="Total_price" class="control-label">Total Price</label>
+                <input asp-for="Total_price" id="totalPrice" class="form-control" readonly/>
+                <span asp-validation-for="Total_price" class="warning"></span>
+            </div>
+        </div>
+        <div class="double-input">
+            <div class="form-input-container">
+                <label asp-for="SellPrice" class="control-label">Sell Price</label>
+                <input value="" asp-for="SellPrice" id="sellprice" class="form-control" placeholder="Sell Price" />
+                <span asp-validation-for="SellPrice" class="warning"></span>
+            </div>
+            <div class="form-input-container">
+                <label asp-for="Address" class="control-label">CLient Address</label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="warning"></span>
+            </div>
+        </div>
+        <div class="double-input">
+            <div class="form-input-container">
+                <label asp-for="DateOFOrder" class="control-label">Orders Date</label>
+                <input asp-for="DateOFOrder" type="date" class="form-control" />
+                <span asp-validation-for="DateOFOrder" class="warning"></span>
+            </div>
+            <div class="form-input-container">
+                <label asp-for="OrderStatus" class="control-label">Order State</label>
+                <select asp-for="OrderStatus" class="form-control" asp-items="@(new SelectList(Model.Status))"></select>
+                <span asp-validation-for="OrderStatus" class="warning"></span>
+            </div>
+        </div>
+
+        <div class="form-input-container" style="margin: 14rem 1rem 2rem;">
+            <label asp-for="Notes" class="control-label">Notes</label>
+            <input asp-for="Notes" class="form-control" />
+            <span asp-validation-for="Notes" class="warning"></span>
+        </div>
+      
         <input type="hidden" id="hdnLastIndex" value="0" />
 
         <div class="form-group" style="width: 10%;margin: 1rem .5rem;">
-            <input type="submit" value="Create Order" class="form-btn save" style="color: hsl(var(--txt)); font-weight:500;" />
+            <input id="submit" type="submit" value="Create Order" class="form-btn save" style="color: hsl(var(--txt)); font-weight:500;" />
         </div>
     </fieldset>
 </form>

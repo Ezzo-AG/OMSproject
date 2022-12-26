@@ -3,6 +3,11 @@
 @{
     ViewData["Title"] = "Index";
 }
+
+@*
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+*@
 <link rel="stylesheet" href="~/css/OrderStyle/order.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/css/Table/TablesStyle.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/css/Table/FormControl.css" asp-append-version="true" />
@@ -24,13 +29,13 @@
             <div class="triple-input">
                 <div class="form-input-container" style="margin: 8px 0px 0px 0;">
                     @*<label asp-for="Phone" class="control-label lbl-padding" title="Phone Number"></label>*@
-                    <input asp-for="Phone" class="form-control" placeholder="Phone Number" />
+                    <input asp-for="Phone" class="form-control" placeholder="09X XXXXXXX"/>
                     <span asp-validation-for="Phone" class="warning"></span>
                 </div>
                 <div class="form-input-container">
                     @*<label asp-for="ClientName" class="control-label lbl-padding">Client Name</label>*@
                     <input asp-for="ClientName" class="form-control" style="padding: 6px" placeholder="Client Name" />
-                    <span asp-validation-for="ClientName" class="warning"></span>
+                    <span asp-validation-for="ClientName" class="warning">@ViewBag.message</span>
                 </div>
                     <div class="form-input-container">
                     @*<label asp-for="Claasification" class="control-label lbl-padding">Rate</label>*@
@@ -120,7 +125,7 @@
                     </tr>
                 }
             </tbody>
-
+            </table>
 @*@section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
@@ -135,15 +140,12 @@
     document.querySelectorAll(".classy").forEach(function (obj) {
         if (obj.innerText === "Vip") {
             obj.classList.add("Vip");
-
         }
         if (obj.innerText === "New") {
             obj.classList.add("New");
         }
         else if (obj.innerText === "BlackList")  {
-
             //BlackList
-
             obj.classList.add("BlackList");
         }
     });

@@ -4,7 +4,7 @@
     background: hsl(var(--txt) /.1);
     color: hsl(var(--txt));
     border-radius: 0.5rem;
-    margin: 8rem auto 0;
+    /*margin: 8rem auto 0;*/
 }
 
     .table thead {

@@ -27,8 +27,8 @@
                 <span asp-validation-for="Total_price" class="warning"></span>
             </div>
             <div class="form-input-container">
-                <label asp-for="SellPrice" class="control-label">Sell Price</label>
-                <input asp-for="SellPrice" class="form-control" />
+                <label asp-for="SellPrice"  class="control-label">Sell Price</label>
+                <input asp-for="SellPrice" id="sellprice" class="form-control" />
                 <span asp-validation-for="SellPrice" class="warning"></span>
             </div>
         </div>
@@ -67,7 +67,7 @@
                         <th>ProductName</th>
                         <th>Color</th>
                         <th>Quantity</th>
-                        <th>Price</th>
+                        <th style="width: 10%;">Price</th>
                         <th >
                             <button type="button" id="addOrder" class="form-btn " onClick="AddItem(this)" style="background: transparent;border: transparent;">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 30px; ">
@@ -92,7 +92,7 @@
                             </td>
                             <td>
                                 <select asp-for="@Model.Items[i].ColorName" class="form-control" id="ColorName-@i"
-                                    asp-items="@(new SelectList(Model.Items[i].Colors,"Product_Id","ColorName"))"></select>
+                                    asp-items="@(new SelectList(Model.Items[i].Colors,"ColorName","ColorName"))"></select>
                             </td>
                             <td style="padding: 1rem 0">
                                 <input asp-for="@Model.Items[i].Quantity" class="form-control" id="Quantity-@i" onchange="ChangePrice(this)" />
@@ -100,7 +100,7 @@
 
                             </td>    
                             <td style="padding: 1rem 0">
-                                <input asp-for="@Model.Items[i].Price" class="form-control Price" />
+                                <input asp-for="@Model.Items[i].Price" class="form-control Price" style="margin: 0 1rem; height: 2.5rem;" />
                             </td>
                             <td style="width: 10%;">
                                 <input type="hidden" class="nothidden" asp-for="@Model.Items[i].IsHidden" />
