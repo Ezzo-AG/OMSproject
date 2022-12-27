@@ -35,7 +35,7 @@ namespace OMSproject.Controllers
             return View(home);
         }
 
-        public IActionResult Privacy()
+        public IActionResult News()
         {
             return View();
         }
