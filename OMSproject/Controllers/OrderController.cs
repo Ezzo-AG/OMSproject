@@ -55,7 +55,12 @@ namespace OMSproject.Controllers
                 view.Items.Add(new ItemDTO { Product_Id = item.ProductId, ColorName = item.ClrName, Quantity = item.SubQty, Price = item.Price });
 
             }
+            foreach (var i in view.Items)
+            {
 
+                i.Products.AddRange(db.Products.Select(x => new ProductDTO { Product_Id = x.Product_Id, Product_Name = x.Product_Name }));
+                //i.Colors.AddRange(db.Colors.Where(p => p.Product_Id == i.Product_Id).Select(x => new ColorDTO { ColorName = x.ColorName }));
+            }
 
             return View(view);
         }

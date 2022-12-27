@@ -32,20 +32,20 @@
             </svg>
         </button>
         <h1 class="headers left-floater">Income Profit</h1>
-                <div style="clear: both;"></div>
+        <div style="clear: both;"></div>
 
         <div>
 
 
-        @*<input class="form-control me-2" name="term" type="search" placeholder="Search" aria-label="Search" style="float: right;width: 30%;padding: .6rem;margin: 0 0.5rem 1rem 1rem;  ">*@
+            @*<input class="form-control me-2" name="term" type="search" placeholder="Search" aria-label="Search" style="float: right;width: 30%;padding: .6rem;margin: 0 0.5rem 1rem 1rem;  ">*@
 
             <div class="left-floater" style="width:25rem;">
-            <label for="start">Start date</label>
+                <label for="start">Start date</label>
                 <input type="date" id="start" name="t-start" style="width:80%;padding: .6rem;margin: 0 0.5rem 1rem 1rem; ">
 
             </div>
             <div class="left-floater" style="width:25rem;">
-            <label for="end">End date</label>
+                <label for="end">End date</label>
                 <input type="date" id="end" name="t-end" style="width:80%;padding: .6rem;margin: 0 0.5rem 1rem 1rem; ">
                 <button class="table-item searcher" title="Search Order" type="submit">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="21" height="23" fill="none" stroke="var(--peachy-red)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
@@ -56,19 +56,18 @@
                 </button>
             </div>
 
-    </div>
+        </div>
 
         <div style=" clear: both; margin: 1rem;">
-            <h4 style="font-weight: 400;color: hsl(var(--txt) /.5);margin: 1.5rem 0rem;"> 
-                
+            <h4 style="font-weight: 400;color: hsl(var(--txt) /.5);margin: 1.5rem 0rem;">
             </h4>
 
         </div>
-        <table class="table" id="myTable" style="margin: 3rem auto 0;" >
+        <table class="table" id="myTable" style="margin: 3rem auto 0;" onchange="CalculateTotal()">
             <thead class="cus">
                 <tr>
                     <th onclick="sortTable(0)">
-                        # 
+                        #
                     </th>
                     <th onclick="sortTable(1)">
                         Order Date
@@ -87,50 +86,47 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                        <tr>
-                            <td>
-                            <p class="profit">@item.Profet</p>
-                            </td>
-                            <td>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OrderId)
+                        </td>
+                        <td>
                             @Html.DisplayFor(modelItem => item.OrderDate)
-                            </td>
-                            <td class="cost">
-                            @Html.DisplayFor(modelItem => item.OrderCoast) 
-                            </td>
-                            <td class="currency sellPrice">
+                        </td>
+                        <td class="cost">
+                            @Html.DisplayFor(modelItem => item.OrderCoast)
+                        </td>
+                        <td class="sellPrice">
                             @Html.DisplayFor(modelItem => item.OrderSellPrice)
-                            </td>
-                            <td class="currency">
-                              <p class="profit">@item.Profet</p>
-                            </td>
+                        </td>
+                        <td class="profit">
+                            @Html.DisplayFor(modelItem => item.Profet)
+                        </td>
 
-                        </tr>
+                    </tr>
                 }
             </tbody>
             <tfoot>
                 <tr>
                     <td>
-                       Total
-                    </td>
-                                        <td>
-                   
-                    </td>
-                                        <td>
-                    Cost
-                    </td>
-                                        <td>
-                    Price
-                    </td>
-                                        <td>
-                    Total
+                        Total
                     </td>
                     <td>
-                       <input id="Tprofit" readonly type="text"  />
                     </td>
+                    <td id="Tcost">
+                        
+                    </td>
+                    <td id="Tprice">
+                        
+                    </td>
+                    <td id="Tprofit">
+                        
+                    </td>
+
                     <td>
                         <input type="button" value="click" onClick="CalculateTotal()" />
                     </td>
-                    </tr>
+                </tr>
             </tfoot>
         </table>
     </fieldset>
@@ -161,15 +157,22 @@
         function CalculateTotal() {
 
             var x = document.getElementsByClassName('profit');
+            var y = document.getElementsByClassName('cost');
+            var z = document.getElementsByClassName('sellPrice');
             var Tprofit = 0;
+            var Tcost = 0;
+            var Tprice = 0;
             var i;
 
             for (i = 0; i < x.length; i++) {
 
-                Tprofit = Tprofit + eval(x[i].value);
-                console.log(eval(x[i].value));
+                Tprofit = Tprofit + eval(x[i].innerHTML);
+                Tcost = Tcost + eval(y[i].innerHTML);
+                Tprice = Tprice + eval(z[i].innerHTML);
             }
-            document.getElementById('Tprofit').value = Tprofit;
+            document.getElementById('Tprofit').innerHTML = Tprofit;
+            document.getElementById('Tcost').innerHTML = Tcost;
+            document.getElementById('Tprice').innerHTML = Tprice;
             return;
         }
     </script>

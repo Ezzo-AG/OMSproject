@@ -80,13 +80,8 @@
                         <tr>
                             <td>
                                 <div>
-@*
-                                    <label asp-for="@Model.Items[i].Product_Id">
-                                        
-                                    </label>*@
-                                    <input readonly asp-for="@Model.Items[i].Product_Id" class="form-control brdrles" />
-                                 @*   <select disabled asp-for="@Model.Items[i].Product_Id" class="form-control" id="item-@i"
-                                        asp-items="@(new SelectList(Model.Items[i].Products,"Product_Id","Product_Name"))" class="select-label brdrles"></select>*@
+                                    <select disabled asp-for="@Model.Items[i].Product_Id" class="form-control" id="item-@i"
+                                        asp-items="@(new SelectList(Model.Items[i].Products,"Product_Id","Product_Name"))" class="select-label brdrles"></select>
                                 </div>
                             </td>
                             <td>
