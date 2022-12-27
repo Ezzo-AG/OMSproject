@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="~/css/Table/FormControl.css" asp-append-version="true" />
 <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 <style>
-/*/*    input {
+    /*  input {
         font-size: 18px;
         padding: 5px;
         height: 35px;
@@ -17,9 +17,8 @@
         outline: none;
         border-radius: 5px;
         color: rgb(42, 42, 42);
-        /*   border-bottom: none; */
-/*    }*/
-
+        border-bottom: none; 
+    */
     datalist {
         position: absolute;
         background-color: white;
@@ -32,7 +31,6 @@
         max-height: 10rem;
         overflow-y: auto;
     }
-
     option {
         background-color: white;
         padding: 4px;
@@ -41,22 +39,20 @@
         font-size: 18px;
         cursor: pointer;
     }
-
-    	option {
+    option {
 		text-align: right;
 	}
-
-        /*option:hover,
-        .active {
-            background-color: rgb(255, 163, 163);
-        }
-        */
-
 </style>
 <form asp-action="Create">
     <fieldset>
         <div asp-validation-summary="ModelOnly" class="warning"></div>
-        <h1 class="head-title">Create New Order</h1>
+        <button class="table-item searcher left-floater" title="Back" type="button" onclick="history.back()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="21" height="23" fill="hsl(var(--txt))" stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 11H6.414l5.293-5.293-1.414-1.414L2.586 12l7.707 7.707 1.414-1.414L6.414 13H21z"></path>
+            </svg>
+        </button>
+        <h1 class="headers left-floater">Create New Order</h1>
+        <div style="clear: both;"></div>
         <div style=" overflow-y:auto;">
             <table id="OrderTable" class="table" style="height: 20rem;">
                 <thead>
@@ -82,7 +78,6 @@
                                 <div>
                                     <select asp-for="@Model.Items[i].Product_Id" class="form-control Pname" id="ProductName-@i" onClick="LoudProduct(this)" onchange="GetProductPrice(this)"
                                         asp-items="@(new SelectList(Model.Items[i].Products,"Product_Id","Product_Name"))"></select>
-
                                 </div>
                             </td>
                             <td>
@@ -92,8 +87,6 @@
                             <td style="padding: 1rem 0">
                                 <input asp-for="@Model.Items[i].Quantity" class="form-control" id="Quantity-@i" onchange="ChangePrice(this)" />
                                 <span asp-validation-for="@Model.Items[i].Quantity" class="warning">@ViewBag.message</span>
-                                @*<span class="warning">@ViewBag.message</span>*@
-
                             </td>
                             <td style="padding: 1rem 0rem 1rem 1rem;width: 10%;">
                                 <input asp-for="@Model.Items[i].Price" class="form-control Price" id="Price-@i" style="height: 2.5rem;" />
