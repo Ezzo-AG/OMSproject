@@ -375,7 +375,7 @@ namespace OMSproject.Controllers
 
         public ActionResult ProfitCalculate()
         {
-            var orders = db.Orders.ToList();
+            var orders = db.Orders.Include(x => x.OrderDetails).ToList();
 
             List<ProfetViewModel> profets = new List<ProfetViewModel>();
             
@@ -384,7 +384,7 @@ namespace OMSproject.Controllers
                 var OrderCoast = 0.0;
                 for (int i = 0; i< order.OrderDetails.Count; i++)
                 {
-                     OrderCoast += db.Products.SingleOrDefault(x => x.Product_Id == order.OrderDetails[i].ProductId).Cost; 
+                     OrderCoast += db.Products.SingleOrDefault(x => x.Product_Id == order.OrderDetails[i].ProductId).Cost * order.OrderDetails[i].SubQty; 
                 }
                 profets.Add(new ProfetViewModel
                 {

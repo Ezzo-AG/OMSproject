@@ -64,7 +64,7 @@
             </h4>
 
         </div>
-        <table class="table" id="myTable" style="margin: 3rem auto 0;">
+        <table class="table" id="myTable" style="margin: 3rem auto 0;" >
             <thead class="cus">
                 <tr>
                     <th onclick="sortTable(0)">
@@ -82,7 +82,6 @@
                     <th onclick="sortTable(4)">
                         Total Profit
                     </th>
-
                 </tr>
             </thead>
             <tbody>
@@ -90,19 +89,19 @@
                 {
                         <tr>
                             <td>
-                            @Html.DisplayFor(modelItem => item.OrderId)
+                            <p class="profit">@item.Profet</p>
                             </td>
                             <td>
                             @Html.DisplayFor(modelItem => item.OrderDate)
                             </td>
-                            <td>
-                            @Html.DisplayFor(modelItem => item.OrderCoast)
+                            <td class="cost">
+                            @Html.DisplayFor(modelItem => item.OrderCoast) 
                             </td>
-                            <td class="currency">
+                            <td class="currency sellPrice">
                             @Html.DisplayFor(modelItem => item.OrderSellPrice)
                             </td>
                             <td class="currency">
-                            @Html.DisplayFor(modelItem => item.Profet)
+                              <p class="profit">@item.Profet</p>
                             </td>
 
                         </tr>
@@ -111,7 +110,7 @@
             <tfoot>
                 <tr>
                     <td>
-                    Total
+                       Total
                     </td>
                                         <td>
                    
@@ -124,6 +123,12 @@
                     </td>
                                         <td>
                     Total
+                    </td>
+                    <td>
+                       <input id="Tprofit" readonly type="text"  />
+                    </td>
+                    <td>
+                        <input type="button" value="click" onClick="CalculateTotal()" />
                     </td>
                     </tr>
             </tfoot>
@@ -150,3 +155,23 @@
         return date.toISOString().split('T')[0];
     }
 </script>
+
+@section Scripts {
+    <script>
+        function CalculateTotal() {
+
+            var x = document.getElementsByClassName('profit');
+            var Tprofit = 0;
+            var i;
+
+            for (i = 0; i < x.length; i++) {
+
+                Tprofit = Tprofit + eval(x[i].value);
+                console.log(eval(x[i].value));
+            }
+            document.getElementById('Tprofit').value = Tprofit;
+            return;
+        }
+    </script>
+}
+
