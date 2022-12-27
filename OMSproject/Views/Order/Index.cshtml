@@ -37,13 +37,13 @@
 
     <div>
 
-        <button class="table-item searcher" title="Add Order" asp-action="Create" style="margin:0 1rem 0 0">
+        <a class="table-item searcher" title="Add Order" asp-controller="Order" asp-action="Create" style="margin:0 1rem 0 0">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="var(--peachy-red)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M2,3H4.23a1,1,0,0,1,1,.74L8.1,14.52A2,2,0,0,0,10,16h6.53a2,2,0,0,0,1.9-1.37l2.1-6.31A1,1,0,0,0,19.61,7H6.1" stroke-linecap="round"></path>
                 <line x1="9.99" y1="20" x2="10.01" y2="20" stroke-linecap="round" stroke-width="2"></line>
                 <line x1="15.99" y1="20" x2="16.01" y2="20" stroke-linecap="round" stroke-width="2"></line>
             </svg>
-        </button>
+        </a>
         <button class="table-item searcher" title="Search Order" type="submit" style="margin: 0 1rem;">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="var(--peachy-red)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="11" cy="11" r="9" fill="none"></circle>
@@ -61,19 +61,19 @@
             </h4>
             @*<hr />*@
             <button asp-action="searchNew" class="btn-Status">
-                NEW
+                New
             </button>
             <button asp-action="searchInprogress" class="btn-Status">
-                Inprogress
+                In-progress
             </button>
             <button asp-action="searchDelivered" class="btn-Status">
                 Delivered
             </button>    
             <button asp-action="searchCanceled" class="btn-Status">
-                Calnceled
+                Canceled
             </button>
             <button asp-action="/" class="btn-Status">
-                Income
+                Profits
             </button>
         </div>
         <table class="table" id="myTable" style="margin: 3rem auto 0;">

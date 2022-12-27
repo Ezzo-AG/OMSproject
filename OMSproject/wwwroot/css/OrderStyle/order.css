@@ -197,6 +197,11 @@ tbody tr td input {
     font-weight: 500;
     padding: 0rem 1rem 2rem;
 }
+.headerss {
+    font-size: 1.7rem;
+    font-weight: 500;
+    padding: 0rem 1rem 2rem;
+}
 
 .left-floater {
     float: left;
