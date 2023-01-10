@@ -20,7 +20,8 @@
         </div>
         <div class="card-info">
             <h2>@Model.New</h2>
-            <p>New Orders</p>
+            @*<p>New Orders</p>*@
+            <p>الطلبيات الجديدة</p>
         </div>
     </div>
     <div class="card">
@@ -35,7 +36,8 @@
         </div>
         <div class="card-info">
             <h2>@Model.InProgress</h2>
-            <p>Inprogress</p>
+            @*<p>Inprogress</p>*@
+            <p>قيد التجهيز</p>
         </div>
     </div>
     <div class="card">
@@ -50,7 +52,8 @@
         </div>
         <div class="card-info">
             <h2>@Model.Delivred</h2>
-            <p>Delivered</p>
+            @*<p>Delivered</p>*@
+            <p>تم التسليم</p>
         </div>
     </div>
     <div class="card">
@@ -65,7 +68,8 @@
         </div>
         <div class="card-info">
             <h2>@Model.Canceled</h2>
-            <p>Canceled</p>
+            @*<p>Canceled</p>*@
+            <p>ملغية</p>
         </div>
     </div>
 </div>
@@ -74,28 +78,29 @@
     <div class="empty-box">
 
         <div style="margin: 3rem 2rem 0; font-size: 1rem; font-weight: 600; width: 95%;">
-            <h1 style="color:var(--peachy-red); font-size:2rem;">Latest Orders</h1>
+            @*<h1 style="color:var(--peachy-red); font-size:2rem;">Latest Orders</h1>*@
+            <h1 style="color:var(--peachy-red); font-size:2rem;">آخر الطلبيات</h1>
             <table class="table" style="background: var(--sec-bg); margin:3rem auto 3.5rem;">
                 <thead style="color:var(--peachy-red); font-size:1.1rem;">
                     <tr>
                         <th>
-                            Client
+                            الاسم
                         </th>
                         <th>
-                            Address
+                            العنوان
                         </th>
                         <th>
-                            Order's Date
+                           تاريخ الطلبية
                         </th>
                         <th>
-                            Price
+                            التكلفة
                         </th>
                         <th style="width: 10rem;">
-                            Selling Price
+                             سعر البيع
                         </th>
 
                         <th>
-                            Status
+                            الحالة
                         </th>
 
                     </tr>
@@ -131,7 +136,8 @@
             @*            <button id="more" type="button" class="form-btn" onclick="" asp-controller="Order" asp-action="Details"  style="padding: .5rem 1rem; margin: .5rem 0 0 .5rem;">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="width: 22px;"><path fill="hsl(var(--txt))" d="M160 400C160 408.8 152.8 416 144 416C135.2 416 128 408.8 128 400V192C128 183.2 135.2 176 144 176C152.8 176 160 183.2 160 192V400zM240 400C240 408.8 232.8 416 224 416C215.2 416 208 408.8 208 400V192C208 183.2 215.2 176 224 176C232.8 176 240 183.2 240 192V400zM320 400C320 408.8 312.8 416 304 416C295.2 416 288 408.8 288 400V192C288 183.2 295.2 176 304 176C312.8 176 320 183.2 320 192V400zM317.5 24.94L354.2 80H424C437.3 80 448 90.75 448 104C448 117.3 437.3 128 424 128H416V432C416 476.2 380.2 512 336 512H112C67.82 512 32 476.2 32 432V128H24C10.75 128 0 117.3 0 104C0 90.75 10.75 80 24 80H93.82L130.5 24.94C140.9 9.357 158.4 0 177.1 0H270.9C289.6 0 307.1 9.358 317.5 24.94H317.5zM151.5 80H296.5L277.5 51.56C276 49.34 273.5 48 270.9 48H177.1C174.5 48 171.1 49.34 170.5 51.56L151.5 80zM80 432C80 449.7 94.33 464 112 464H336C353.7 464 368 449.7 368 432V128H80V432z" /></svg>
             </button>*@
-            <a class="form-btn" style="color:var(--peachy-red); font-size:1.3rem; background:hsl(var(--thd-bg));padding: .5rem 1rem;border-radius: .5rem;margin: 1rem;border: 2px solid var(--peachy-red);" asp-controller="Order" asp-action="Index">See More</a>
+            @*<a class="form-btn" style="color:var(--peachy-red); font-size:1.3rem; background:hsl(var(--thd-bg));padding: .5rem 1rem;border-radius: .5rem;margin: 1rem;border: 2px solid var(--peachy-red);" asp-controller="Order" asp-action="Index">See More</a>*@
+            <a class="form-btn" style="color:var(--peachy-red); font-size:1.3rem; background:hsl(var(--thd-bg));padding: .5rem 1rem;border-radius: .5rem;margin: 1rem;border: 2px solid var(--peachy-red);" asp-controller="Order" asp-action="Index">للمزيد</a>
         </div>
     </div>
 
@@ -142,7 +148,9 @@
                 
                 <div class="btn-info">
 
-                        <h3 class="btn-new">New Order</h3>
+                        @*<h3 class="btn-new">New Order</h3>*@
+                        <h3 class="btn-new"> طلبية جديدة</h3>
+
                 </div>
                 <div class="btn-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
@@ -159,7 +167,9 @@
             <div class="btn">
                 <div class="btn-info">
 
-                        <h3 class="btn-new">New Product</h3>
+                        @*<h3 class="btn-new">New Product</h3>*@
+                        <h3 class="btn-new">منتج جديد </h3>
+
                 </div>
                 <div class="btn-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
@@ -174,7 +184,9 @@
             <div class="btn">
                 <div class="btn-info">
 
-                        <h3 class="btn-new">New Client</h3>
+                        @*<h3 class="btn-new">New Client</h3>*@
+                        <h3 class="btn-new">زبون جديد</h3>
+
                 </div>
                 <div class="btn-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
@@ -194,7 +206,8 @@
             <div class="btn">
                 <div class="btn-info">
 
-                        <h3 class="btn-new">Client History</h3>
+                        @*<h3 class="btn-new">Client History</h3>*@
+                        <h3 class="btn-new">سجل الزبائن </h3>
                 </div>
                 <div class="btn-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">

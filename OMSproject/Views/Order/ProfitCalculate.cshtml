@@ -1,12 +1,23 @@
 ﻿@model IEnumerable<OMSproject.Models.ViewModels.ProfetViewModel>
 
 @{
+    //Layout = null;
     ViewData["Title"] = "Index";
 }
 <link rel="stylesheet" href="~/css/OrderStyle/order.css" asp-append-version="true" />
-<link rel="stylesheet" href="~/css/Table/TablesStyle.css" asp-append-version="true" />
-<link rel="stylesheet" href="~/css/Table/FormControl.css" asp-append-version="true" />
-<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+@*<link rel="stylesheet" href="~/css/Table/TablesStyle.css" asp-append-version="true" />*@
+@*<link rel="stylesheet" href="~/css/Table/FormControl.css" asp-append-version="true" />*@
+@*<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">*@
+
+    @*datatable*@
+  <link rel="stylesheet" href="~/pluginus/DataTables/css/dataTables.bootstrap5.min.css" asp-append-version="true">
+<link rel="stylesheet" href="~/pluginus/Responsive/css/responsive.bootstrap5.min.css" asp-append-version="true">
+<link rel="stylesheet" href="~/pluginus/Buttons/css/buttons.bootstrap5.min.css" asp-append-version="true">
+@*<link rel="stylesheet" href="~/pluginus/Buttons/css/new.css" asp-append-version="true">*@
+@*<link rel="stylesheet" href="~/dist/css/adminlte.min.css" asp-append-version="true">*@
+<link rel="stylesheet" href="~/dist/css/newStyle.css" asp-append-version="true">
+
+
 
 <style>
     .btn-Status {
@@ -57,13 +68,53 @@
             </div>
 
         </div>
+       <div class="profit-details" style=" clear: both; margin: 1rem;">
+        @*     <label id="Tcost" >
 
+            </label>
+            <label id="Tprice">
+
+            </label>
+            <label id="Tprofit">
+
+            </label>*@
+@*        
+        <table class="table table-bordered">
+            <thead>
+                <th>
+                    Cost
+                </th>
+                                <th>
+                    Cost
+                </th>
+                <th>
+                    Cost
+                </th>
+            </thead>
+            <tbody><tr>
+
+                <td id="Tcost">
+                </td>
+                <td id="Tprice">
+                </td>
+                <td id="Tprofit">
+                </td>
+            </tr>
+            </tbody>*@
+
+
+                    @*<td>*@
+                        @*<input type="button" value="click" onClick="CalculateTotal()" hidden />*@
+                    @*</td>*@
+                </tr>
+            </table>
+        </div>
         <div style=" clear: both; margin: 1rem;">
             <h4 style="font-weight: 400;color: hsl(var(--txt) /.5);margin: 1.5rem 0rem;">
             </h4>
 
         </div>
-        <table class="table" id="myTable" style="margin: 3rem auto 0;" onchange="CalculateTotal()">
+        <table id="example1" class="table table-bordered table-striped" >
             <thead class="cus">
                 <tr>
                     <th onclick="sortTable(0)">
@@ -123,26 +174,49 @@
                         
                     </td>
 
-                    <td>
-                        <input type="button" value="click" onClick="CalculateTotal()" />
-                    </td>
+                    @*<td>*@
+                        @*<input type="button" value="click" onClick="CalculateTotal()" hidden />*@
+                    @*</td>*@
                 </tr>
             </tfoot>
         </table>
     </fieldset>
 </form>
+
+<script src="~/pluginus/jquery/jquery.js"></script>
+<!-- Bootstrap 4 -->
+<!-- <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script> -->
+<!-- DataTables  & Plugins -->
+<script src="~/pluginus/datatables/js/jquery.dataTables.min.js"></script>
+<script src="~/pluginus/datatables/js/dataTables.bootstrap5.min.js"></script>
+
+<script src="~/pluginus/responsive/js/dataTables.responsive.min.js"></script>
+<script src="~/pluginus/DataTables/js/dataTables.bootstrap5.min.js"></script>
+<script src="~/pluginus/responsive/js/responsive.bootstrap5.min.js"></script>
+
+<script src="~/pluginus/buttons/js/dataTables.buttons.js"></script>
+<script src="~/pluginus/buttons/js/buttons.bootstrap5.min.js"></script>
+<script src="~/pluginus/jszip/jszip.min.js"></script>
+<script src="~/pluginus/pdfmake/pdfmake.min.js"></script>
+<script src="~/pluginus/pdfmake/vfs_fonts.js"></script>
+<script src="~/pluginus/buttons/js/buttons.html5.min.js"></script>
+<script src="~/pluginus/buttons/js/buttons.print.min.js"></script>
+<script src="~/pluginus/buttons/js/buttons.colVis.min.js"></script>
+<script src="~/pluginus/JavaScript.js"></script>
+
+
 <script>
     var date = new Date();
 
     var monthStart = Date.UTC(date.getFullYear(), date.getMonth())
     monthStart = toIsoDateString(monthStart);
-    starter = document.getElementById("start")
+    starter = document.getElementById("end")
     starter.value = monthStart;
     console.log(monthStart);
 
     var lastYear = Date.UTC(date.getFullYear(), date.getMonth() - 12);
     lastYear = toIsoDateString(lastYear);
-    ender = document.getElementById("end")
+    ender = document.getElementById("start")
     ender.value = lastYear;
     console.log(lastYear);
 
@@ -150,31 +224,54 @@
         var date = new Date(utcDate);
         return date.toISOString().split('T')[0];
     }
+
+    var x = document.getElementsByClassName('profit');
+    var y = document.getElementsByClassName('cost');
+    var z = document.getElementsByClassName('sellPrice');
+    var Tprofit = 0;
+    var Tcost = 0;
+    var Tprice = 0;
+    var i;
+
+    for (i = 0; i < x.length; i++) {
+
+        Tprofit = Tprofit + eval(x[i].innerHTML);
+        Tcost = Tcost + eval(y[i].innerHTML);
+        Tprice = Tprice + eval(z[i].innerHTML);
+    }
+    document.getElementById('Tprofit').innerHTML = Tprofit;
+    document.getElementById('Tcost').innerHTML = Tcost;
+    document.getElementById('Tprice').innerHTML = Tprice;
+
+    //let arry = [];
+    //let j = 0;
+    //for (var i = 1; i < myDevs.length; i++) {
+    //    arry[j] = myDevs[i].value;
+
+    let a = document.getElementById('Tprofit').innerHTML
+    console.log(a);
+     sessionStorage.setItem("text",a);
+        //j++;
+    
+
 </script>
 
-@section Scripts {
-    <script>
-        function CalculateTotal() {
+<script>
+    $(function () {
+        $("#example1").DataTable({
+            "responsive": true, "lengthChange": false, "autoWidth": false,
+            //"buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            "buttons": ["print", "colvis"]
 
-            var x = document.getElementsByClassName('profit');
-            var y = document.getElementsByClassName('cost');
-            var z = document.getElementsByClassName('sellPrice');
-            var Tprofit = 0;
-            var Tcost = 0;
-            var Tprice = 0;
-            var i;
-
-            for (i = 0; i < x.length; i++) {
-
-                Tprofit = Tprofit + eval(x[i].innerHTML);
-                Tcost = Tcost + eval(y[i].innerHTML);
-                Tprice = Tprice + eval(z[i].innerHTML);
-            }
-            document.getElementById('Tprofit').innerHTML = Tprofit;
-            document.getElementById('Tcost').innerHTML = Tcost;
-            document.getElementById('Tprice').innerHTML = Tprice;
-            return;
-        }
-    </script>
-}
-
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+    });
+</script>
