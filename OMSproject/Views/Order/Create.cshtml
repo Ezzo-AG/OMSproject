@@ -123,16 +123,17 @@
                 <span asp-validation-for="ClientName" class="warning"></span>
             </div>
             <div class="form-input-container">
-                <label asp-for="Total_price" class="control-label">Total Price</label>
-                <input asp-for="Total_price" id="totalPrice" class="form-control" readonly/>
-                <span asp-validation-for="Total_price" class="warning"></span>
+                <label asp-for="Phone" class="control-label lbl-padding">Phone Number</label>
+                <input asp-for="Phone" class="form-control" placeholder="09X XXXXXXX" />
+                <span asp-validation-for="Phone" class="warning"></span>
             </div>
         </div>
         <div class="double-input">
+
             <div class="form-input-container">
-                <label asp-for="SellPrice" class="control-label">Sell Price</label>
-                <input value="" asp-for="SellPrice" id="sellprice" class="form-control" placeholder="Sell Price" />
-                <span asp-validation-for="SellPrice" class="warning"></span>
+                <label asp-for="Phone2" class="control-label lbl-padding">Phone Number</label>
+                <input asp-for="Phone2" class="form-control" placeholder="09X XXXXXXX" />
+                <span asp-validation-for="Phone2" class="warning"></span>
             </div>
             <div class="form-input-container">
                 <label asp-for="Address" class="control-label">CLient Address</label>
@@ -140,6 +141,20 @@
                 <span asp-validation-for="Address" class="warning"></span>
             </div>
         </div>
+        <div class="double-input">
+
+            <div class="form-input-container">
+                <label asp-for="Total_price" class="control-label">Total Price</label>
+                <input asp-for="Total_price" id="totalPrice" class="form-control" readonly />
+                <span asp-validation-for="Total_price" class="warning"></span>
+            </div>
+            <div class="form-input-container">
+                <label asp-for="SellPrice" class="control-label">Sell Price</label>
+                <input value="" asp-for="SellPrice" id="sellprice" class="form-control" placeholder="Sell Price" />
+                <span asp-validation-for="SellPrice" class="warning"></span>
+            </div>
+        </div>
+
         <div class="double-input">
             <div class="form-input-container">
                 <label asp-for="DateOFOrder" class="control-label">Orders Date</label>

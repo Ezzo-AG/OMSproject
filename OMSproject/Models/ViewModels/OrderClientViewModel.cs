@@ -18,6 +18,22 @@ namespace OMSproject.Models.ViewModels
         [Required(ErrorMessage = "You must enter the address")]
         public string? Address { get; set; }
 
+        [Required(ErrorMessage = "You must enter phone number")]
+        [Display(Name = "Phone")]
+        [DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid phone number")]
+        [Column(TypeName = "nvarchar(100)")]
+        public string Phone { get; set; } = string.Empty;
+
+
+        //[Required(ErrorMessage = "You must enter phone number")]
+        [Display(Name = "Phone2")]
+        [DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid phone number")]
+        [Column(TypeName = "nvarchar(100)")]
+        public string Phone2 { get; set; } = string.Empty;
+
+
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/YYYY}")]
         public DateTime DateOFOrder { get; set; } = System.DateTime.Now;

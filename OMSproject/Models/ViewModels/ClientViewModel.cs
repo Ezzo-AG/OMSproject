@@ -15,6 +15,13 @@ namespace OMSproject.Models.ViewModels
         [Column(TypeName = "varchar(100)")]
         public string Phone { get; set; } = string.Empty;
 
+        //[Required(ErrorMessage = "You must enter phone number")]
+        [Display(Name = "Phone2")]
+        [DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid phone number")]
+        [Column(TypeName = "nvarchar(100)")]
+        public string Phone2 { get; set; } = string.Empty;
+
         [Required(ErrorMessage = "You must enter client name")]
         [Column(TypeName = "varchar(100)")]
         public string ClientName { get; set; } = string.Empty;

@@ -127,6 +127,32 @@ namespace OMSproject.Controllers
                     id++;
 
 
+                    var NewID = 0;
+                    var CheckClient = db.Clients.SingleOrDefault(x => x.ClientName == order.ClientName);
+                    if (CheckClient == null)
+                    {
+                        var clientid = db.Clients.Max(x => x.Client_id);
+
+                        Client client = new Client()
+                        {
+                            Client_id = clientid + 1,
+                            ClientName = order.ClientName,
+                            Phone = order.Phone,
+                            Phone2 = order.Phone2,
+                            Claasification = "New"
+                        };
+
+                        db.Clients.Add(client);
+
+                        NewID = (int)client.Client_id;
+
+                    }
+                    else
+                    {
+                        NewID = (int)CheckClient.Client_id;
+                    }
+
+
                     Order clientorder = new Order
                     {
                         OrderId = id,
@@ -136,7 +162,7 @@ namespace OMSproject.Controllers
                         DateOFOrder = order.DateOFOrder,
                         OrderStatus = order.OrderStatus,
                         Notes = order.Notes,
-                        Client_id = (int)db.Clients.SingleOrDefault(x => x.ClientName == order.ClientName).Client_id,
+                        Client_id = NewID
                     };
                     
                  
@@ -168,9 +194,9 @@ namespace OMSproject.Controllers
 
                             order.Clients.AddRange(db.Clients.Where(x => x.Claasification != "blacklist").Select(x => new ClientDTO { Client_id = x.Client_id, ClientName = x.ClientName }));
                             order.Status.AddRange(new List<string>
-                                    {
+                            {
                                       "New","Inprogress","Canceled","Delivered"
-                                    });
+                            });
 
                             foreach (var i in order.Items)
                             {
