@@ -12,7 +12,8 @@
     @*datatable*@
   <link rel="stylesheet" href="~/pluginus/DataTables/css/dataTables.bootstrap5.min.css" asp-append-version="true">
 <link rel="stylesheet" href="~/pluginus/Responsive/css/responsive.bootstrap5.min.css" asp-append-version="true">
-<link rel="stylesheet" href="~/pluginus/Buttons/css/buttons.bootstrap5.min.css" asp-append-version="true">
+<link rel="stylesheet" href="~/pluginus/Buttons/css/buttons.bootstrap5.css" asp-append-version="true">
+<link rel="stylesheet" href="~/pluginus/DateTime/css/dataTables.dateTime.min.css" asp-append-version="true">
 @*<link rel="stylesheet" href="~/pluginus/Buttons/css/new.css" asp-append-version="true">*@
 @*<link rel="stylesheet" href="~/dist/css/adminlte.min.css" asp-append-version="true">*@
 <link rel="stylesheet" href="~/dist/css/newStyle.css" asp-append-version="true">
@@ -33,6 +34,26 @@
     .cus th {
         cursor:pointer ;
     }
+    input[type=search] {
+        border-radius: 8px;
+        border: 1px solid hsl(var(--thd-bg));
+        padding: 4px 10px;
+        background: hsl(var(--thd-bg));
+    }
+
+    label {
+
+        margin-left: 0rem;
+    }
+    input:focus,
+    select:focus,
+    textarea:focus,
+    button:focus {
+        outline: none;
+    }
+    tfoot {
+    background: hsl(var(--thd-bg));
+    }
 </style>
 
 <form class="d-flex nav-search" asp-action="Search" asp-controller="Order">
@@ -52,19 +73,19 @@
 
             <div class="left-floater" style="width:25rem;">
                 <label for="start">Start date</label>
-                <input type="date" id="start" name="t-start" style="width:80%;padding: .6rem;margin: 0 0.5rem 1rem 1rem; ">
+                <input type="text" id="min" name="min" style="width:80%;padding: .6rem;margin: 0 0.5rem 1rem 0rem; background:hsl(var(--thd-bg));">
 
             </div>
             <div class="left-floater" style="width:25rem;">
                 <label for="end">End date</label>
-                <input type="date" id="end" name="t-end" style="width:80%;padding: .6rem;margin: 0 0.5rem 1rem 1rem; ">
-                <button class="table-item searcher" title="Search Order" type="submit">
+                <input type="text" id="max" name="max" style="width:80%;padding: .6rem;margin: 0 0.5rem 1rem 0rem; background:hsl(var(--thd-bg));">
+@*                <button class="table-item searcher" title="Search Order" type="submit">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="21" height="23" fill="none" stroke="var(--peachy-red)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="11" cy="11" r="9" fill="none"></circle>
                         <line x1="17.5" y1="17.5" x2="22" y2="22"></line>
                     </svg>
 
-                </button>
+                </button>*@
             </div>
 
         </div>
@@ -106,8 +127,20 @@
                     @*<td>*@
                         @*<input type="button" value="click" onClick="CalculateTotal()" hidden />*@
                     @*</td>*@
-                </tr>
-            </table>
+ @*               </tr>
+            </table>*@
+@*            <table cellspacing="5" cellpadding="5" border="0">
+                <tbody>
+                    <tr>
+                        <td>Minimum date:</td>
+                        <td><input type="text" id="min" name="min"></td>
+                    </tr>
+                    <tr>
+                        <td>Maximum date:</td>
+                        <td><input type="text" id="max" name="max"></td>
+                    </tr>
+                </tbody>
+            </table>*@
         </div>
         <div style=" clear: both; margin: 1rem;">
             <h4 style="font-weight: 400;color: hsl(var(--txt) /.5);margin: 1.5rem 0rem;">
@@ -157,7 +190,7 @@
                     </tr>
                 }
             </tbody>
-            <tfoot>
+            <tfoot >
                 <tr>
                     <td>
                         Total
@@ -203,22 +236,25 @@
 <script src="~/pluginus/buttons/js/buttons.print.min.js"></script>
 <script src="~/pluginus/buttons/js/buttons.colVis.min.js"></script>
 <script src="~/pluginus/JavaScript.js"></script>
+@*<script src="~/js/profit/multiRow.js"></script>*@
 
+<script src="~/pluginus/Moment/moment.min.js"></script> 
+<script src="~/pluginus/Select/js/dataTables.select.min.js"></script> 
+<script src="~/pluginus/DateTime/js/dataTables.dateTime.min.js"></script>
 
 <script>
-    var date = new Date();
+    //var date = new Date();
+    //var monthStart = Date.UTC(date.getFullYear(), date.getMonth())
+    //monthStart = toIsoDateString(monthStart);
+    //starter = document.getElementById("max")
+    //starter.value = monthStart;
+    //console.log(monthStart);
 
-    var monthStart = Date.UTC(date.getFullYear(), date.getMonth())
-    monthStart = toIsoDateString(monthStart);
-    starter = document.getElementById("end")
-    starter.value = monthStart;
-    console.log(monthStart);
-
-    var lastYear = Date.UTC(date.getFullYear(), date.getMonth() - 12);
-    lastYear = toIsoDateString(lastYear);
-    ender = document.getElementById("start")
-    ender.value = lastYear;
-    console.log(lastYear);
+    //var lastYear = Date.UTC(date.getFullYear(), date.getMonth() - 12);
+    //lastYear = toIsoDateString(lastYear);
+    //ender = document.getElementById("min")
+    //ender.value = lastYear;
+    //console.log(lastYear);
 
     function toIsoDateString(utcDate) {
         var date = new Date(utcDate);
@@ -252,18 +288,66 @@
     console.log(a);
      sessionStorage.setItem("text",a);
         //j++;
-    
-
 </script>
 
 <script>
+    let minDate, maxDate;
+
+    // Custom filtering function which will search data in column four between two values
+    $.fn.dataTable.ext.search.push(
+        function (settings, data, dataIndex) {
+            var min = minDate.val();
+            var max = maxDate.val();
+            var date = new Date(data[1]);
+            console.log(date)
+            if (
+                (min === null && max === null) ||
+                (min === null && date <= max) ||
+                (min <= date && max === null) ||
+                (min <= date && date <= max)
+            ) {
+                return true;
+            }
+            return false;
+        }
+    );
+
+    $(document).ready(function () {
+        // Create date inputs
+        minDate = new DateTime($('#min'), {
+            format: 'MMMM Do YYYY'
+        });
+        maxDate = new DateTime($('#max'), {
+            format: 'MMMM Do YYYY'
+        });
+
+         //DataTables initialisation
+        //var table = $('#example1').DataTable();
+        //let table = document.getElementById("example1");
+
+        // Refilter the table
+        $('#min, #max').on('change', function () {
+            table.draw();
+        });
+    });
+</script>
+<script>
     $(function () {
         $("#example1").DataTable({
-            "responsive": true, "lengthChange": false, "autoWidth": false,
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
             //"buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            "buttons": ["print", "colvis"]
-
-        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            "buttons": ["print", "colvis"],
+            "select": {
+                style: 'multi',
+            },
+                    "fixedHeader": {
+                //header: false,
+                footer: true
+            }
+        })
+        .buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         $('#example2').DataTable({
             "paging": true,
             "lengthChange": false,

@@ -14,16 +14,16 @@
     .table td {
         padding: 0.75rem;
         vertical-align: top;
-        border-top: 1px solid #dee2e6;
+        border-top: 1px solid hsl(var(--thd-bg));
     }
 
     .table thead th {
         vertical-align: bottom;
-        border-bottom: 2px solid #dee2e6;
+        border-bottom: 2px solid hsl(var(--thd-bg));
     }
 
     .table tbody + tbody {
-        border-top: 2px solid #dee2e6;
+        border-top: 2px solid hsl(var(--thd-bg));
     }
 
 .table-sm th,
@@ -32,12 +32,15 @@
 }
 
 .table-bordered {
-    border: 1px solid #dee2e6;
+    border: 2px solid hsl(var(--thd-bg)) !important;
+    /*border-right-width: 0px !important;*/
+    border-radius: 8px;
 }
 
     .table-bordered th,
     .table-bordered td {
-        border: 1px solid #dee2e6;
+        /*border: 1px solid #00000000;*/
+
     }
 
     .table-bordered thead th,
@@ -445,16 +448,17 @@ fieldset:disabled a.btn {
         }
 
 .btn-secondary {
-    color: #fff;
-    background-color: #6c757d;
-    border-color: #6c757d;
+    color:hsl(var(--txt));
+    background-color: hsl(var(--thd-bg));
+    /*border-color: #6c757d;*/
     box-shadow: none;
+    padding: 12px 10px;
 }
 
     .btn-secondary:hover {
         color: #fff;
         background-color: #5a6268;
-        border-color: #545b62;
+        border-color: #545b62;.dropdown-item.active, .dropdown-item:active
     }
 
     .btn-secondary:focus, .btn-secondary.focus {
@@ -1269,9 +1273,9 @@ input[type="button"].btn-block {
     }
 
     .dropdown-item.active, .dropdown-item:active {
-        color: #fff;
+        color: hsl(var(--txt));
         text-decoration: none;
-        background-color: #007bff;
+        background-color: hsl(var(--bg));
     }
 
     .dropdown-item.disabled, .dropdown-item:disabled {
@@ -1620,9 +1624,9 @@ input[type="button"].btn-block {
     padding: 0.5rem 0.75rem;
     margin-left: -1px;
     line-height: 1.25;
-    color: #007bff;
-    background-color: #fff;
-    border: 1px solid #dee2e6;
+    color: hsl(var(--txt));
+    /*background-color: hsl(var(--bg));*/
+    border: 1px solid hsl(var(--thd-bg));
 }
 
     .page-link:hover {
@@ -1652,17 +1656,17 @@ input[type="button"].btn-block {
 
 .page-item.active .page-link {
     z-index: 3;
-    color: #fff;
-    background-color: #007bff;
-    border-color: #007bff;
+    color: hsl(var(--txt));
+    background-color: hsl(var(--thd-bg));
+    border-color: hsl(var(--txt));
 }
 
 .page-item.disabled .page-link {
-    color: #6c757d;
+    color: hsl(var(--thd-bg));
     pointer-events: none;
     cursor: auto;
-    background-color: #fff;
-    border-color: #dee2e6;
+    background-color: hsl(var(--bg));
+    /*border-color: #dee2e6;*/
 }
 
 label {

@@ -58,7 +58,7 @@ textarea {
     padding: 12px 20px;
     margin: 8px 0;
     display: block;
-    border: 1px solid #bbb;
+    border: 1px solid hsl(var(--thd-bg));
     border-radius: 4px;
     box-sizing: border-box;
     font-size: 1rem;

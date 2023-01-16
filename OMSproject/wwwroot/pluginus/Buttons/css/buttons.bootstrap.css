@@ -127,14 +127,14 @@ div.dt-button-collection span.dt-button-spacer.bar {
 }
 
 div.dt-button-collection {
-  position: absolute;
-  z-index: 2001;
-  background-color: white;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: 4px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-  padding: 0.5rem;
-  min-width: 200px;
+    position: absolute;
+    z-index: 2001;
+    background-color: hsl(var(--bg));
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    padding: 0.5rem;
+    min-width: 200px;
 }
 div.dt-button-collection ul.dropdown-menu {
   position: relative;
