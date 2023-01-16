@@ -66,6 +66,7 @@ namespace OMSproject.Controllers
                     {
                         Client_id = id,
                         Phone = model.Phone,
+                        Phone2 = model.Phone2,
                         ClientName = model.ClientName,
                         Claasification = model.Claasification,
                     };
@@ -124,6 +125,7 @@ namespace OMSproject.Controllers
                 {
                     Client_id = id,
                     Phone = model.Phone,
+                    Phone2 = model.Phone2,
                     ClientName = model.ClientName,
                     Claasification = model.Claasification,
                 };
@@ -160,6 +162,7 @@ namespace OMSproject.Controllers
                 {
                     client.ClientName = model.ClientName;
                     client.Phone = model.Phone;
+                    client.Phone2 = model.Phone2;
                     client.Claasification = model.Claasification;
                 }
                 _db.SaveChanges();
