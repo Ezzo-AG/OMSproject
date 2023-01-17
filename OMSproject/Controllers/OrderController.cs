@@ -27,6 +27,22 @@ namespace OMSproject.Controllers
 
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ChangeState(List<Order> view)
+        {
+            foreach(var item in view)
+            {
+                if(item.IsSelected == true)
+                {
+                    db.Orders.SingleOrDefault(x => x.OrderId == item.OrderId).OrderStatus = "Inprogress";
+                }
+            }
+            db.SaveChanges();
+
+            return RedirectToAction(nameof(Index));
+        }
+
         // GET: OrderController/Details/5
         public ActionResult Details(int id)
         {
@@ -351,6 +367,7 @@ namespace OMSproject.Controllers
                         else
                         {
                             ViewBag.message = "the quantity you ordered don't exist in inventory";
+
                             return View();
                         }
 
@@ -373,7 +390,7 @@ namespace OMSproject.Controllers
 
         public ActionResult Search(string term)
         {
-            var result = db.Orders.Where(x => x.OrderStatus.Contains(term)).Include(x => x.Client);
+            var result = db.Orders.Where(x => x.OrderStatus.Contains(term)).Include(x => x.Client).ToList();
             return View("index", result);
         }
 

@@ -39,6 +39,9 @@ namespace OMSproject.Models
         [Column(TypeName = "nvarchar(100)")]
         public string? Phone2 { get; set; } = string.Empty;
 
+        [NotMapped]
+        public bool IsSelected { get; set; } = false;
+
 
         [Column(TypeName = "nvarchar(150)")]
         public string? OrderStatus { get; set; }
