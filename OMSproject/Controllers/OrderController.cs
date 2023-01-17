@@ -148,10 +148,14 @@ namespace OMSproject.Controllers
                     if (CheckClient == null)
                     {
                         var clientid = db.Clients.Max(x => x.Client_id);
-
+                        if(clientid == null)
+                        {
+                            clientid = 0;
+                        }
+                        clientid++;
                         Client client = new Client()
                         {
-                            Client_id = clientid + 1,
+                            Client_id = clientid,
                             ClientName = order.ClientName,
                             Phone = order.Phone,
                             Phone2 = order.Phone2,
