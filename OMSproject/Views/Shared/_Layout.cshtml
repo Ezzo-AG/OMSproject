@@ -6,15 +6,103 @@
     <title>@ViewData["Title"] - OMSproject</title>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/Style.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/newMenu/Style.css" asp-append-version="true" />
     <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/OMSproject.styles.css" asp-append-version="true" />
 </head>
 <body>
     <main>
-        <div class="side-menu">
+        @*<div class="fixed">*@
+        <div class="sidebar">
+            <div class="logo-content">
+                <div class="logo">
+                    <div class="logoo">OMS</div>
+                    <!-- <span>OMS</span> -->
+                    <div class="logo-name">uniPro</div>
+                </div>
+                <i class="bx bx-menu" id="btn"></i>
+            </div>
+            <ul class="nav-list">
+                <li>
+                    <a href="#">
+                        <i class='bx bx-search'></i>
+                        <input type="text" placeholder="Search...">
+                    </a>
+                    <!-- <span class="tooltip">Dashboard</span> -->
+                </li>
+                <li>
+                    <a asp-controller="Home" asp-action="Index">
+                        <i class="bx bxs-grid-alt"></i>
+                        <span class="links-name" data-i18n="home">Dashboard</span>
+                    </a>
+                    <!-- <span class="tooltip">Dashboard</span> -->
+                </li>
+                <li>
+                    <a asp-controller="Order" asp-action="Index">
+                        <i class='bx bxs-notepad'></i>
+                        <span class="links-name" data-i18n="orders">Orders</span>
+                    </a>
+                    <!-- <span class="tooltip">Orders</span> -->
+                </li>
+                <li>
+                    <a asp-controller="Product" asp-action="Index">
+                        <i class='bx bxs-box'></i>
+                        <span class="links-name" data-i18n="products">Products</span>
+                    </a>
+                    <!-- <span class="tooltip">Products</span> -->
+                </li>
+                <li>
+                    <a asp-controller="Client" asp-action="Index">
+                        <i class='bx bxs-user'></i>
+                        <span class="links-name" data-i18n="clients">Clients</span>
+                    </a>
+                    <!-- <span class="tooltip">Clients</span> -->
+                </li>
+                <li>
+                    <a asp-controller="Order" asp-action="ProfitCalculate">
+                        <i class='bx bx-dollar'></i>
+                        <span class="links-name" data-i18n="profits">Profits</span>
+                    </a>
+                    <!-- <span class="tooltip">Profits</span> -->
+                </li>
+                <li>
+                    <a asp-controller="Home" asp-action="News">
+                        <i class='bx bxs-news'></i>
+                        <span class="links-name" data-i18n="news">News</span>
+                    </a>
+                    <!-- <span class="tooltip">Dashboard</span> -->
+                </li>
+                <li>
+                    <a href="#">
+                        <i class='bx bxs-cog'></i>
+                        <span class="links-name">settings</span>
+                    </a>
+                    <!-- <span class="tooltip">Dashboard</span> -->
+                </li>
+            </ul>
+            <div class="profile-content">
+                <div class="profile">
+                    <div class="profile-details">
+                        <!-- <img src="" alt=""> -->
+                        <div class="name-job">
+                            <div class="name"></div>
+                            <div class="job"></div>
+                        </div>
+                    </div>
+                    <i class='bx bx-log-out' id="log-out"></i>
+                </div>
+            </div>
+            <h3 class="text-primary" data-i18n="selectLanguage">Select a language</h3>
+            <select class="p-1 mt-2">
+                <option value="en" data-i18n="english" selected>English</option>
+                <option value="ar" data-i18n="arabic">Arabic</option>
+            </select>
+        </div>
+        @*</div>*@
+       @*<div></div>*@
+@*        <div class="side-menu">
           
             <nav class="navbar">
-                @*<i class='bx bxs-dashboard'></i>*@
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a asp-controller="Home" asp-action="Index">
@@ -22,7 +110,6 @@
                                 <path d="M2,10l8.75-7a2,2,0,0,1,2.5,0L22,10"></path>
                                 <path d="M4,8.5V20a2,2,0,0,0,2,2H18a2,2,0,0,0,2-2V8.5" stroke-linecap="round"></path>
                                 </svg>
-                            @*<span class="nav-span">Home</span>*@
                             <span class="nav-span">الرئيسية</span>
                         </a>
                     </li>
@@ -32,7 +119,6 @@
                                 <path d="M3,4V20a2,2,0,0,0,2,2H19a2,2,0,0,0,2-2V9.83a2,2,0,0,0-.59-1.42L14.59,2.59A2,2,0,0,0,13.17,2H5A2,2,0,0,0,3,4Z"></path>
                                 <path d="M20.6,9H16a2,2,0,0,1-2-2V2.4" stroke-linecap="round"></path><line x1="16" y1="13" x2="8" y2="13"></line>
                             <line x1="10" y1="9" x2="8" y2="9"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
-                            @*<span class="nav-span">Orders</span>*@
                             <span class="nav-span">الطلبيات</span>
                         </a>
                     </li>
@@ -42,7 +128,6 @@
                                 <rect x="2" y="3" width="20" height="4" rx="2"></rect>
                                 <path d="M4,7H20a0,0,0,0,1,0,0V19a2,2,0,0,1-2,2H6a2,2,0,0,1-2-2V7A0,0,0,0,1,4,7Z">
                             </path><line x1="8" y1="11" x2="16" y2="11"></line></svg>
-                            @*<span class="nav-span">Products</span>*@
                             <span class="nav-span">المنتجات</span>
                         </a>
                     </li>
@@ -52,7 +137,6 @@
                                 <circle cx="12" cy="6" r="4"></circle>
                                 <path d="M17.67,22a2,2,0,0,0,1.92-2.56A7.8,7.8,0,0,0,12,14a7.8,7.8,0,0,0-7.59,5.44A2,2,0,0,0,6.34,22Z"></path>
                             </svg>
-                            @*<span class="nav-span">Clients</span>*@
                             <span class="nav-span">الزبائن</span>
                         </a>
                     </li>
@@ -61,11 +145,6 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill:hsl(var(--txt));stroke:none;">
                                 <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"></path>
                                 <path d="M12 11c-2 0-2-.63-2-1s.7-1 2-1 1.39.64 1.4 1h2A3 3 0 0 0 13 7.12V6h-2v1.09C9 7.42 8 8.71 8 10c0 1.12.52 3 4 3 2 0 2 .68 2 1s-.62 1-2 1c-1.84 0-2-.86-2-1H8c0 .92.66 2.55 3 2.92V18h2v-1.08c2-.34 3-1.63 3-2.92 0-1.12-.52-3-4-3z"></path></svg>
-@*                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="6" r="4"></circle>
-                                <path d="M17.67,22a2,2,0,0,0,1.92-2.56A7.8,7.8,0,0,0,12,14a7.8,7.8,0,0,0-7.59,5.44A2,2,0,0,0,6.34,22Z"></path>
-                            </svg>*@
-                            @*<span class="nav-span">Profits</span>*@
                             <span class="nav-span">الارباح</span>
                         </a>
                     </li>
@@ -74,15 +153,13 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill:hsl(var(--txt));stroke:none;">
                                 <path d="M19.875 3H4.125C2.953 3 2 3.897 2 5v14c0 1.103.953 2 2.125 2h15.75C21.047 21 22 20.103 22 19V5c0-1.103-.953-2-2.125-2zm0 16H4.125c-.057 0-.096-.016-.113-.016-.007 0-.011.002-.012.008L3.988 5.046c.007-.01.052-.046.137-.046h15.75c.079.001.122.028.125.008l.012 13.946c-.007.01-.052.046-.137.046z"></path>
                                 <path d="M6 7h6v6H6zm7 8H6v2h12v-2h-4zm1-4h4v2h-4zm0-4h4v2h-4z"></path></svg>
-
-                            @*<span class="nav-span">Updates</span>*@
                             <span class="nav-span">التحديثات</span>
                         </a>
                     </li>
 
                 </ul>
             </nav>
-        </div>
+        </div>*@
         <div class="container">
             <div class="header">
                 <div class="header-container">
@@ -113,6 +190,7 @@
     
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/translation/app.js" asp-append-version="true"></script>
     <script src="~/js/toggler.js"></script>
     <script src="~/js/sorter.js"></script>
     <script src="~/js/currencyToggler.js"></script>

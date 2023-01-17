@@ -95,9 +95,13 @@ body {
     /*english version*/
     /*font-family: 'Poppins', sans-serif;*/
     /*arabic version*/
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
     font-family: 'Cairo', sans-serif;
     background-color: hsl(var(--bg));
     color: hsl(var(--txt));
+    /*overflow: hidden;*/
 }
 
 ::selection {
@@ -123,13 +127,13 @@ main {
     gap: 1.5rem;
 }
 
-.side-menu {
+/*.side-menu {
     display: flex;
     background: #e1e7e9;
     justify-content: left;
     height: 100vh;
     display: fixed;
-}
+}*/
 
 .navbar {
     /* TODO : it should positioned Fixed but IDK */
@@ -213,14 +217,14 @@ main {
     border-radius: 5px;
     cursor: pointer;
 }
-.logo {
+/*.logo {
     text-align: center;
     display: flex;
     transition: all 0.5s ease;
     margin: 10px 0 0 10px;
 }
-
-    .logo img {
+*/
+/*    .logo img {
         width: 45px;
         height: 45px;
         border-radius: 50%;
@@ -231,7 +235,7 @@ main {
         padding-left: 15px;
         font-size: 18px;
         text-transform: uppercase;
-    }
+    }*/
 
 
 .header {
