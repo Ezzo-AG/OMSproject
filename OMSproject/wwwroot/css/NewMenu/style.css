@@ -27,7 +27,7 @@ display: fixed;*/
 .sidebar {
     font-family: "Poppins", sans-serif;
     font-size: 1.2rem;
-    position: fixed;
+    /*position: fixed;*/
     /* inset: 0 auto auto 0; */
     top: 0;
     left: 0;
