@@ -113,7 +113,7 @@
         <div class="double-input">
             <div class="form-floating">
                 <label for="ClientName" class="control-label">Client Name</label>
-                <input asp-for="ClientName" value=""  type="text" list="browsers" class="form-select dark-control" />
+                <input asp-for="ClientName" onchange="(GetClientData(this))" value="" type="text" list="browsers" class="form-select dark-control" />
                 <datalist id="browsers">
                     @foreach (var item in Model.Clients)
                     {
@@ -123,16 +123,16 @@
                 <span asp-validation-for="ClientName" class="warning"></span>
             </div>
             <div class="form-input-container">
-                <label asp-for="Phone" class="control-label lbl-padding">Phone Number</label>
-                <input asp-for="Phone" class="form-control" placeholder="09X XXXXXXX" />
+                <label asp-for="Phone"  class="control-label lbl-padding">Phone Number</label>
+                <input asp-for="Phone" id="phone1" class="form-control" placeholder="09X XXXXXXX" />
                 <span asp-validation-for="Phone" class="warning"></span>
             </div>
         </div>
         <div class="double-input">
 
             <div class="form-input-container">
-                <label asp-for="Phone2" class="control-label lbl-padding">Phone Number</label>
-                <input asp-for="Phone2" class="form-control" placeholder="09X XXXXXXX" />
+                <label asp-for="Phone2"  class="control-label lbl-padding">Phone Number</label>
+                <input asp-for="Phone2" id="phone2" class="form-control" placeholder="09X XXXXXXX" />
                 <span asp-validation-for="Phone2" class="warning"></span>
             </div>
             <div class="form-input-container">
@@ -187,4 +187,38 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
+
+<script>
+        function GetClientData(element) {
+            /* if (element.id.indexOf("ProductN") > 0) {*/
+
+            var ClientName = element.value;
+            var phone1 = document.getElementById('phone1');
+            var phone2 = document.getElementById('phone2');
+
+            $.ajax({
+                url: '/Order/GetClientData?client=' + ClientName,
+                success: function(data) {
+                    console.log(data)
+                    if(data.length != 0)
+                    {
+
+                        phone1.value = data[0];
+                        phone2.value = data[1];
+                        return ;
+                    }else
+                    {
+                        phone1.value ="";
+                        phone2.value ="";
+                        return ;
+                    }
+                },
+                error: function () {
+                    alert('Error>...  ');
+                }
+            });
+            /*  }*/
+
+        }
+</script>
 
