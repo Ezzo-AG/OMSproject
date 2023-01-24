@@ -35,7 +35,7 @@ namespace OMSproject.Controllers
             {
                 if(item.IsSelected == true)
                 {
-                    db.Orders.SingleOrDefault(x => x.OrderId == item.OrderId).OrderStatus = "Inprogress";
+                    db.Orders.SingleOrDefault(x => x.OrderId == item.OrderId).OrderStatus = "Delivered";
                 }
             }
             db.SaveChanges();
@@ -148,10 +148,14 @@ namespace OMSproject.Controllers
                     if (CheckClient == null)
                     {
                         var clientid = db.Clients.Max(x => x.Client_id);
-
+                        if(clientid == null)
+                        {
+                            clientid = 0;
+                        }
+                        clientid++;
                         Client client = new Client()
                         {
-                            Client_id = clientid + 1,
+                            Client_id = clientid,
                             ClientName = order.ClientName,
                             Phone = order.Phone,
                             Phone2 = order.Phone2,
@@ -445,6 +449,19 @@ namespace OMSproject.Controllers
             }
 
             return View(profets);
+        }
+
+
+        public  ActionResult GetClientData(string client)
+        {
+            var datalist = new List<string>();
+            var clientData = db.Clients.SingleOrDefault(x => x.ClientName == client);
+            if (clientData != null)
+            {
+                datalist.Add(clientData.Phone);
+                datalist.Add(clientData.Phone2);
+            }
+            return Ok(datalist) ;
         }
     }
    
