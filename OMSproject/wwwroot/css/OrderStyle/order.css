@@ -1,26 +1,26 @@
-﻿form {
+﻿/*form {
     padding: 25px 0;
     margin: auto;
     font-size: 1rem;
-    font-weight: 500;
+    font-weight: 500;*/
     /* max-width: 1000px; */
-    display: block;
+    /*display: block;
     width: 100%;
-}
+}*/
 
-fieldset {
+/*fieldset {*/
     /* font-family: 'Poppins', sans-serif; */
-    background: hsl(var(--sec-bg));
+    /*background: hsl(var(--sec-bg));
     padding: 2em;
-    border-radius: 10px;
+    border-radius: 10px;*/
     /*border: 2px solid rgb(242, 242, 242);*/
-    border: 2px solid hsl(var(--thd-bg));
+    /*border: 2px solid hsl(var(--thd-bg));
     width: 100%;
     color: hsl(var(--txt));
     font-size: 1.3rem;
-    font-weight: 500;
+    font-weight: 500;*/
     /* margin: 10px auto; */
-}
+/*}*/
 
 .double-input {
     margin: 2px auto;
@@ -45,16 +45,16 @@ label {
     margin-bottom: 10px;
     margin-left: 1rem;
 }
-
+/*
 p {
     padding: 1em;
-}
+}*/
 
-input[type="text"],
+/*input[type="text"],
 select,
-textarea {
+textarea {*/
     /* font-family: 'Poppins', sans-serif; */
-    width: 100%;
+    /*width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     display: block;
@@ -62,9 +62,9 @@ textarea {
     border-radius: 4px;
     box-sizing: border-box;
     font-size: 1rem;
-    font-weight: 400;
+    font-weight: 400;*/
     /* color: red; */
-}
+/*}*/
 
 .one-row {
     display: flex;
@@ -116,7 +116,7 @@ textarea {
     background-color: hsla(218, 39%, 62%, 0.3);
     border: 1px solid hsl(202, 51%, 50%);
 }
-
+/*
 .btn :where(svg, img, span) {
     pointer-events: none;
 }
@@ -136,7 +136,7 @@ textarea {
 
 .btn:focus-visible {
     box-shadow: 0 0 0 hsl(var(--accent) / 0.3), 0 0 0 0.2em hsl(var(--bg)), 0 0 0 0.4em hsl(var(--accent) / 0.7);
-}
+}*/
 
 #products {
     border-collapse: collapse;

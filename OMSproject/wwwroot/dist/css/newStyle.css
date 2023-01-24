@@ -1438,7 +1438,7 @@ input[type="button"].btn-block {
         pointer-events: none;
     }
 
-.input-group > .form-control,
+/*.input-group > .form-control,
 .input-group > .form-control-plaintext,
 .input-group > .custom-select,
 .input-group > .custom-file {
@@ -1514,7 +1514,7 @@ input[type="button"].btn-block {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
 }
-
+*/
 .input-group-prepend,
 .input-group-append {
     display: -ms-flexbox;
@@ -1573,7 +1573,7 @@ input[type="button"].btn-block {
     .input-group-text input[type="checkbox"] {
         margin-top: 0;
     }
-
+/*
 .input-group-lg > .form-control:not(textarea),
 .input-group-lg > .custom-select {
     height: calc(2.875rem + 2px);
@@ -1607,7 +1607,7 @@ input[type="button"].btn-block {
     line-height: 1.5;
     border-radius: 0.2rem;
 }
-
+*/
 
 
 .pagination {
