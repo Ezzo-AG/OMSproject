@@ -1,0 +1,71 @@
+.container-fluid
+ /* body[data-layout=horizontal] .navbar-header  */
+ {
+  max-width:90%
+ }
+ .card {
+    background: var(--sidebar-color);
+    color: var(--text-color);
+    border: 0;
+    border-radius: 0.85rem;
+    box-shadow: 0px 0px 20px 0px rgba(76, 87, 125, 0.02);
+ }
+ .btn-ne {
+    color: var(--text-color);
+    cursor: default;
+}
+.btn-ne:hover {
+    color: var(--text-color);
+    cursor: default;
+ }
+ .btn-dark {
+
+     background-color: var(--hover-color);
+     color: var(--text-color);
+     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
+    }
+    .btn-dark:hover {
+        background-color: var(--primary-color-btn);
+      color: var(--primary-color);
+      /* border:1px solid #131628; */
+    /* border-color:  */
+
+  }
+  .form-control {
+    color: var(--text-color);
+    background-color: var(--primary-color-light);
+    border: 1px solid var(--border-color);
+
+  }
+  .form-control:focus {
+    background-color: var(--primary-color-light);
+    color: var(--text-color);
+  }
+  .form-select {
+
+    /* color: #181C32;
+    background-color: #ffffff;
+    
+    border: 1px solid #E4E6EF; */
+    color: var(--text-color);
+    background-color: var(--primary-color-light);
+    border: 1px solid var(--border-color);
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%237E8299' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+
+  }
+  .form-check.form-check-custom.form-check-sm .form-check-input {
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+  .form-check-input:checked {
+    background-color: #140D12;
+    border-color: #18161d;
+  }
+  .card-body.flexer {
+    display: inline-flex;
+  }
+  .card-body i {
+    /* display: flex; */
+    font-size: 2.5rem;
+
+  }
