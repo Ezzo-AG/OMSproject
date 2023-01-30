@@ -9,11 +9,12 @@
 //     sidebar.classList.toggle("active");
 // }
 
-const body = document.querySelector('body'),
-    sidebar = body.querySelector('nav'),
-    toggle = body.querySelector(".toggle"),
-    searchBtn = body.querySelector(".search-box"),
-    modeSwitch = body.querySelector(".toggle-switch"),
+const body = document.querySelector('body')
+let table = document.querySelector('table')
+    sidebar = body.querySelector('nav')
+    toggle = body.querySelector(".toggle")
+    searchBtn = body.querySelector(".search-box")
+    modeSwitch = body.querySelector(".toggle-switch")
     modeText = body.querySelector(".mode-text");
 
 
@@ -27,6 +28,7 @@ searchBtn.addEventListener("click", () => {
 
 modeSwitch.addEventListener("click", () => {
     body.classList.toggle("dark");
+    table.classList.toggle("table-dark");
 
     if (body.classList.contains("dark")) {
         modeText.innerText = "Light mode";

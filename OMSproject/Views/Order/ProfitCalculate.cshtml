@@ -73,37 +73,42 @@
                 <div class="card">
                     <div class="card-body pb-2">
                         <div class="d-flex align-items-center justify-content-between mb-3">
-                        <h5>Income Profit</h5>
+                            <h5>Income Profit</h5>
                             <div class="d-flex flex-shrink-0">
-                                <button class="btn btn-sm btn-light-dark" title="Back" type="button" onclick="history.back()">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="21" height="23" fill="hsl(var(--txt))" stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M21 11H6.414l5.293-5.293-1.414-1.414L2.586 12l7.707 7.707 1.414-1.414L6.414 13H21z"></path>
-                            </svg>
-                        </button>
-                        </div>
-                    </div>
+                                <button class="btn btn-icon btn-sm btn-light-dark" title="Back" type="button" onclick="history.back()">
+                                    <i class='bx bx-arrow-back fs-4'></i>
 
-                        <div class="d-flex mb-3">
-                            <div class="col-md-4 me-3">
-                                <input type="text" id="min" name="min" class="form-control mr-5" placeholder="Start Date">
-                                </div>
-                            <div class="col-md-4 me-3">
-                                <input type="text" id="max" name="max" class="form-control" placeholder="End Date">
-                                </div>
-                        <div class="col-md-2 me-3">
-                        <button class="btn btn-light-dark" title="Back" type="button" >
-                            search
-                            @*<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="21" height="23" fill="hsl(var(--txt))" stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M21 11H6.414l5.293-5.293-1.414-1.414L2.586 12l7.707 7.707 1.414-1.414L6.414 13H21z"></path>
-                            </svg>*@
-                        </button>
-                        </div>
+@*                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="21" height="23" fill="hsl(var(--txt))" stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 11H6.414l5.293-5.293-1.414-1.414L2.586 12l7.707 7.707 1.414-1.414L6.414 13H21z"></path>
+                                    </svg>*@
+                                </button>
                             </div>
                         </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-3 mb-3">
+                                <input type="text" id="min" name="min" class="form-control mr-5" placeholder="Start Date">
+                            </div>
+                            <div class="col-md-3  mb-3">
+                                <input type="text" id="max" name="max" class="form-control" placeholder="End Date">
+                            </div>
+                            <div class="col-md-2 mb-3">
+                                <a class="btn btn-light-dark" > 
+                                    <span class="svg-icon svg-icon-1">
+                                        <i class='bx bxs-filter-alt fs-4'></i>
+                                    </span>
+                                    Filter
+                                    @*<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="21" height="23" fill="hsl(var(--txt))" stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 11H6.414l5.293-5.293-1.414-1.414L2.586 12l7.707 7.707 1.414-1.414L6.414 13H21z"></path>
+                                    </svg>*@
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                     <div class="card-body pb-2">
-                        <table id="example1" class="table table-bordered table-striped">
-                            <thead class="cus">
-                                <tr>
+                        <table id="example1" class="table table-row-bordered gy-5">
+                            <thead>
+                                <tr class="fw-bold fs-6 text-muted">
                                     <th onclick="sortTable(0)">
                                         #
                                     </th>
@@ -164,7 +169,6 @@
                                 </tr>
                             </tfoot>
                         </table>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -176,7 +180,7 @@
 <!-- Bootstrap 4 -->
 <!-- <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script> -->
 <!-- DataTables  & Plugins -->
-<script src="~/pluginus/datatables/js/jquery.dataTables.min.js"></script>
+@*<script src="~/pluginus/datatables/js/jquery.dataTables.min.js"></script>
 <script src="~/pluginus/datatables/js/dataTables.bootstrap5.min.js"></script>
 
 <script src="~/pluginus/responsive/js/dataTables.responsive.min.js"></script>
@@ -191,12 +195,12 @@
 <script src="~/pluginus/buttons/js/buttons.html5.min.js"></script>
 <script src="~/pluginus/buttons/js/buttons.print.min.js"></script>
 <script src="~/pluginus/buttons/js/buttons.colVis.min.js"></script>
-<script src="~/pluginus/JavaScript.js"></script>
+<script src="~/pluginus/JavaScript.js"></script>*@
 @*<script src="~/js/profit/multiRow.js"></script>*@
 
-<script src="~/pluginus/Moment/moment.min.js"></script>
+@*<script src="~/pluginus/Moment/moment.min.js"></script>
 <script src="~/pluginus/Select/js/dataTables.select.min.js"></script>
-<script src="~/pluginus/DateTime/js/dataTables.dateTime.min.js"></script>
+<script src="~/pluginus/DateTime/js/dataTables.dateTime.min.js"></script>*@
 
 <script>
     //var date = new Date();

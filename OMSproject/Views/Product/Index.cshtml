@@ -2,128 +2,193 @@
 @{
     ViewData["Title"] = "Index";
 }
-<link rel="stylesheet" href="~/css/OrderStyle/order.css" asp-append-version="true" />
+@*<link rel="stylesheet" href="~/css/OrderStyle/order.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/css/Table/TablesStyle.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/css/Table/FormControl.css" asp-append-version="true" />
 <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-
+*@
 <style>
-    .th-padding {
-        padding: 1rem;
-    }
-
+    /*    .th-padding {
+                    padding: 1rem;
+                }
+            */
     .alertTable {
         background: #e6394682;
     }
 </style>
-<form class="d-flex nav-search" asp-action="Search" asp-controller="Product">
+<div class="header">
+    <div class="container-fluid d-flex align-items-center justify-content-between">
+        <div class="header-text">
+            Product / Index
+        </div>
+
+
+        <div class="d-flex flex-shrink-0">
+            <a href="#" class="btn btn-sm btn-primary">Get Pro</a>
+        </div>
+    </div>
+</div>
+<form asp-action="Search" asp-controller="Product">
 
     <fieldset>
-        <button class=" left-floater searcher" title="Back" type="button" onclick="history.back()">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="21" height="23" fill="hsl(var(--txt))" stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 11H6.414l5.293-5.293-1.414-1.414L2.586 12l7.707 7.707 1.414-1.414L6.414 13H21z"></path>
-            </svg>
-        </button>
-        @*<h1 class="headers left-floater">Product Index</h1>*@
-        <h1 class="headers left-floater">سجل المنتجات </h1>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="card">
+                    <div class="card-body pb-2">
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <h5>Product Index</h5>
+                            <div class="d-flex flex-shrink-0">
+                                <button class="btn btn-icon btn-light-dark" title="Back" type="button" onclick="history.back()">
+                                    <i class='bx bx-arrow-back fs-4'></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+ @*                           <div class="col-md-2 mb-3">
+                                <input class="form-control me-2" name="term" type="search" placeholder="Search" aria-label="Search">
+                            </div>
+                            <div class="col-md-2 mb-3">
+                                <button class="btn btn-icon  btn-light-dark" type="submit" title="Search Product">
+                                    <i class='bx bx-search'></i>
+                                </button>
+                            </div>*@                
+                            <div class="col-md-2 mb-3">
+                                <a class="btn btn-light-info" title="Add Order" asp-controller="Product" asp-action="Create">
+                                    <span class="svg-icon svg-icon-1">
+                                        <i class='bx bxs-cart-alt fs-2'></i>
 
-        <a class="table-item searcher" title="Add Order"asp-controller="Product" asp-action="Create" style="margin:0 1rem 0 0">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="var(--peachy-red)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M2,3H4.23a1,1,0,0,1,1,.74L8.1,14.52A2,2,0,0,0,10,16h6.53a2,2,0,0,0,1.9-1.37l2.1-6.31A1,1,0,0,0,19.61,7H6.1" stroke-linecap="round"></path>
-                <line x1="9.99" y1="20" x2="10.01" y2="20" stroke-linecap="round" stroke-width="2"></line>
-                <line x1="15.99" y1="20" x2="16.01" y2="20" stroke-linecap="round" stroke-width="2"></line>
-            </svg>
-        </a>
-        <button class="table-item searcher" type="submit" title="Search Product" style="margin:0 1rem">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="var(--peachy-red)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="11" cy="11" r="9" fill="none"></circle>
-                <line x1="17.5" y1="17.5" x2="22" y2="22"></line>
-            </svg>
-        </button>
-        <input class="form-control me-2" name="term" type="search" placeholder="Search" aria-label="Search" style="float: right;width: 30%;padding: .6rem;margin: 0 0.5rem 1rem 1rem;  ">
-        <table class="table" id="myTable">
-            <thead>
-                <tr>
-@*                    <th onclick="sortTable(0)">
-                        ID
-                    </th> *@     
-                    <th onclick="sortTable(0)">
-                        #
-                    </th>
-         @*           <th onclick ="sortTable(1)">
-                        Name
-                    </th>  *@
-                    <th onclick ="sortTable(1)">
-                        الاسم
-                    </th>
-              @*      <th onclick="sortTable(2)">
-                        Cost
-                    </th> *@ 
-                    <th onclick="sortTable(2)">
-                        التكلفة
-                    </th>
-        <th onclick="sortTable(3)">
-                        @*Price*@
-                        السعر
-                    </th>
+                                        @*<i class='bx bxs-filter-alt fs-4'></i>*@
+                                    </span>
+                                    New Order
+                                    @*<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="21" height="23" fill="hsl(var(--txt))" stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 11H6.414l5.293-5.293-1.414-1.414L2.586 12l7.707 7.707 1.414-1.414L6.414 13H21z"></path>
+                                    </svg>*@
+                                </a>
+                            </div>
+                            @*<div class="col-md-2 mb-3">*@
+                                @*<a class="btn btn-icon btn-sm btn-light-dark float-start" title="Add Order" asp-controller="Product" asp-action="Create">*@
+                                    @*<i class='bx bxs-cart-alt'></i>*@
+                                @*</a>*@
 
-                    <th onclick="sortTable(4)">
-                        @*Quantity*@
-                        الكمية
-                    </th>
-                    <th onclick="sortTable(5)">
-                        @*Note*@
-                        ملاحظات
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr class="row">
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Product_Id)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Product_Name)
-                        </td>
-                        <td class="currency">
-                            @Html.DisplayFor(modelItem => item.Cost)
-                        </td>
-                        <td class="currency">
-                            @Html.DisplayFor(modelItem => item.Price)
-                        </td>
-                        <td class="quantity">
-                            @Html.DisplayFor(modelItem => item.Total_QTY)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Notes)
-                        </td>
-                        <td class="table-item">
-                            <a asp-action="Edit" asp-route-id="@item.Product_Id" title="Edit">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M18.16,3.66l2.18,2.18a2,2,0,0,1,0,2.82l-13,13.05a1,1,0,0,1-.7.29H2V17.41a1,1,0,0,1,.29-.7l13.05-13A2,2,0,0,1,18.16,3.66Z"></path>
-                                    <line x1="12.5" y1="6.5" x2="17.5" y2="11.5"></line>
-                                </svg>
-                            </a>
+                            @*</div>*@
+                        </div>
+                    </div>
+                    <div class="card-body pb-2">
+                        @*<h3>Clients Index </h3>*@
+                        <table class="table table-row-bordered gy-5" id="myTable">
+                            <thead>
+                                <tr class="fw-bold fs-6 ">
 
-                            <a asp-action="Details" asp-route-id="@item.Product_Id" title="Details">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                                    <line x1="20" y1="12" x2="8" y2="12"></line>
-                                    <line x1="20" y1="6" x2="8" y2="6"></line>
-                                    <line x1="20" y1="18" x2="8" y2="18">
-                                    </line>
-                                    <line x1="3.99" y1="6" x2="4" y2="6"></line>
-                                    <line x1="3.99" y1="12" x2="4" y2="12"></line>
-                                    <line x1="3.99" y1="18" x2="4" y2="18"></line>
-                                </svg>
-                            </a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+                                    <th>
+                                        #
+                                    </th>
+                                    <th>
+                                      Name
+                                        @*الاسم*@
+                                    </th>
+
+                                    <th onclick="sortTable(2)">
+                                        @*التكلفة*@
+                                        Cost
+                                    </th>
+                                    <th onclick="sortTable(3)">
+                                        Price
+                                        @*السعر*@
+                                    </th>
+
+                                    <th onclick="sortTable(4)">
+                                        Quantity
+                                        @*الكمية*@
+                                    </th>
+                                    <th onclick="sortTable(5)">
+                                        Note
+                                        @*ملاحظات*@
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Product_Id)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Product_Name)
+                                        </td>
+                                        <td class="currency">
+                                            @Html.DisplayFor(modelItem => item.Cost)
+                                        </td>
+                                        <td class="currency">
+                                            @Html.DisplayFor(modelItem => item.Price)
+                                        </td>
+                                        <td class="quantity">
+                                            @Html.DisplayFor(modelItem => item.Total_QTY)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Notes)
+                                        </td>
+                                        <td class="table-item">
+                                            <a asp-action="Edit" asp-route-id="@item.Product_Id" title="Edit">
+                                                <i class='bx bx-edit fs-1'></i>
+
+@*                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M18.16,3.66l2.18,2.18a2,2,0,0,1,0,2.82l-13,13.05a1,1,0,0,1-.7.29H2V17.41a1,1,0,0,1,.29-.7l13.05-13A2,2,0,0,1,18.16,3.66Z"></path>
+                                                    <line x1="12.5" y1="6.5" x2="17.5" y2="11.5"></line>
+                                                </svg>*@
+                                            </a>
+
+                                            <a asp-action="Details" asp-route-id="@item.Product_Id" title="Details">
+                                                <i class='bx bx-edit fs-1'></i>
+
+@*                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                                                    <line x1="20" y1="12" x2="8" y2="12"></line>
+                                                    <line x1="20" y1="6" x2="8" y2="6"></line>
+                                                    <line x1="20" y1="18" x2="8" y2="18">
+                                                    </line>
+                                                    <line x1="3.99" y1="6" x2="4" y2="6"></line>
+                                                    <line x1="3.99" y1="12" x2="4" y2="12"></line>
+                                                    <line x1="3.99" y1="18" x2="4" y2="18"></line>
+                                                </svg>*@
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </fieldset>
 </form>
+<script src="~/pluginus/jquery/jquery.js"></script>
+
 <script src="~/js/productAlerts.js"></script>
+<script>
+    $(function () {
+        $("#myTable").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": true,
+            //"buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            //"buttons": ["print", "colvis"],
+
+            //"fixedHeader": {
+            //    //header: false,
+            //    footer: true
+            //}
+        })
+            .buttons().container().appendTo('#myTable_wrapper .col-md-6:eq(0)');
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+    });
+</script>
