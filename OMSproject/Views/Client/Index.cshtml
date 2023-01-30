@@ -155,8 +155,8 @@
                         <h3>Clients Index </h3>
                         <table id="example1" class="table table-row-bordered gy-5">
                             <thead>
-                                <tr class="fw-bold fs-6 ">
-                                    <th onclick="sortTable(0)">
+                                <tr class="fw-bold fs-6 text-center">
+                                    <th >
                                         @*ID*@
                                         #
                                     </th>
@@ -194,12 +194,12 @@
                                             </p>
                                         </td>
                                         <td class="table-item">
-                                            <a asp-action="Edit" asp-route-id="@item.Client_id" title="Edit Client" class="btn btn-sm btn-icon btn-dark">
+                                            <a asp-action="Edit" asp-route-id="@item.Client_id" title="Edit Client" class="btn btn-sm btn-icon btn-light-success">
                                                 <i class='bx bx-edit fs-1'></i>
 
                                             </a>
                                             @*<a asp-action="Details" asp-route-id="@item.Client_id">Details</a> | <a asp-action="Delete" asp-route-id="@item.Client_id">Delete</a>*@
-                                            <a asp-action="History" asp-route-id="@item.Client_id" title="Client History" class="btn btn-sm btn-icon btn-dark">
+                                            <a asp-action="History" asp-route-id="@item.Client_id" title="Client History" class="btn btn-sm btn-icon btn-light-primary">
                                                 <i class='bx bx-history fs-1'></i>
                                             </a>
                                         </td>
