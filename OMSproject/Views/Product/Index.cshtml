@@ -130,7 +130,7 @@
                                             @Html.DisplayFor(modelItem => item.Notes)
                                         </td>
                                         <td class="table-item">
-                                            <a asp-action="Edit" asp-route-id="@item.Product_Id" title="Edit">
+                                            <a asp-action="Edit" asp-route-id="@item.Product_Id" title="Edit" class="btn btn-sm btn-icon btn-light-success">
                                                 <i class='bx bx-edit fs-1'></i>
 
 @*                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
@@ -139,8 +139,10 @@
                                                 </svg>*@
                                             </a>
 
-                                            <a asp-action="Details" asp-route-id="@item.Product_Id" title="Details">
-                                                <i class='bx bx-edit fs-1'></i>
+                                            <a asp-action="Details" asp-route-id="@item.Product_Id" title="Details" class="btn btn-sm btn-icon btn-light-primary">
+                                                @*<i class='bx bx-edit fs-1'></i>*@
+                                                <i class='bx bx-history fs-1'></i>
+
 
 @*                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                                                     <line x1="20" y1="12" x2="8" y2="12"></line>

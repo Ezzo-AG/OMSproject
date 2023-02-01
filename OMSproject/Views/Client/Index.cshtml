@@ -99,18 +99,18 @@
                             </div>
                         </div>
 
-                        <div class="row mb-3">
-                            <div class="col-md-2 mb-3">
+                        <div class="row mb-3 justify-content-end">
+                            <div class="col-md-3 mb-3">
 
-                                <input asp-for="Phone" class="form-control" placeholder="First Mobile Number" aria-label="First Mobile Number" />
+                                <input asp-for="Phone" class="form-control" placeholder="1st Phone Number (09*)" aria-label="First Phone Number" />
                                 <span asp-validation-for="Phone" class="warning"></span>
                             </div>
-                            <div class="col-md-2 mb-3">
+                            <div class="col-md-3 mb-3">
 
-                                <input asp-for="Phone2" class="form-control" placeholder="Second Mobile Number" aria-label="Second Mobile Number" />
+                                <input asp-for="Phone2" class="form-control" placeholder="2nd Phone Number (09*)" aria-label="Second Phone Number" />
                                 <span asp-validation-for="Phone2" class="warning"></span>
                             </div>
-                            <div class="col-md-2 mb-3">
+                            <div class="col-md-3 mb-3">
 
                                 <input asp-for="ClientName" class="form-control" placeholder="Client Name" />
                                 <span asp-validation-for="ClientName" class="warning">@ViewBag.message</span>
@@ -122,7 +122,7 @@
 
                             </div>
                             @* </div>*@
-                            <div class="col-md-1 mb-3">
+                            <div class="col-md-1 mb-3 d-flex">
                                 <button title="Add New Client" type="submit" value="Add Client" class="btn btn-icon btn-light-dark float-start">
                                     <i class='bx bxs-user-plus fs-1'></i>
                                     @*<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" style="width: 30px;">

@@ -53,7 +53,7 @@
                             </div>
                         </div>
 
-                        <div class="row mb-3">
+@*                        <div class="row mb-3">
                             <div class="col-md-2 mb-3">
                         <a class="table-item searcher" title="Add Order" asp-controller="Order" asp-action="Create" style="margin:0 1rem 0 0">
                             bbb
@@ -75,45 +75,46 @@
                         </a>
                         </div>
 
-                    </div>
-                        <div class="d-flex align-items-center  mb-3">
-                        <div class="col-md-12 mb-3">
+                    </div>*@
+                        <div class="d-flex align-items-center">
+                        <div class="col-md-12">
                         <h5 >
                             Filter By Status
                         </h5>
 
                         <button asp-action="searchNew" class="btn btn-light-success">   New </button>
-                        
-                        <button asp-action="searchInprogress" class="btn btn-light-success"> In-progress </button>
-                        <button asp-action="searchDelivered" class="btn btn-light-success"> Delivered </button>    
-                        <button asp-action="searchCanceled" class="btn btn-light-success"> Canceled  </button>
+                        <button asp-action="searchInprogress" class="btn btn-light-warning"> In-progress </button>
+                        <button asp-action="searchDelivered" class="btn btn-light-info"> Delivered </button>    
+                        <button asp-action="searchCanceled" class="btn btn-light-danger"> Canceled  </button>
                         <button asp-action="/" class="btn btn-light-success">Profits</button>
                         </div>
                     </div>
                     </div>
+                    <div class="card-body pb-2">
+                    <button type="button" class="btn btn-light-success" onclick="ChangeState()">Change state</button>
 
-                    <button type="button" class="btn" onclick="ChangeState()">change state</button>
-
-                    <table class="table" id="myTable" style="margin: 3rem auto 0;">
-                        <thead class="cus">
+                        <table class="table table-row-bordered gy-5" id="myTable">
+                            <thead class="fw-bold fs-6 ">
                             <tr>
 
-                                <th></th>
-                                @*<th onclick="sortTable(0)">Client Name </th>*@
-                                <th onclick="sortTable(0)"> الاسم </th>
-                                @*<th onclick="sortTable(1)">Address </th>*@
-                                <th onclick="sortTable(1)">العنوان </th>
-                                @*<th onclick="sortTable(2)">Order Date</th>*@
-                                <th onclick="sortTable(2)">تاريخ الطلبية</th>
-                                @*<th onclick="sortTable(3)">Price</th>*@
-                                <th onclick="sortTable(3)">التكلفة</th>
-                                @*<th onclick="sortTable(4)"> Sell Price </th>*@
-                                <th onclick="sortTable(4)"> سعر البيع </th>
-                                @*<th onclick="sortTable(5)"> Status</th>*@
-                                <th onclick="sortTable(5)"> الحالة</th>
-                                @*<th onclick="sortTable(6)">Notes </th>*@
-                                <th onclick="sortTable(6)">الملاحظات </th>
-
+                                
+                                
+                                <th >Client Name </th>
+                                @*<th onclick="sortTable(0)"> الاسم </th>*@
+                                <th>Address </th>
+                                @*<th onclick="sortTable(1)">العنوان </th>*@
+                                <th >Order Date</th>
+                                @*<t)">تاريخ الطلبية</th>*@
+                                <th >Price</th>
+                                @*<t)">التكلفة</th>*@
+                                <th > Sell Price </th>
+                                @*<t)"> سعر البيع </th>*@
+                                <th > Status</th>
+                                @*<t)"> الحالة</th>*@
+                                <th >Notes </th>
+                                @*<th onclick="sortTable(6)">الملاحظات </th>*@
+                                    <th></th>
+                                    <th style="visibility : hidden;"></th>
                                 <th style="width: 10%"></th>
                             </tr>
                         </thead>
@@ -122,12 +123,7 @@
                             @for (var i = 0; i < Model.Count; i++)
                             {
                                 <tr>
-                                    <td hidden>
-                                        <input type="hidden" asp-for="@Model[i].OrderId" value="@Model[i].OrderId">
-                                    </td>
-                                    <td name="td" style="visibility : hidden;">
-                                        <input onchange="CheckboxVale(this)" asp-for="@Model[i].IsSelected" value="false">
-                                    </td>
+
                                     <td>
                                         <input type="hidden" asp-for="@Model[i].Client.ClientName" value="@Model[i].Client.ClientName">
                                         @Html.DisplayFor(modelItem => @Model[i].Client.ClientName)
@@ -158,38 +154,33 @@
                                     </td>
 
                                     <td class="table-item">
-                                        <a asp-action="Edit" asp-route-id="@Model[i].OrderId" title="Edit">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                                                <path d="M18.16,3.66l2.18,2.18a2,2,0,0,1,0,2.82l-13,13.05a1,1,0,0,1-.7.29H2V17.41a1,1,0,0,1,.29-.7l13.05-13A2,2,0,0,1,18.16,3.66Z"></path>
-                                                <line x1="12.5" y1="6.5" x2="17.5" y2="11.5"></line>
-                                            </svg>
-
+                                        <a asp-action="Edit" asp-route-id="@Model[i].OrderId" title="Edit" class="btn btn-sm btn-icon btn-light-success">
+                                            <i class='bx bx-edit fs-1'></i>
+                                        </a>
+                                        <a asp-action="Details" asp-route-id="@Model[i].OrderId" title="Details" class="btn btn-sm btn-icon btn-light-info">
+                                                <i class='bx bxs-detail fs-1'></i>
 
                                         </a>
-                                        <a asp-action="Details" asp-route-id="@Model[i].OrderId" title="Details">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                                                <line x1="20" y1="12" x2="8" y2="12"></line>
-                                                <line x1="20" y1="6" x2="8" y2="6"></line>
-                                                <line x1="20" y1="18" x2="8" y2="18">
-                                                </line>
-                                                <line x1="3.99" y1="6" x2="4" y2="6"></line>
-                                                <line x1="3.99" y1="12" x2="4" y2="12"></line>
-                                                <line x1="3.99" y1="18" x2="4" y2="18"></line>
-                                            </svg>
-                                        </a>
+                                        </td>
+                                        <td hidden>
+                                            <input type="hidden" asp-for="@Model[i].OrderId" value="@Model[i].OrderId">
+                                        </td>
+                                    <td name="td" style="visibility : hidden;">
+                                        <input onchange="CheckboxVale(this)" asp-for="@Model[i].IsSelected" value="false">
                                     </td>
                                 </tr>
                             }
                         </tbody>
                     </table>
+                        <input class="btn btn-success mt-4" type="submit" value="Save">
                 </div>
             </div>
         </div>
     </fieldset>
 
-    <input type="submit" value="Save">
 </form>
 
+<script src="~/pluginus/jquery/jquery.js"></script>
 <script>
 
     function ChangeState() {
@@ -219,22 +210,24 @@
 
 </script>
 
-@*@section Scripts {
-       <script>
-            $(function() {
-                $("#btnSubmit").click(function () {
-                    $.ajax({
-                        url: "/Order/ChangeState",
-                        method: "post",
-                        data: $("#mainform").serialize(),
-                        success: function () {
-                            alert("sueess");
-                        },
-                        error: function (error) {
-                            alert("error");
-                        }
-                    });
-                });
-            });
-       </script>
-    }*@
+@*<script src="~/js/productAlerts.js"></script>*@
+<script>
+    $(function () {
+        $("#myTable").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": true,
+
+        })
+            .buttons().container().appendTo('#myTable_wrapper .col-md-6:eq(0)');
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+    });
+</script>
