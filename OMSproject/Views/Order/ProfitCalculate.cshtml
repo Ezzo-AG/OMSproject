@@ -1,4 +1,4 @@
-﻿@model IEnumerable<OMSproject.Models.ViewModels.ProfetViewModel>
+﻿@model OMSproject.Models.ViewModels.pftViewModel
 
 @{
     //Layout = null;
@@ -66,7 +66,7 @@
     </div>
 </div>
 
-<form asp-action="Filter" asp-controller="Order">
+<form asp-action="Filter" asp-controller="Order" method="post">
     <fieldset>
         <div class="container-fluid">
             <div class="row">
@@ -127,27 +127,33 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var item in Model)
+                                @for (int i = 0; i < Model.Profet.Count; i++)
                                 {
                                     <tr>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.OrderId)
+                                            <input type="hidden" asp-for="@Model.Profet[i].OrderId" value="@Model.Profet[i].OrderId">
+                                            @Html.DisplayFor(modelItem => @Model.Profet[i].OrderId)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.OrderDate)
+                                            <input type="hidden" asp-for="@Model.Profet[i].OrderDate" value="@Model.Profet[i].OrderDate">
+                                            @Html.DisplayFor(modelItem => @Model.Profet[i].OrderDate)
                                         </td>
-                                        <td class="cost">
-                                            @Html.DisplayFor(modelItem => item.OrderCoast)
+                                        <td>
+                                            <input class="cost" type="hidden" asp-for="@Model.Profet[i].OrderCoast" value="@Model.Profet[i].OrderCoast">
+                                            @Html.DisplayFor(modelItem => @Model.Profet[i].OrderCoast)
                                         </td>
-                                        <td class="sellPrice">
-                                            @Html.DisplayFor(modelItem => item.OrderSellPrice)
+                                        <td>
+                                            <input class="sellPrice" type="hidden" asp-for="@Model.Profet[i].OrderSellPrice" value="@Model.Profet[i].OrderSellPrice">
+                                            @Html.DisplayFor(modelItem => @Model.Profet[i].OrderSellPrice)
                                         </td>
-                                        <td class="profit">
-                                            @Html.DisplayFor(modelItem => item.Profet)
+                                        <td>
+                                            <input class="profit" type="hidden" asp-for="@Model.Profet[i].Profet" value="@Model.Profet[i].Profet">
+                                            @Html.DisplayFor(modelItem => @Model.Profet[i].Profet)
                                         </td>
-
                                     </tr>
-                                }
+                                }                               
+                                
+                                   
                             </tbody>
                             <tfoot>
                                 <tr>
