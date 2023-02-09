@@ -1,4 +1,4 @@
-﻿@model OMSproject.Models.ViewModels.pftViewModel
+﻿@model IEnumerable<OMSproject.Models.ViewModels.ProfetViewModel>
 
 @{
     //Layout = null;
@@ -66,7 +66,7 @@
     </div>
 </div>
 
-<form asp-action="Filter" asp-controller="Order" method="post">
+<form asp-action="Search" asp-controller="Order">
     <fieldset>
         <div class="container-fluid">
             <div class="row">
@@ -87,13 +87,13 @@
 
                         <div class="row mb-3">
                             <div class="col-md-3 mb-3">
-                                <input asp-for="@Model.StartDate" type="date" id="min" class="form-control mr-5" placeholder="Start Date">
+                                <input type="text" id="min" name="min" class="form-control mr-5" placeholder="Start Date">
                             </div>
                             <div class="col-md-3  mb-3">
-                                <input asp-for="@Model.EndtDate" type="date" id="max"  class="form-control" placeholder="End Date">
+                                <input type="text" id="max" name="max" class="form-control" placeholder="End Date">
                             </div>
                             <div class="col-md-2 mb-3">
-                                <button type="submit" class="btn btn-light-dark" > 
+                                <a class="btn btn-light-dark" > 
                                     <span class="svg-icon svg-icon-1">
                                         <i class='bx bxs-filter-alt fs-4'></i>
                                     </span>
@@ -101,7 +101,7 @@
                                     @*<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="21" height="23" fill="hsl(var(--txt))" stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M21 11H6.414l5.293-5.293-1.414-1.414L2.586 12l7.707 7.707 1.414-1.414L6.414 13H21z"></path>
                                     </svg>*@
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -127,28 +127,23 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @for(int i = 0;i<Model.Profet.Count; i++)
+                                @foreach (var item in Model)
                                 {
                                     <tr>
                                         <td>
-                                            <input type="hidden" asp-for="@Model.Profet[i].OrderId" value="@Model.Profet[i].OrderId">
-                                            @Html.DisplayFor(modelItem => @Model.Profet[i].OrderId)
+                                            @Html.DisplayFor(modelItem => item.OrderId)
                                         </td>
                                         <td>
-                                            <input type="hidden" asp-for="@Model.Profet[i].OrderDate" value="@Model.Profet[i].OrderDate">
-                                            @Html.DisplayFor(modelItem => @Model.Profet[i].OrderDate)
+                                            @Html.DisplayFor(modelItem => item.OrderDate)
                                         </td>
-                                        <td >
-                                            <input class="cost" type="hidden" asp-for="@Model.Profet[i].OrderCoast" value="@Model.Profet[i].OrderCoast">
-                                            @Html.DisplayFor(modelItem => @Model.Profet[i].OrderCoast)
+                                        <td class="cost">
+                                            @Html.DisplayFor(modelItem => item.OrderCoast)
                                         </td>
-                                        <td >
-                                            <input class="sellPrice" type="hidden" asp-for="@Model.Profet[i].OrderSellPrice" value="@Model.Profet[i].OrderSellPrice">
-                                            @Html.DisplayFor(modelItem => @Model.Profet[i].OrderSellPrice)
+                                        <td class="sellPrice">
+                                            @Html.DisplayFor(modelItem => item.OrderSellPrice)
                                         </td>
-                                        <td >
-                                            <input class="profit" type="hidden" asp-for="@Model.Profet[i].Profet" value="@Model.Profet[i].Profet">
-                                            @Html.DisplayFor(modelItem => @Model.Profet[i].Profet)
+                                        <td class="profit">
+                                            @Html.DisplayFor(modelItem => item.Profet)
                                         </td>
 
                                     </tr>
@@ -182,9 +177,44 @@
 </form>
 
 <script src="~/pluginus/jquery/jquery.js"></script>
+<!-- Bootstrap 4 -->
+<!-- <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script> -->
+<!-- DataTables  & Plugins -->
+@*<script src="~/pluginus/datatables/js/jquery.dataTables.min.js"></script>
+<script src="~/pluginus/datatables/js/dataTables.bootstrap5.min.js"></script>
 
+<script src="~/pluginus/responsive/js/dataTables.responsive.min.js"></script>
+<script src="~/pluginus/DataTables/js/dataTables.bootstrap5.min.js"></script>
+<script src="~/pluginus/responsive/js/responsive.bootstrap5.min.js"></script>
+
+<script src="~/pluginus/buttons/js/dataTables.buttons.js"></script>
+<script src="~/pluginus/buttons/js/buttons.bootstrap5.min.js"></script>
+<script src="~/pluginus/jszip/jszip.min.js"></script>
+<script src="~/pluginus/pdfmake/pdfmake.min.js"></script>
+<script src="~/pluginus/pdfmake/vfs_fonts.js"></script>
+<script src="~/pluginus/buttons/js/buttons.html5.min.js"></script>
+<script src="~/pluginus/buttons/js/buttons.print.min.js"></script>
+<script src="~/pluginus/buttons/js/buttons.colVis.min.js"></script>
+<script src="~/pluginus/JavaScript.js"></script>*@
+@*<script src="~/js/profit/multiRow.js"></script>*@
+
+@*<script src="~/pluginus/Moment/moment.min.js"></script>
+<script src="~/pluginus/Select/js/dataTables.select.min.js"></script>
+<script src="~/pluginus/DateTime/js/dataTables.dateTime.min.js"></script>*@
 
 <script>
+    //var date = new Date();
+    //var monthStart = Date.UTC(date.getFullYear(), date.getMonth())
+    //monthStart = toIsoDateString(monthStart);
+    //starter = document.getElementById("max")
+    //starter.value = monthStart;
+    //console.log(monthStart);
+
+    //var lastYear = Date.UTC(date.getFullYear(), date.getMonth() - 12);
+    //lastYear = toIsoDateString(lastYear);
+    //ender = document.getElementById("min")
+    //ender.value = lastYear;
+    //console.log(lastYear);
 
     function toIsoDateString(utcDate) {
         var date = new Date(utcDate);
@@ -201,23 +231,66 @@
 
     for (i = 0; i < x.length; i++) {
 
-        Tprofit = Tprofit + eval(x[i].value);
-        Tcost = Tcost + eval(y[i].value);
-        Tprice = Tprice + eval(z[i].value);
+        Tprofit = Tprofit + eval(x[i].innerHTML);
+        Tcost = Tcost + eval(y[i].innerHTML);
+        Tprice = Tprice + eval(z[i].innerHTML);
     }
     document.getElementById('Tprofit').innerHTML = Tprofit;
     document.getElementById('Tcost').innerHTML = Tcost;
     document.getElementById('Tprice').innerHTML = Tprice;
 
+    //let arry = [];
+    //let j = 0;
+    //for (var i = 1; i < myDevs.length; i++) {
+    //    arry[j] = myDevs[i].value;
 
-
-    let a = document.getElementById('Tprofit')
+    let a = document.getElementById('Tprofit').innerHTML
     console.log(a);
     sessionStorage.setItem("text", a);
     //j++;
 </script>
 
+<script>
+    let minDate, maxDate;
 
+    // Custom filtering function which will search data in column four between two values
+    $.fn.dataTable.ext.search.push(
+        function (settings, data, dataIndex) {
+            var min = minDate.val();
+            var max = maxDate.val();
+            var date = new Date(data[1]);
+            console.log(date)
+            if (
+                (min === null && max === null) ||
+                (min === null && date <= max) ||
+                (min <= date && max === null) ||
+                (min <= date && date <= max)
+            ) {
+                return true;
+            }
+            return false;
+        }
+    );
+
+    $(document).ready(function () {
+        // Create date inputs
+        minDate = new DateTime($('#min'), {
+            format: 'MMMM Do YYYY'
+        });
+        maxDate = new DateTime($('#max'), {
+            format: 'MMMM Do YYYY'
+        });
+
+        //DataTables initialisation
+        //var table = $('#example1').DataTable();
+        //let table = document.getElementById("example1");
+
+        // Refilter the table
+        $('#min, #max').on('change', function () {
+            table.draw();
+        });
+    });
+</script>
 <script>
     $(function () {
         $("#example1").DataTable({

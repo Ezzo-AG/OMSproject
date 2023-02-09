@@ -13,7 +13,5 @@ namespace OMSproject.Models.ViewModels
         public float OrderCoast { get; set; }
         public float OrderSellPrice { get; set; }
         public float Profet { get; set; }
-
-
     }
 }

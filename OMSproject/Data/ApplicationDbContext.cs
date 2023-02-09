@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using OMSproject.DTO;
 using OMSproject.Models;
 using OMSproject.Models.ViewModels;
@@ -7,7 +6,7 @@ using OMSproject.Models.ViewModels;
 
 namespace OMSproject.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : DbContext
     {
 
         public ApplicationDbContext(DbContextOptions <ApplicationDbContext> options) : base(options)

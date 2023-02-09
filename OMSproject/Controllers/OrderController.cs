@@ -27,46 +27,9 @@ namespace OMSproject.Controllers
 
         }
 
-        public ActionResult Filter(pftViewModel model)
-        {
-            try
-            {
-                var orders = db.Orders.Include(x => x.OrderDetails).Where(x => x.DateOFOrder >= model.StartDate && x.DateOFOrder <= model.EndtDate).ToList();
-
-                List<ProfetViewModel> profets = new List<ProfetViewModel>();
-
-                foreach (var order in orders)
-                {
-                    var OrderCoast = 0.0;
-                    for (int i = 0; i < order.OrderDetails.Count; i++)
-                    {
-                        OrderCoast += db.Products.SingleOrDefault(x => x.Product_Id == order.OrderDetails[i].ProductId).Cost * order.OrderDetails[i].SubQty;
-                    }
-                    profets.Add(new ProfetViewModel
-                    {
-                        OrderId = order.OrderId,
-                        OrderDate = order.DateOFOrder,
-                        OrderCoast = (float)OrderCoast,
-                        OrderSellPrice = order.SellPrice,
-                        Profet = (float)(order.SellPrice - OrderCoast)
-                    });
-                }
-
-
-                model.Profet = profets;
-                return View("ProfitCalculate", model);
-            }
-            catch
-            {
-                return View(model);
-            }
-
-
-        }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ChangeState(List<Order> view)
+        public IActionResult ChangeState(List<Order> view)
         {
             foreach(var item in view)
             {
@@ -464,39 +427,28 @@ namespace OMSproject.Controllers
 
         public ActionResult ProfitCalculate()
         {
-            pftViewModel model = new();
-            try
+            var orders = db.Orders.Include(x => x.OrderDetails).ToList();
+
+            List<ProfetViewModel> profets = new List<ProfetViewModel>();
+            
+            foreach (var order in orders)
             {
-                var orders = db.Orders.Include(x => x.OrderDetails).ToList();
-
-                List<ProfetViewModel> profets = new List<ProfetViewModel>();
-
-                foreach (var order in orders)
+                var OrderCoast = 0.0;
+                for (int i = 0; i< order.OrderDetails.Count; i++)
                 {
-                    var OrderCoast = 0.0;
-                    for (int i = 0; i < order.OrderDetails.Count; i++)
-                    {
-                        OrderCoast += db.Products.SingleOrDefault(x => x.Product_Id == order.OrderDetails[i].ProductId).Cost * order.OrderDetails[i].SubQty;
-                    }
-                    profets.Add(new ProfetViewModel
-                    {
-                        OrderId = order.OrderId,
-                        OrderDate = order.DateOFOrder,
-                        OrderCoast = (float)OrderCoast,
-                        OrderSellPrice = order.SellPrice,
-                        Profet = (float)(order.SellPrice - OrderCoast)
-                    });
+                     OrderCoast += db.Products.SingleOrDefault(x => x.Product_Id == order.OrderDetails[i].ProductId).Cost * order.OrderDetails[i].SubQty; 
                 }
-
-
-                model.Profet = profets;
-                return View(model);
+                profets.Add(new ProfetViewModel
+                {
+                    OrderId = order.OrderId,
+                    OrderDate = order.DateOFOrder,
+                    OrderCoast = (float)OrderCoast,
+                    OrderSellPrice = order.SellPrice,
+                    Profet = (float)(order.SellPrice - OrderCoast)
+                });
             }
-            catch
-            {
-                return View(model);
-            }
 
+            return View(profets);
         }
 
 
