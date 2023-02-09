@@ -66,7 +66,7 @@
     </div>
 </div>
 
-<form asp-action="Search" asp-controller="Order">
+<form asp-action="Filter" asp-controller="Order">
     <fieldset>
         <div class="container-fluid">
             <div class="row">
@@ -87,10 +87,10 @@
 
                         <div class="row mb-3">
                             <div class="col-md-3 mb-3">
-                                <input type="text" id="min" name="min" class="form-control mr-5" placeholder="Start Date">
+                                <input type="date" id="min" class="form-control mr-5" placeholder="Start Date">
                             </div>
                             <div class="col-md-3  mb-3">
-                                <input type="text" id="max" name="max" class="form-control" placeholder="End Date">
+                                <input type="date" id="max"  class="form-control" placeholder="End Date">
                             </div>
                             <div class="col-md-2 mb-3">
                                 <a class="btn btn-light-dark" > 
