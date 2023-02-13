@@ -26,16 +26,16 @@
                         <div class="d-flex align-items-center justify-content-between mb-2">
                             <h3>Select Products</h3>
                             <div class="d-flex flex-shrink-0">
-                                <button class="btn btn-icon btn-sm btn-light-dark" title="Back" type="button" onclick="history.back()">
+                                <button class="btn btn-icon btn-sm btn-light-primary" title="Back" type="button" onclick="history.back()">
                                     <i class='bx bx-arrow-back fs-4'></i>
                                 </button>
                             </div>
                         </div>
 
-                        <div class="card-body">
-                            <table id="OrderTable" class="table table-row-bordered gy-5">
+                        @*<div class="card-body">*@
+                            <table id="OrderTable" class="table table-rounded table-row-bordered g-4">
                                 <thead>
-                                    <tr class="fw-bold fs-6 ">
+                                    <tr class="fw-bold fs-6">
                                         <th>Product Name</th>
                                         <th>Color</th>
                                         <th>Quantity</th>
@@ -51,23 +51,23 @@
                                 <tbody>
                                     @for (int i = 0; i < Model.Items.Count; i++)
                                     {
-                                        <tr id="mainrow">
+                                        <tr >
                                             <td>
                                                 <div>
-                                                    <select asp-for="@Model.Items[i].Product_Id" class="form-control form-control-sm" id="ProductName-@i" onClick="LoudProduct(this)" onchange="GetProductPrice(this)"
+                                                <select asp-for="@Model.Items[i].Product_Id" class="form-control form-control-sm" id="ProductName-@i" onClick="LoudProduct(this)" style="background:var(--body-color)" onchange="GetProductPrice(this)"
                                                         asp-items="@(new SelectList(Model.Items[i].Products,"Product_Id","Product_Name"))"></select>
                                                 </div>
                                             </td>
                                             <td>
-                                                <select asp-for="@Model.Items[i].ColorName" class="form-control form-control-sm" id="ColorName-@i"
+                                            <select asp-for="@Model.Items[i].ColorName" class="form-control form-control-sm" id="ColorName-@i" style="background:var(--body-color)"
                                                     asp-items="@(new SelectList(Model.Items[i].Colors,"ColorName","ColorName"))"></select>
                                             </td>
                                             <td style="width: 10%;">
-                                                <input asp-for="@Model.Items[i].Quantity" class="form-control form-control-sm" id="Quantity-@i" onchange="ChangePrice(this)" />
+                                            <input asp-for="@Model.Items[i].Quantity" class="form-control form-control-sm" id="Quantity-@i" style="background:var(--body-color)" onchange="ChangePrice(this)" />
                                                 <span asp-validation-for="@Model.Items[i].Quantity" class="warning">@ViewBag.message</span>
                                             </td>
                                             <td style="width: 10%;">
-                                                <input asp-for="@Model.Items[i].Price" class="form-control form-control-sm" id="Price-@i" />
+                                            <input asp-for="@Model.Items[i].Price" class="form-control form-control-sm" id="Price-@i" style="background:var(--body-color)" />
                                             </td>
                                             <td style="width: 5%;">
                                                 <input type="hidden" class="nothidden" asp-for="@Model.Items[i].IsHidden" />
@@ -83,7 +83,7 @@
 
                                 </tbody>
                             </table>
-                        </div>
+                        @*</div>*@
                     </div>
                 </div>
             </div>
@@ -131,7 +131,7 @@
 
                             <div class="col-md-6 mb-4">
                                 @*<label asp-for="Total_price" class="control-label">Total Price</label>*@
-                                <input asp-for="Total_price" id="totalPrice" class="form-control" placeholder="Total Price" readonly />
+                                <input asp-for="Total_price" id="totalPrice" class="form-control" placeholder="Total Price"  />
                                 <span asp-validation-for="Total_price" class="warning"></span>
                             </div>
                             <div class="col-md-6 mb-4">
@@ -162,7 +162,7 @@
                             <input type="hidden" id="hdnLastIndex" value="0" />
 
                             <div class="col-md-2 mb-3">
-                                <input id="submit" type="submit" value="Create Order" class="btn  btn-light-dark" />
+                                <input id="submit" type="submit" value="Create Order" class="btn btn-light-primary" />
                             </div>
                         </div>
                     </div>
@@ -217,9 +217,9 @@
             $("#OrderTable").DataTable({
                 "paging": false,
                 "scrollY": '250px',
-                "responsive": true,
+                //"responsive": true,
                 "lengthChange": false,
-                "autoWidth": true,
+                //"autoWidth": true,
                 "searching": false,
                 "ordering": false,
                 "info": false,

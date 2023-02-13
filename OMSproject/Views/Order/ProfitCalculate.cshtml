@@ -4,57 +4,7 @@
     //Layout = null;
     ViewData["Title"] = "Index";
 }
-@*<link rel="stylesheet" href="~/css/OrderStyle/order.css" asp-append-version="true" />*@
-@*<link rel="stylesheet" href="~/css/Table/TablesStyle.css" asp-append-version="true" />*@
-@*<link rel="stylesheet" href="~/css/Table/FormControl.css" asp-append-version="true" />*@
-@*<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">*@
 
-@*datatable*@
-@*  <link rel="stylesheet" href="~/pluginus/DataTables/css/dataTables.bootstrap5.min.css" asp-append-version="true">
-<link rel="stylesheet" href="~/pluginus/Responsive/css/responsive.bootstrap5.min.css" asp-append-version="true">
-<link rel="stylesheet" href="~/pluginus/Buttons/css/buttons.bootstrap5.css" asp-append-version="true">
-<link rel="stylesheet" href="~/pluginus/DateTime/css/dataTables.dateTime.min.css" asp-append-version="true">*@
-@*<link rel="stylesheet" href="~/pluginus/Buttons/css/new.css" asp-append-version="true">*@
-@*<link rel="stylesheet" href="~/dist/css/adminlte.min.css" asp-append-version="true">*@
-@*<link rel="stylesheet" href="~/dist/css/newStyle.css" asp-append-version="true">*@
-
-
-@*
-<style>
-    .btn-Status {
-    font-size: 1.5rem;
-    margin: auto 0.2rem;
-    padding: .2rem 1rem;
-    background: hsl(var(--thd-bg)/ .2);
-    color: var(--peachy-red);
-    border: 1px solid var(--peachy-red);
-    border-radius: .7rem;
-    cursor: pointer;
-    }
-    .cus th {
-        cursor:pointer ;
-    }
-    input[type=search] {
-        border-radius: 8px;
-        border: 1px solid hsl(var(--thd-bg));
-        padding: 4px 10px;
-        background: hsl(var(--thd-bg));
-    }
-
-    label {
-
-        margin-left: 0rem;
-    }
-    input:focus,
-    select:focus,
-    textarea:focus,
-    button:focus {
-        outline: none;
-    }
-    tfoot {
-    background: hsl(var(--thd-bg));
-    }
-</style>*@
 <div class="header">
     <div class="container-fluid d-flex align-items-center justify-content-between">
         <div class="header-text">Dashboard / Home</div>
@@ -78,9 +28,6 @@
                                 <button class="btn btn-icon btn-sm btn-light-dark" title="Back" type="button" onclick="history.back()">
                                     <i class='bx bx-arrow-back fs-4'></i>
 
-@*                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="21" height="23" fill="hsl(var(--txt))" stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M21 11H6.414l5.293-5.293-1.414-1.414L2.586 12l7.707 7.707 1.414-1.414L6.414 13H21z"></path>
-                                    </svg>*@
                                 </button>
                             </div>
                         </div>
@@ -98,15 +45,12 @@
                                         <i class='bx bxs-filter-alt fs-4'></i>
                                     </span>
                                     Filter
-                                    @*<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="21" height="23" fill="hsl(var(--txt))" stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M21 11H6.414l5.293-5.293-1.414-1.414L2.586 12l7.707 7.707 1.414-1.414L6.414 13H21z"></path>
-                                    </svg>*@
                                 </a>
                             </div>
                         </div>
                     </div>
                     <div class="card-body pb-2">
-                        <table id="example1" class="table table-row-bordered gy-5">
+                        <table id="example1" class="table table-rounded table-row-bordered g-4">
                             <thead>
                                 <tr class="fw-bold fs-6 text-muted">
                                     <th onclick="sortTable(0)">
@@ -163,9 +107,6 @@
                                     <td id="Tprofit">
                                     </td>
 
-                                    @*<td>*@
-                                    @*<input type="button" value="click" onClick="CalculateTotal()" hidden />*@
-                                    @*</td>*@
                                 </tr>
                             </tfoot>
                         </table>
@@ -177,44 +118,8 @@
 </form>
 
 <script src="~/pluginus/jquery/jquery.js"></script>
-<!-- Bootstrap 4 -->
-<!-- <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script> -->
-<!-- DataTables  & Plugins -->
-@*<script src="~/pluginus/datatables/js/jquery.dataTables.min.js"></script>
-<script src="~/pluginus/datatables/js/dataTables.bootstrap5.min.js"></script>
-
-<script src="~/pluginus/responsive/js/dataTables.responsive.min.js"></script>
-<script src="~/pluginus/DataTables/js/dataTables.bootstrap5.min.js"></script>
-<script src="~/pluginus/responsive/js/responsive.bootstrap5.min.js"></script>
-
-<script src="~/pluginus/buttons/js/dataTables.buttons.js"></script>
-<script src="~/pluginus/buttons/js/buttons.bootstrap5.min.js"></script>
-<script src="~/pluginus/jszip/jszip.min.js"></script>
-<script src="~/pluginus/pdfmake/pdfmake.min.js"></script>
-<script src="~/pluginus/pdfmake/vfs_fonts.js"></script>
-<script src="~/pluginus/buttons/js/buttons.html5.min.js"></script>
-<script src="~/pluginus/buttons/js/buttons.print.min.js"></script>
-<script src="~/pluginus/buttons/js/buttons.colVis.min.js"></script>
-<script src="~/pluginus/JavaScript.js"></script>*@
-@*<script src="~/js/profit/multiRow.js"></script>*@
-
-@*<script src="~/pluginus/Moment/moment.min.js"></script>
-<script src="~/pluginus/Select/js/dataTables.select.min.js"></script>
-<script src="~/pluginus/DateTime/js/dataTables.dateTime.min.js"></script>*@
 
 <script>
-    //var date = new Date();
-    //var monthStart = Date.UTC(date.getFullYear(), date.getMonth())
-    //monthStart = toIsoDateString(monthStart);
-    //starter = document.getElementById("max")
-    //starter.value = monthStart;
-    //console.log(monthStart);
-
-    //var lastYear = Date.UTC(date.getFullYear(), date.getMonth() - 12);
-    //lastYear = toIsoDateString(lastYear);
-    //ender = document.getElementById("min")
-    //ender.value = lastYear;
-    //console.log(lastYear);
 
     function toIsoDateString(utcDate) {
         var date = new Date(utcDate);
@@ -239,15 +144,9 @@
     document.getElementById('Tcost').innerHTML = Tcost;
     document.getElementById('Tprice').innerHTML = Tprice;
 
-    //let arry = [];
-    //let j = 0;
-    //for (var i = 1; i < myDevs.length; i++) {
-    //    arry[j] = myDevs[i].value;
-
     let a = document.getElementById('Tprofit').innerHTML
     console.log(a);
     sessionStorage.setItem("text", a);
-    //j++;
 </script>
 
 <script>

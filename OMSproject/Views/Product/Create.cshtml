@@ -33,7 +33,7 @@
                         <div class="d-flex align-items-center justify-content-between mb-2">
                             <h3>Add New Products</h3>
                             <div class="d-flex flex-shrink-0">
-                                <button class="btn btn-icon btn-sm btn-light-dark" title="Back" type="button" onclick="history.back()">
+                                <button class="btn btn-icon btn-sm btn-light-primary" title="Back" type="button" onclick="history.back()">
                                     <i class='bx bx-arrow-back fs-4'></i>
                                 </button>
                             </div>
@@ -72,10 +72,10 @@
                             <h3>Add Product Colors</h3>
 
                         </div>
-                        <div class="card-body">
-                            <table id="tableHa" class="table table-row-bordered gy-5">
+                        @*<div class="card-body">*@
+                            <table id="tableHa" class="table table-rounded table-row-bordered g-4 ">
                                 <thead>
-                                    <tr class="fw-bold fs-6 ">
+                                    <tr class="fw-bold fs-6">
                                         <th>Color</th>
                                         <th>Quantity</th>
                                         <th>
@@ -93,17 +93,17 @@
                                     {
                                         <tr>
                                             <td>
-                                                <input asp-for="@Model.colors[i].ColorName" class="form-control form-control-sm" placeholder="Product Color" />
+                                            <input asp-for="@Model.colors[i].ColorName" class="form-control form-control-sm" placeholder="Product Color" style="background:var(--body-color)" />
                                                 <span asp-validation-for="@Model.colors[i].ColorName" class="warning"></span>
 
                                             </td>
                                             <td>
-                                                <input asp-for="@Model.colors[i].Quantity" class="form-control form-control-sm" />
+                                            <input asp-for="@Model.colors[i].Quantity" class="form-control form-control-sm" style="background:var(--body-color)" />
                                                 <span asp-validation-for="@Model.colors[i].Quantity" class="warning"></span>
                                             </td>
                                             <td style="width: 5%;">
                                                 <input type="hidden" class="nothidden" asp-for="@Model.colors[i].IsDeleted" />
-                                                <button id="btnremove-@i" type="button" class="btn btn-sm btn-icon btn-light-danger" onclick="DeleteItem(this)">
+                                            <button id="btnremove-@i" type="button" class="btn btn-sm btn-icon btn-light-danger" onclick="DeleteItem(this)" style="background:var(--body-color)">
                                                     <i class='bx bxs-trash fs-1'></i>
 
                                                 </button>
@@ -115,13 +115,13 @@
                                 </tbody>
                             </table>
 
-                        </div>
+                        @*</div>*@
 
                         <input type="hidden" id="hdnLastIndex" value="0" />
 
-                        <div class="col-md-2 mb-3">
+                        <div class="col-md-2 mt-3">
 
-                            <input type="submit" value="Add Product" class="btn  btn-light-dark" />
+                            <input type="submit" value="Add Product" class="btn  btn-light-primary" />
                         </div>
 
                     </div>
