@@ -26,7 +26,7 @@
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="card-body pb-2">
                         <div class="d-flex align-items-center justify-content-between mb-5">
-                            <h3>New Client</h3>
+                            <h3>Products</h3>
                             <div class="d-flex flex-shrink-0">
                                 <button class="btn btn-icon btn-sm btn-light-dark" title="Back" type="button" onclick="history.back()">
                                     <i class='bx bx-arrow-back fs-4'></i>
@@ -55,11 +55,11 @@
                                 <input asp-for="Total_QTY" id="total" class="form-control" name="total_qty" readonly />
 
                             </div>
-                        </div>
                         <div class="col-md-12 mb-4">
                             <label asp-for="Notes" class="control-label"></label>
                             <input asp-for="Notes" class="form-control" name="notes" />
                             <span asp-validation-for="Notes" class="text-danger"></span>
+                        </div>
                         </div>
                     </div>
                     @*</div>*@
@@ -67,7 +67,7 @@
                     @*<div class="row">*@
                     @*<div class="card">*@
                     <div class="card-body pb-2">
-                        <h3>Clients Index </h3>
+                        <h3>Products Details </h3>
                         <table id="tableHa" class="table table-rounded table-row-bordered g-4">
                             <thead>
                                 <tr class="fw-bold fs-6">
@@ -75,9 +75,7 @@
                                     <th>Quantity</th>
                                     <th>
                                         <button type="button" id="addcolor" onClick="AddItem(this)" class="btn btn-sm btn-icon btn-light-info">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 30px; ">
-                                                <path fill="hsl(var(--txt))" d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z" />
-                                            </svg>
+                                            <i class='bx bxs-add-to-queue fs-2'></i>
                                         </button>
                                     </th>
                                 </tr>
@@ -99,7 +97,7 @@
                                         </td>
                                         <td style="width: 10%;">
                                             <input type="hidden" class="nothidden" asp-for="@Model.colors[i].IsDeleted" />
-                                            <button id="btnremove-@i" type="button" class="form-btn cancel" onclick="DeleteItem(this)" >
+                                            <button id="btnremove-@i" type="button"  onclick="DeleteItem(this)" class="btn btn-sm btn-icon btn-light-danger">
                                                     <i class='bx bxs-trash fs-1'></i>
 
                                             </button>
@@ -114,7 +112,7 @@
                         <input type="hidden" id="hdnLastIndex" value="0" />
 
                         <div class="col-md-2 mb-3">
-                            <input type="submit" value="Save" class="btn btn-light-primary" />
+                            <input type="submit" value="Save Changes" class="btn btn-light-primary" />
                         </div>
                     </div>
                 </div>

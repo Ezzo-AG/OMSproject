@@ -24,76 +24,69 @@
                     <div asp-validation-summary="ModelOnly" class="warning"></div>
                     <div class="card-body pb-2">
                         <div class="d-flex align-items-center justify-content-between mb-5">
-                            <h3>New Client</h3>
+                            <h3>Orders</h3>
                             <div class="d-flex flex-shrink-0">
                                 <button class="btn btn-icon btn-sm btn-light-dark" title="Back" type="button" onclick="history.back()">
                                     <i class='bx bx-arrow-back fs-4'></i>
                                 </button>
                             </div>
                         </div>
-                    <h1 class="headers left-floater">Edit Orders</h1>
-                    <div style="clear: both;"></div>
 
-                    <div class="double-input">
-                        <div class="form-input-container">
+                        <div class="row mb-3">
+                            <div class="col-md-6 mb-3">
                             <label asp-for="Client_id" class="control-label">Client Name</label>
                             <select asp-for="Client_id" class="form-control"
                                     asp-items="@(new SelectList(Model.Clients,"Client_id","ClientName"))"></select>
                             <span asp-validation-for="Client_id" class="warning"></span>
-                        </div>
-                        <div class="form-input-container">
+                            </div>
+                            <div class="col-md-6 mb-3">
                             @*<div class="form-group">*@
                             <label asp-for="Total_price" class="control-label">Total Price</label>
                             <input asp-for="Total_price" id="totalPrice" class="form-control" />
                             <span asp-validation-for="Total_price" class="warning"></span>
-                        </div>
-                        <div class="form-input-container">
+                            </div>
+                            <div class="col-md-6 mb-3">
                             <label asp-for="SellPrice" class="control-label">Sell Price</label>
                             <input asp-for="SellPrice" id="sellprice" class="form-control" />
                             <span asp-validation-for="SellPrice" class="warning"></span>
-                        </div>
-                    </div>
-                    <div class="double-input">
-                        <div class="form-input-container">
+                            </div>
+                            <div class="col-md-6 mb-3">
                             <label asp-for="Address" class="control-label">CLient Address</label>
                             <input asp-for="Address" class="form-control" />
                             <span asp-validation-for="Address" class="warning"></span>
-                        </div>
-                        <div class="form-input-container">
+                            </div>
+                            <div class="col-md-6 mb-3">
                             <label asp-for="DateOFOrder" class="control-label">Orders Date</label>
                             <input asp-for="DateOFOrder" type="date" class="form-control" />
                             <span asp-validation-for="DateOFOrder" class="warning"></span>
-                        </div>
-                    </div>
-                    <div class="double-input">
-                        <div class="form-input-container">
+                            </div>
+                            <div class="col-md-6 mb-3">
                             <label asp-for="OrderStatus" class="control-label">Order State</label>
                             <select asp-for="OrderStatus" class="form-control"
                                     asp-items="@(new SelectList(Model.Status))"></select>
 
                             <span asp-validation-for="OrderStatus" class="warning"></span>
-                        </div>
-
-                    </div>
-                    <div class="form-input-container" style="margin: 14rem 1rem 2rem;">
+                            </div>
+                            <div class="col-md-12 mb-3">
                         <label asp-for="Notes" class="control-label">Notes</label>
                         <input asp-for="Notes" class="form-control" />
                         <span asp-validation-for="Notes" class="warning"></span>
                     </div>
-
-                    <div class="col-md-12" style="height: 25rem; overflow-y:auto;">
-                        <table id="OrderTable" class="table">
+                    </div>
+                    </div>
+                    <div class="card-body pb-2">
+                        <h3>Orders Details</h3>
+                        <table id="OrderTable" class="table table-rounded table-row-bordered g-4" >
                             <thead>
-                                <tr>
+                                <tr class="fw-bold fs-6">
                                     <th>ProductName</th>
                                     <th>Color</th>
                                     <th>Quantity</th>
                                     <th style="width: 10%;">Price</th>
                                     <th>
-                                        <button type="button" id="addOrder" class="form-btn " onClick="AddItem(this)" style="background: transparent;border: transparent;">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 30px; ">
-                                                <path fill="hsl(var(--txt))" d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z" />
-                                            </svg>
+                                        <button type="button" id="addOrder" onClick="AddItem(this)" class="btn btn-sm btn-icon btn-light-info">
+                                            <i class='bx bxs-add-to-queue fs-2'></i>
+
                                         </button>
                                     </th>
                                 </tr>
@@ -107,26 +100,26 @@
                                         <td>
                                             <div>
 
-                                                <select asp-for="@Model.Items[i].Product_Id" class="form-control" id="ProductName-@i" onClick="LoudProduct(this)" onchange="GetProductPrice(this)"
+                                                <select asp-for="@Model.Items[i].Product_Id" class="form-control form-control-sm" style="background:var(--body-color)" id="ProductName-@i" onClick="LoudProduct(this)" onchange="GetProductPrice(this)"
                                                     asp-items="@(new SelectList(Model.Items[i].Products,"Product_Id","Product_Name"))"></select>
                                             </div>
                                         </td>
                                         <td>
-                                            <select asp-for="@Model.Items[i].ColorName" class="form-control" id="ColorName-@i"
+                                            <select asp-for="@Model.Items[i].ColorName" class="form-control form-control-sm" style="background:var(--body-color)" id="ColorName-@i"
                                                 asp-items="@(new SelectList(Model.Items[i].Colors,"ColorName","ColorName"))"></select>
                                         </td>
                                         <td style="padding: 1rem 0">
-                                            <input asp-for="@Model.Items[i].Quantity" class="form-control" id="Quantity-@i" onchange="ChangePrice(this)" />
+                                            <input asp-for="@Model.Items[i].Quantity" class="form-control form-control-sm" style="background:var(--body-color)" id="Quantity-@i" onchange="ChangePrice(this)" />
                                             <span asp-validation-for="@Model.Items[i].Quantity" class="warning">@ViewBag.message</span>
 
                                         </td>
                                         <td style="padding: 1rem 0">
-                                            <input asp-for="@Model.Items[i].Price" class="form-control Price" style="margin: 0 1rem; height: 2.5rem;" />
+                                            <input asp-for="@Model.Items[i].Price" class="form-control form-control-sm" style="background:var(--body-color)" style="margin: 0 1rem; height: 2.5rem;" />
                                         </td>
                                         <td style="width: 10%;">
                                             <input type="hidden" class="nothidden" asp-for="@Model.Items[i].IsHidden" />
-                                            <button id="btnremoveOrder-@i" type="button" class="form-btn cancel " onclick="DeleteItem(this)" style="padding: .5rem 1rem;">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="width: 22px;"><path fill="rgb(236, 66, 54)" d="M160 400C160 408.8 152.8 416 144 416C135.2 416 128 408.8 128 400V192C128 183.2 135.2 176 144 176C152.8 176 160 183.2 160 192V400zM240 400C240 408.8 232.8 416 224 416C215.2 416 208 408.8 208 400V192C208 183.2 215.2 176 224 176C232.8 176 240 183.2 240 192V400zM320 400C320 408.8 312.8 416 304 416C295.2 416 288 408.8 288 400V192C288 183.2 295.2 176 304 176C312.8 176 320 183.2 320 192V400zM317.5 24.94L354.2 80H424C437.3 80 448 90.75 448 104C448 117.3 437.3 128 424 128H416V432C416 476.2 380.2 512 336 512H112C67.82 512 32 476.2 32 432V128H24C10.75 128 0 117.3 0 104C0 90.75 10.75 80 24 80H93.82L130.5 24.94C140.9 9.357 158.4 0 177.1 0H270.9C289.6 0 307.1 9.358 317.5 24.94H317.5zM151.5 80H296.5L277.5 51.56C276 49.34 273.5 48 270.9 48H177.1C174.5 48 171.1 49.34 170.5 51.56L151.5 80zM80 432C80 449.7 94.33 464 112 464H336C353.7 464 368 449.7 368 432V128H80V432z" /></svg>
+                                            <button id="btnremoveOrder-@i" type="button" class="btn btn-sm btn-icon btn-light-danger"  onclick="DeleteItem(this)" >
+                                                <i class='bx bxs-trash fs-1'></i>
                                             </button>
                                             <input type="hidden" id="mm" value=i />
                                         </td>
@@ -135,16 +128,15 @@
 
                             </tbody>
                         </table>
-                    </div>
                     <input type="hidden" id="hdnLastIndex" value="0" />
 
-                    <div class="form-group" style="width: 10%;margin: 1rem .5rem;">
-                        <input type="submit" value="Edti the Order" class="form-btn save" style="color: hsl(var(--txt)); font-weight:500;" />
+                        <div class="col-md-2 mb-3">
+                            <input type="submit" value="Save Changes" class="btn btn-light-primary" />
+                    </div>
                     </div>
                     </div>
                 </div>
             </div>
-        </div>
     </fieldset>
 
 </form>
