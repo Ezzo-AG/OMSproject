@@ -89,21 +89,21 @@
                                     <tr>
                                         <td>
                                             <div>
-                                                <select disabled asp-for="@Model.Items[i].Product_Id" class="form-control" id="item-@i"
+                                                <select disabled asp-for="@Model.Items[i].Product_Id" class="form-control form-control-sm" style="background:var(--body-color)" id="item-@i"
                                                     asp-items="@(new SelectList(Model.Items[i].Products,"Product_Id","Product_Name"))" class="select-label brdrles"></select>
                                             </div>
                                         </td>
                                         <td>
-                                            <input readonly asp-for="@Model.Items[i].ColorName" class="form-control " />
+                                            <input readonly asp-for="@Model.Items[i].ColorName" class="form-control form-control-sm" style="background:var(--body-color)" />
                                             @* <select disabled asp-for="@Model.Items[i].ColorName" class="form-control brdrles" id="item2-@i"
                                         asp-items="@(new SelectList(Model.Items[i].Colors,"Product_Id","ColorName"))"></select>*@
                                         </td>
                                         <td >
-                                            <input readonly asp-for="@Model.Items[i].Quantity" class="form-control " />
+                                            <input readonly asp-for="@Model.Items[i].Quantity" class="form-control form-control-sm" style="background:var(--body-color)" />
 
                                         </td>
                                         <td style="width:10%" >
-                                            <input readonly asp-for="@Model.Items[i].Price" class="form-control "/>
+                                            <input readonly asp-for="@Model.Items[i].Price" class="form-control  form-control-sm" style="background:var(--body-color)" />
                                         </td>
 
                                     </tr>

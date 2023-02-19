@@ -71,6 +71,8 @@
                                 <tr>
                                     <th>ProductName</th>
                                     <th>Quantity</th>
+                                    <th></th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -79,15 +81,15 @@
                                 {
                                     <tr>
                                         <td>
-                                            <input readonly asp-for="@Model.colors[i].ColorName" class="form-control" />
+                                            <input readonly asp-for="@Model.colors[i].ColorName" class="form-control form-control-sm" style="background:var(--body-color)" />
                                         </td>
                                         <td>
-                                            <input readonly asp-for="@Model.colors[i].Quantity" class="form-control Quantity" />
+                                            <input readonly asp-for="@Model.colors[i].Quantity" class="form-control form-control-sm" style="background:var(--body-color)"/>
                                         </td>
                                         <td>
                                             <input type="hidden" asp-for="@Model.colors[i].IsDeleted" />
                                         </td>
-                                        <td class="table-item">
+                                        <td style="width:5%">
                                             <a asp-action="Edit" asp-route-id="@Model?.Product_Id" class="btn btn-sm btn-icon btn-light-success">
                                                 <i class='bx bx-edit fs-1'></i>
 
