@@ -25,7 +25,7 @@
                     <div class="card-body flexer">
 
                         <span class="d-flex align-items-center ms-2">
-                            <h5 class="card-title fs-3 fw-bolder badger btn-dark">@Model.New</h5>
+                            <h5 class="card-title fs-3 fw-bolder badger">@Model.New</h5>
                         </span>
                         <span class="d-flex flex-column align-items-start ms-2">
                             <span class="card-title fs-3 fw-bolder">New Orders</span>
@@ -41,7 +41,7 @@
                 <div class="card">
                     <div class="card-body flexer">
                         <span class="d-flex align-items-center ms-2">
-                            <h5 class="card-title fs-3 fw-bolder badger btn-dark">@Model.InProgress</h5>
+                            <h5 class="card-title fs-3 fw-bolder badger">@Model.InProgress</h5>
                         </span>
                         <span class="d-flex flex-column align-items-start ms-2">
                             <span class="card-title fs-3 fw-bolder">Inprogress</span>
@@ -58,7 +58,7 @@
                 <div class="card">
                     <div class="card-body flexer">
                         <span class="d-flex align-items-center ms-2">
-                            <h5 class="card-title fs-3 fw-bolder badger btn-dark">@Model.Delivred</h5>
+                            <h5 class="card-title fs-3 fw-bolder badger">@Model.Delivred</h5>
                         </span>
                         <span class="d-flex flex-column align-items-start ms-2">
                             <span class="card-title fs-3 fw-bolder">Deliverd</span>
@@ -75,7 +75,7 @@
                 <div class="card">
                     <div class="card-body flexer">
                         <span class="d-flex align-items-center ms-2">
-                            <h5 class="card-title fs-3 fw-bolder badger btn-dark">@Model.Canceled</h5>
+                            <h5 class="card-title fs-3 fw-bolder badger">@Model.Canceled</h5>
                         </span>
                         <span class="d-flex flex-column align-items-start ms-2">
                             <span class="card-title fs-3 fw-bolder">Canceled</span>
@@ -100,12 +100,12 @@
 
 
                             <div class="d-flex flex-shrink-0">
-                                <a asp-controller="Order" asp-action="Index" class="btn btn-sm btn-light-dark">More</a>
+                                <a asp-controller="Order" asp-action="Index" class="btn btn-sm btn-flex btn-muted">More</a>
                             </div>
                         </div>
-                        <table id="az_tablesUI" class="table table-row-bordered gy-5">
+                        <table id="az_tablesUI" class="table table-rounded table-row-bordered g-4">
                             <thead>
-                                <tr class="fw-bold fs-6 text-muted" >
+                                <tr class="fw-bold fs-6">
                                     <th>
                                         Name
                                     </th>
@@ -169,7 +169,7 @@
 
                         </div>
                         <div class="mb-3">
-                            <a href="../Order/Create" class="btn btn-flex btn-dark col-12">
+                            <a href="../Order/Create" class="btn btn-flex btn-muted col-12">
                                 <span class="svg-icon svg-icon-2x">
                                     <i class='bx bxs-cart icon'></i>
                                 </span>
@@ -180,7 +180,7 @@
                             </a>
                         </div>
                         <div class="mb-3">
-                            <a href="../Product/Create" class="btn btn-flex btn-dark col-12">
+                            <a href="../Product/Create" class="btn btn-flex btn-muted col-12">
                                 <span class="svg-icon svg-icon-2x">
                                     <i class='bx bxs-purchase-tag icon'></i>
                                 </span>
@@ -191,7 +191,7 @@
                             </a>
                         </div>
                         <div class="mb-3">
-                            <a href="../Client/Create" class="btn btn-flex btn-dark col-12">
+                            <a href="../Client/Create" class="btn btn-flex btn-muted col-12">
                                 <span class="svg-icon svg-icon-2x">
                                     <i class='bx bxs-user-plus icon'></i>
                                 </span>
@@ -202,7 +202,7 @@
                             </a>
                         </div>
                         <div class="mb-3">
-                            <a href="../Client/Index" class="btn btn-flex btn-dark col-12">
+                            <a href="../Client/Index" class="btn btn-flex btn-muted col-12">
                                 <span class="svg-icon svg-icon-2x">
                                     <i class='bx bx-history icon'></i>
                                 </span>
@@ -228,6 +228,7 @@
             "responsive": true,
             "lengthChange": false,
             "autoWidth": false,
+                  "searching": false,
             //"buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
             "buttons": ["print", "colvis"],
             "select": {
@@ -235,7 +236,7 @@
             },
             "fixedHeader": {
                 //header: false,
-                footer: true
+                footer: false
             }
         })
             .buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');

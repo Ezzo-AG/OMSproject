@@ -4,71 +4,8 @@
     ViewData["Title"] = "Index";
 }
 
-@*
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-*@
-@*<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">*@
-
-@*<link rel="stylesheet" href="~/css/OrderStyle/order.css" asp-append-version="true" />*@
-@*<link rel="stylesheet" href="~/css/Table/TablesStyle.css" asp-append-version="true" />
-<link rel="stylesheet" href="~/css/Table/FormControl.css" asp-append-version="true" />
-<link rel="stylesheet" href="~/css/Client/index.css" asp-append-version="true" />*@
-@*
-<link rel="stylesheet" href="~/pluginus/DataTables/css/dataTables.bootstrap5.min.css" asp-append-version="true">
-<link rel="stylesheet" href="~/pluginus/Responsive/css/responsive.bootstrap5.min.css" asp-append-version="true">
-<link rel="stylesheet" href="~/pluginus/Buttons/css/buttons.bootstrap5.css" asp-append-version="true">
-<link rel="stylesheet" href="~/pluginus/DateTime/css/dataTables.dateTime.min.css" asp-append-version="true">
-<link rel="stylesheet" href="~/dist/css/newStyle.css" asp-append-version="true">
-*@
-@*
-<style>
-    .btn-Status {
-        font-size: 1.5rem;
-        margin: auto 0.2rem;
-        padding: .2rem 1rem;
-        background: hsl(var(--thd-bg)/ .2);
-        color: var(--peachy-red);
-        border: 1px solid var(--peachy-red);
-        border-radius: .7rem;
-        cursor: pointer;
-    }
-
-    .cus th {
-        cursor: pointer;
-    }
-
-    input[type=search] {
-        border-radius: 8px;
-        border: 1px solid hsl(var(--thd-bg));
-        padding: 4px 10px;
-        background: hsl(var(--thd-bg));
-    }
-
-    label {
-        margin-left: 0rem;
-    }
-
-    input:focus,
-    select:focus,
-    textarea:focus,
-    button:focus {
-        outline: none;
-    }
-
-    tfoot {
-        background: hsl(var(--thd-bg));
-    }
-        .container {
-        /*width: 100%;*/
-        height: 100%;
-        /*display: grid;*/
-        /*grid-template-rows: 4.6rem 1fr 1rem;*/
-        /*gap: 1.5rem;*/
-    }
-</style>*@
 <div class="header">
-    <div class="container-fluid d-flex align-items-center justify-content-between">
+    <div class="container-fluid d-flex align-items-center justify-content-between  mb-3">
         <div class="header-text">
             Cleint / Index
         </div>
@@ -80,9 +17,6 @@
     </div>
 </div>
 <form asp-controller="Client" asp-action="Index">
-    @*<form class="row g-3" asp-controller="Client" asp-action="Index">*@
-
-
 
     <fieldset>
         <div class="container-fluid">
@@ -100,17 +34,17 @@
                         </div>
 
                         <div class="row mb-3">
-                            <div class="col-md-2 mb-3">
+                            <div class="col-md-3 mb-3">
 
-                                <input asp-for="Phone" class="form-control" placeholder="First Mobile Number" aria-label="First Mobile Number" />
+                                <input asp-for="Phone" class="form-control" placeholder="1st Phone Number (09*)" aria-label="First Phone Number" />
                                 <span asp-validation-for="Phone" class="warning"></span>
                             </div>
-                            <div class="col-md-2 mb-3">
+                            <div class="col-md-3 mb-3">
 
-                                <input asp-for="Phone2" class="form-control" placeholder="Second Mobile Number" aria-label="Second Mobile Number" />
+                                <input asp-for="Phone2" class="form-control" placeholder="2nd Phone Number (09*)" aria-label="Second Phone Number" />
                                 <span asp-validation-for="Phone2" class="warning"></span>
                             </div>
-                            <div class="col-md-2 mb-3">
+                            <div class="col-md-3 mb-3">
 
                                 <input asp-for="ClientName" class="form-control" placeholder="Client Name" />
                                 <span asp-validation-for="ClientName" class="warning">@ViewBag.message</span>
@@ -122,38 +56,19 @@
 
                             </div>
                             @* </div>*@
-                            <div class="col-md-1 mb-3">
+                            <div class="col-md-1 mb-3 align-items-end">
                                 <button title="Add New Client" type="submit" value="Add Client" class="btn btn-icon btn-light-dark float-start">
                                     <i class='bx bxs-user-plus fs-1'></i>
-                                    @*<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" style="width: 30px;">
-                                    <path fill="var(--peachy-red)" d="M352 128c0 70.7-57.3 128-128 128s-128-57.3-128-128S153.3 0 224 0s128 57.3 128 128zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3zM504 312V248H440c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V136c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H552v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z" />
-                                    </svg>*@
+
                                 </button>
                             </div>
                         </div>
                     </div>
-                    @*</div></div></div>*@
-                    @*    </fieldset>
 
-                    <br />
-                    <fieldset class="container">*@
-
-                    @*<h1 class="headers left-floater">Client Index</h1>*@
-                    @*<button class="table-item searcher" asp-action="Search" asp-controller="Client" style="float: right;" title="Search Client">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="var(--peachy-red)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="11" cy="11" r="9" fill="none"></circle>
-                    <line x1="17.5" y1="17.5" x2="22" y2="22"></line>
-                    </svg>
-                    </button>*@
-
-                    @*<input class="form-control me-2" name="term" type="search" placeholder="Search" aria-label="Search" style="float: right;width: 30%;padding: .6rem;margin: 0 0.5rem 1rem 1rem;  ">*@
-                    @*<div style=" clear: both; margin: 1rem;">*@
-                    @*                            <h4 style="font-weight: 400;color: hsl(var(--txt) /.5);margin: 1.5rem 0rem;">
-                    </h4>*@
 
                     <div class="card-body pb-2">
                         <h3>Clients Index </h3>
-                        <table id="example1" class="table table-row-bordered gy-5">
+                        <table id="example1" class="table table-rounded table-row-bordered g-4">
                             <thead>
                                 <tr class="fw-bold fs-6 text-center">
                                     <th >
@@ -193,7 +108,7 @@
                                                 @Html.DisplayFor(modelItem => item.Claasification)
                                             </p>
                                         </td>
-                                        <td class="table-item">
+                                        <td class="table-item " style="width: 10%" >
                                             <a asp-action="Edit" asp-route-id="@item.Client_id" title="Edit Client" class="btn btn-sm btn-icon btn-light-success">
                                                 <i class='bx bx-edit fs-1'></i>
 
@@ -208,11 +123,7 @@
                             </tbody>
                         </table>
                     </div>
-                    @*@section Scripts {
-                    @{
-                    await Html.RenderPartialAsync("_ValidationScriptsPartial");
-                    }
-                    }*@
+
                 </div>
             </div>
         </div>
@@ -220,32 +131,7 @@
     </fieldset>
 </form>
 <script src="~/pluginus/jquery/jquery.js"></script>
-<!-- Bootstrap 4 -->
-<!-- <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script> -->
-<!-- DataTables  & Plugins -->
-@*<script src="~/pluginus/datatables/js/jquery.dataTables.min.js"></script>
-<script src="~/pluginus/datatables/js/dataTables.bootstrap5.min.js"></script>
 
-<script src="~/pluginus/responsive/js/dataTables.responsive.min.js"></script>
-<script src="~/pluginus/DataTables/js/dataTables.bootstrap5.min.js"></script>
-<script src="~/pluginus/responsive/js/responsive.bootstrap5.min.js"></script>
-
-<script src="~/pluginus/buttons/js/dataTables.buttons.js"></script>
-<script src="~/pluginus/buttons/js/buttons.bootstrap5.min.js"></script>
-<script src="~/pluginus/jszip/jszip.min.js"></script>
-<script src="~/pluginus/pdfmake/pdfmake.min.js"></script>
-<script src="~/pluginus/pdfmake/vfs_fonts.js"></script>
-<script src="~/pluginus/buttons/js/buttons.html5.min.js"></script>
-<script src="~/pluginus/buttons/js/buttons.print.min.js"></script>
-<script src="~/pluginus/buttons/js/buttons.colVis.min.js"></script>
-<script src="~/pluginus/JavaScript.js"></script>
-@*<script src="~/js/profit/multiRow.js"></script>*@
-
-@*<script src="~/pluginus/Moment/moment.min.js"></script>
-<script src="~/pluginus/Select/js/dataTables.select.min.js"></script>
-<script src="~/pluginus/DateTime/js/dataTables.dateTime.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-*@
 <script>
 
     document.querySelectorAll(".classy").forEach(function (obj) {

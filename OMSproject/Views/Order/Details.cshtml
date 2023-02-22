@@ -1,111 +1,122 @@
-﻿
-
-@model OMSproject.Models.ViewModels.OrderClientViewModel
+﻿@model OMSproject.Models.ViewModels.OrderClientViewModel
 
 @{
     ViewData["Title"] = "Details";
 }
-<link rel="stylesheet" href="~/css/OrderStyle/order.css" asp-append-version="true" />
-<link rel="stylesheet" href="~/css/Table/TablesStyle.css" asp-append-version="true" />
-<link rel="stylesheet" href="~/css/Table/FormControl.css" asp-append-version="true" />
-<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+<div class="header">
+    <div class="container-fluid d-flex align-items-center justify-content-between">
+        <div class="header-text">
+            Order / Details
+        </div>
 
+
+        <div class="d-flex flex-shrink-0">
+            <a href="#" class="btn btn-sm btn-primary">Get Pro</a>
+        </div>
+    </div>
+</div>
 <form asp-action="Details">
     <fieldset>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="card">
+                    <div class="card-body pb-2">
+                        <div class="d-flex align-items-center justify-content-between mb-5">
+                            <h3>Orders </h3>
+                            <div class="d-flex flex-shrink-0">
+                                <button class="btn btn-icon btn-sm btn-light-dark" title="Back" type="button" onclick="history.back()">
+                                    <i class='bx bx-arrow-back fs-4'></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Client_id" class="control-label">Client Name</label>
+                                <select asp-for="Client_id" class="form-control" disabled
+                                        asp-items="@(new SelectList  (Model.Clients,"Client_id","ClientName"))"></select>
+                            </div>
+                            <div class="col-md-6 mb-3">
 
-        <div asp-validation-summary="ModelOnly" class="warning"></div>
-        <button class="table-item searcher left-floater" title="Back" type="button" onclick="history.back()">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="21" height="23" fill="hsl(var(--txt))" stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 11H6.414l5.293-5.293-1.414-1.414L2.586 12l7.707 7.707 1.414-1.414L6.414 13H21z"></path>
-            </svg>
-        </button>
-        <h1 class="headers left-floater">Order Details</h1>
-        <div style="clear: both;"></div>
+                                @*<div class="form-group">*@
+                                <label asp-for="Total_price" class="control-label">Total Price</label>
+                                <input readonly asp-for="Total_price" id="totalPrice" class="form-control brdrles" />
+                            </div>
+                            <div class="col-md-6 mb-3">
 
-        <div class="double-input">
-            <div class="form-input-container">
-                <label asp-for="Client_id" class="control-label">Client Name</label>
-                <select  asp-for="Client_id" class="form-control" disabled
-                        asp-items="@(new SelectList  (Model.Clients,"Client_id","ClientName"))" ></select>
-            </div>
-            <div class="form-input-container">
-                @*<div class="form-group">*@
-                <label asp-for="Total_price" class="control-label">Total Price</label>
-                <input readonly asp-for="Total_price" id="totalPrice" class="form-control brdrles" />
-            </div>
-            <div class="form-input-container">
-                <label asp-for="SellPrice" class="control-label">Sell Price</label>
-                <input readonly asp-for="SellPrice" class="form-control brdrles" />
-            </div>
-        </div>
-        <div class="double-input">
-            <div class="form-input-container">
-                <label asp-for="Address" class="control-label">CLient Address</label>
-                <input readonly asp-for="Address" class="form-control brdrles" />
-            </div>
-            <div class="form-input-container">
-                <label asp-for="DateOFOrder" class="control-label">Orders Date</label>
-                <input readonly asp-for="DateOFOrder" type="date" class="form-control brdrles" />
-            </div>
-        </div>
-        <div class="double-input">
-            <div class="form-input-container">
-                <label asp-for="OrderStatus" class="control-label">Order State</label>
-                <select disabled asp-for="OrderStatus" class="form-control brdrles"
-                        asp-items="@(new SelectList(Model.Status))"></select>
+                                <label asp-for="SellPrice" class="control-label">Sell Price</label>
+                                <input readonly asp-for="SellPrice" class="form-control brdrles" />
+                            </div>
+                            <div class="col-md-6 mb-3">
 
-            </div>
+                                <label asp-for="Address" class="control-label">CLient Address</label>
+                                <input readonly asp-for="Address" class="form-control brdrles" />
+                            </div>
+                            <div class="col-md-6 mb-3">
 
-        </div>
-        <div class="form-input-container" style="margin: 14rem 1rem 2rem;">
-            <label asp-for="Notes" class="control-label">Notes</label>
-            <input readonly asp-for="Notes" class="form-control brdrless" />
+                                <label asp-for="DateOFOrder" class="control-label">Orders Date</label>
+                                <input readonly asp-for="DateOFOrder" type="date" class="form-control brdrles" />
+                            </div>
+                            <div class="col-md-6 mb-3">
+
+                                <label asp-for="OrderStatus" class="control-label">Order State</label>
+                                <select disabled asp-for="OrderStatus" class="form-control brdrles"
+                                        asp-items="@(new SelectList(Model.Status))"></select>
+
+                            </div>
+                            <div class="col-md-12 mb-3">
+
+                                <label asp-for="Notes" class="control-label">Notes</label>
+                                <input readonly asp-for="Notes" class="form-control brdrless" />
+                            </div>
+
+                        </div>
                     </div>
- 
-            <div class="col-md-12">
-            <table id="OrderTable" class="table" >
-        <thead>
-                    <tr>
-                        <th style="padding: 1rem;">Product Name</th>
-                        <th style="padding: 1rem;">Color</th>
-                        <th style="width: 15%; padding: 1rem;">Quantity</th>
-                        <th style="width: 15%; padding: 1rem;">Price</th>
-                 
-                    </tr>
-                </thead>
-                <tbody>
-                    @for (int i = 0; i < Model.Items.Count; i++)
-                    {
+                    <div class="card-body pb-2">
+                        <h3>Orders Details</h3>
+                        <table id="OrderTable" class="table table-rounded table-row-bordered g-4">
+                            <thead>
+                                <tr>
+                                    <th >Product Name</th>
+                                    <th>Color</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
 
-                        <tr>
-                            <td>
-                                <div>
-                                    <select disabled asp-for="@Model.Items[i].Product_Id" class="form-control" id="item-@i"
-                                        asp-items="@(new SelectList(Model.Items[i].Products,"Product_Id","Product_Name"))" class="select-label brdrles"></select>
-                                </div>
-                            </td>
-                            <td>
-                                <input readonly asp-for="@Model.Items[i].ColorName" class="form-control brdrles" />
-                               @* <select disabled asp-for="@Model.Items[i].ColorName" class="form-control brdrles" id="item2-@i"
-                                    asp-items="@(new SelectList(Model.Items[i].Colors,"Product_Id","ColorName"))"></select>*@
-                            </td>
-                            <td style="padding: 1rem 0">
-                                <input readonly asp-for="@Model.Items[i].Quantity" class="form-control brdrles" />
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (int i = 0; i < Model.Items.Count; i++)
+                                {
+                                    <tr>
+                                        <td>
+                                            <div>
+                                                <select disabled asp-for="@Model.Items[i].Product_Id" class="form-control form-control-sm" style="background:var(--body-color)" id="item-@i"
+                                                    asp-items="@(new SelectList(Model.Items[i].Products,"Product_Id","Product_Name"))" class="select-label brdrles"></select>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <input readonly asp-for="@Model.Items[i].ColorName" class="form-control form-control-sm" style="background:var(--body-color)" />
+                                            @* <select disabled asp-for="@Model.Items[i].ColorName" class="form-control brdrles" id="item2-@i"
+                                        asp-items="@(new SelectList(Model.Items[i].Colors,"Product_Id","ColorName"))"></select>*@
+                                        </td>
+                                        <td >
+                                            <input readonly asp-for="@Model.Items[i].Quantity" class="form-control form-control-sm" style="background:var(--body-color)" />
 
-                            </td>
-                            <td style="padding: 1rem 0rem 1rem 1rem;width: 10%;">
-                                <input readonly asp-for="@Model.Items[i].Price" class="form-control Price brdrles" style="padding: 6px;width: 90%;" />
-                            </td>
-                      
-                        </tr>
-                    }
+                                        </td>
+                                        <td style="width:10%" >
+                                            <input readonly asp-for="@Model.Items[i].Price" class="form-control  form-control-sm" style="background:var(--body-color)" />
+                                        </td>
 
-                </tbody>
-            </table>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                </div>
             </div>
-
-
-       
+        </div>
     </fieldset>
 
 </form>
@@ -116,4 +127,5 @@
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }}
+    }
+    }

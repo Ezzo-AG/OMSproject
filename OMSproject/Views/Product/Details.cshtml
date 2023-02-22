@@ -3,101 +3,117 @@
 @{
     ViewData["Title"] = "Details";
 }
-<link rel="stylesheet" href="~/css/OrderStyle/order.css" asp-append-version="true" />
-<link rel="stylesheet" href="~/css/Table/TablesStyle.css" asp-append-version="true" />
-<link rel="stylesheet" href="~/css/Table/FormControl.css" asp-append-version="true" />
+<div class="header">
+    <div class="container-fluid d-flex align-items-center justify-content-between">
+        <div class="header-text">
+            Product / Details
+        </div>
 
 
+        <div class="d-flex flex-shrink-0">
+            <a href="#" class="btn btn-sm btn-primary">Get Pro</a>
+        </div>
+    </div>
+</div>
 <form asp-action="Details" name="table" id="table">
 
     <fieldset>
-        <div asp-validation-summary="ModelOnly" class="warning"></div>
-        <button class="table-item searcher left-floater" title="Back" type="button" onclick="history.back()">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="21" height="23" fill="hsl(var(--txt))" stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 11H6.414l5.293-5.293-1.414-1.414L2.586 12l7.707 7.707 1.414-1.414L6.414 13H21z"></path>
-            </svg>
-        </button>
-        <h1 class="headers left-floater">Product Details</h1>
-        <div style="clear: both;"></div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="card">
+                    <div class="card-body pb-2">
+                        <div class="d-flex align-items-center justify-content-between mb-5">
+                            <h3>Products </h3>
+                            <div class="d-flex flex-shrink-0">
+                                <button class="btn btn-icon btn-sm btn-light-dark" title="Back" type="button" onclick="history.back()">
+                                    <i class='bx bx-arrow-back fs-4'></i>
+                                </button>
+                            </div>
+                        </div>
 
-        <div class="double-input">
-            <div class="form-input-container">
-                <label asp-for="Product_Id" class="control-label">Product ID</label>
-                <input readonly asp-for="Product_Id" class="form-control" name="product_id" />
-            </div>
-            <div class="form-input-container">
-                <label asp-for="Product_Name" class="control-label">Product Name</label>
-                <input readonly asp-for="Product_Name" class="form-control" name="product_name" />
-            </div>
-        </div>
-        <div class="double-input">
-            <div class="form-input-container">
+                        <div class="row mb-3">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Product_Id" class="control-label">Product ID</label>
+                                <input readonly asp-for="Product_Id" class="form-control" name="product_id" />
+                            </div>
+                            <div class="col-md-6 mb-3">
 
-                <label asp-for="Cost" class="control-label">Cost</label>
-                <input readonly asp-for="Cost" class="form-control" name="cost" />
-            </div>
-            <div class="form-input-container">
+                                <label asp-for="Product_Name" class="control-label">Product Name</label>
+                                <input readonly asp-for="Product_Name" class="form-control" name="product_name" />
+                            </div>
+                            <div class="col-md-6 mb-3">
 
-                <label asp-for="Price" class="control-label">Price</label>
-                <input readonly asp-for="Price" class="form-control" name="price" />
-            </div>
-        </div>
-        <div class="double-input">
-            <div class="form-input-container">
+                                <label asp-for="Cost" class="control-label">Cost</label>
+                                <input readonly asp-for="Cost" class="form-control" name="cost" />
+                            </div>
+                            <div class="col-md-6 mb-3">
 
-                <label asp-for="Total_QTY" class="control-label">Total Quantity</label>
-                <input readonly asp-for="Total_QTY" id="total" class="form-control" name="total_qty" />
-            </div>
-            <div class="form-input-container">
 
-                <label asp-for="Notes" class="control-label">Notes</label>
-                <input readonly asp-for="Notes" class="form-control" name="notes" />
+                                <label asp-for="Price" class="control-label">Price</label>
+                                <input readonly asp-for="Price" class="form-control" name="price" />
+                            </div>
+                            <div class="col-md-6 mb-3">
+
+                                <label asp-for="Total_QTY" class="control-label">Total Quantity</label>
+                                <input readonly asp-for="Total_QTY" id="total" class="form-control" name="total_qty" />
+                            </div>
+                            <div class="col-md-6 mb-3">
+
+                                <label asp-for="Notes" class="control-label">Notes</label>
+                                <input readonly asp-for="Notes" class="form-control" name="notes" />
+                            </div>
+                        </div>
+                        </div>
+                        <div class="card-body pb-2">
+                            <h3>Orders Details</h3>
+                        <table id="tableHa" class="table table-rounded table-row-bordered g-4">
+                            <thead>
+                                <tr>
+                                    <th>ProductName</th>
+                                    <th>Quantity</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @for (int i = 0; i < Model.colors.Count; i++)
+                                {
+                                    <tr>
+                                        <td>
+                                            <input readonly asp-for="@Model.colors[i].ColorName" class="form-control form-control-sm" style="background:var(--body-color)" />
+                                        </td>
+                                        <td>
+                                            <input readonly asp-for="@Model.colors[i].Quantity" class="form-control form-control-sm" style="background:var(--body-color)"/>
+                                        </td>
+                                        <td>
+                                            <input type="hidden" asp-for="@Model.colors[i].IsDeleted" />
+                                        </td>
+                                        <td style="width:5%">
+                                            <a asp-action="Edit" asp-route-id="@Model?.Product_Id" class="btn btn-sm btn-icon btn-light-success">
+                                                <i class='bx bx-edit fs-1'></i>
+
+
+                                            </a>
+                                            @*<a asp-action="Details" asp-route-id="@item.Client_id">Details</a> | <a asp-action="Delete" asp-route-id="@item.Client_id">Delete</a>*@
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <br />  
-        @*        <div>
-        <a asp-action="Edit" asp-route-id="@Model?.Product_Id">Edit</a> |
-        </div>*@
+
+
+
+
     </fieldset>
-    <div style="overflow-y:auto;">
-        <table id="tableHa" class="table">
-            <thead>
-                <tr>
-                    <th>ProductName</th>
-                    <th>Quantity</th>
-                </tr>
-            </thead>
-            <tbody>
 
-                @for (int i = 0; i < Model.colors.Count; i++)
-                {
-                    <tr>
-                        <td>
-                            <input readonly asp-for="@Model.colors[i].ColorName" class="form-control" />
-                        </td>
-                        <td>
-                            <input readonly asp-for="@Model.colors[i].Quantity" class="form-control Quantity" />
-                        </td>
-                        <td>
-                            <input type="hidden" asp-for="@Model.colors[i].IsDeleted" />
-                        </td>
-                        <td class="table-item">
-                            <a asp-action="Edit" asp-route-id="@Model?.Product_Id">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M18.16,3.66l2.18,2.18a2,2,0,0,1,0,2.82l-13,13.05a1,1,0,0,1-.7.29H2V17.41a1,1,0,0,1,.29-.7l13.05-13A2,2,0,0,1,18.16,3.66Z"></path>
-                                    <line x1="12.5" y1="6.5" x2="17.5" y2="11.5"></line>
-                                </svg>
+        
 
-                            </a>
-                            @*<a asp-action="Details" asp-route-id="@item.Client_id">Details</a> | <a asp-action="Delete" asp-route-id="@item.Client_id">Delete</a>*@
-                        </td>
-                    </tr>
-                }
-
-            </tbody>
-        </table>
-
-    </div>
 
 </form>
 @section Scripts {
