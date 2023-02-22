@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using OMSproject.DTO;
 using OMSproject.Models;
 using OMSproject.Models.ViewModels;
@@ -6,7 +7,7 @@ using OMSproject.Models.ViewModels;
 
 namespace OMSproject.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext
     {
 
         public ApplicationDbContext(DbContextOptions <ApplicationDbContext> options) : base(options)
@@ -16,7 +17,7 @@ namespace OMSproject.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-           
+           base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Color>()
                 .HasKey(x => new { x.Product_Id,x.ColorName});
 

@@ -87,13 +87,13 @@
 
                         <div class="row mb-3">
                             <div class="col-md-3 mb-3">
-                                <input type="date" id="min" class="form-control mr-5" placeholder="Start Date">
+                                <input type="date" asp-for="@Model.StartDate" id="min" class="form-control mr-5" placeholder="Start Date">
                             </div>
                             <div class="col-md-3  mb-3">
-                                <input type="date" id="max"  class="form-control" placeholder="End Date">
+                                <input type="date" asp-for="@Model.EndtDate" id="max" class="form-control" placeholder="End Date">
                             </div>
                             <div class="col-md-2 mb-3">
-                                <a class="btn btn-light-dark" > 
+                                <button type="submit" class="btn btn-light-dark" > 
                                     <span class="svg-icon svg-icon-1">
                                         <i class='bx bxs-filter-alt fs-4'></i>
                                     </span>
@@ -101,7 +101,7 @@
                                     @*<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="21" height="23" fill="hsl(var(--txt))" stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M21 11H6.414l5.293-5.293-1.414-1.414L2.586 12l7.707 7.707 1.414-1.414L6.414 13H21z"></path>
                                     </svg>*@
-                                </a>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -237,9 +237,9 @@
 
     for (i = 0; i < x.length; i++) {
 
-        Tprofit = Tprofit + eval(x[i].innerHTML);
-        Tcost = Tcost + eval(y[i].innerHTML);
-        Tprice = Tprice + eval(z[i].innerHTML);
+        Tprofit = Tprofit + eval(x[i].value);
+        Tcost = Tcost + eval(y[i].value);
+        Tprice = Tprice + eval(z[i].value);
     }
     document.getElementById('Tprofit').innerHTML = Tprofit;
     document.getElementById('Tcost').innerHTML = Tcost;
@@ -250,53 +250,13 @@
     //for (var i = 1; i < myDevs.length; i++) {
     //    arry[j] = myDevs[i].value;
 
-    let a = document.getElementById('Tprofit').innerHTML
+    let a = document.getElementById('Tprofit').value
     console.log(a);
     sessionStorage.setItem("text", a);
     //j++;
 </script>
 
-<script>
-    let minDate, maxDate;
 
-    // Custom filtering function which will search data in column four between two values
-    $.fn.dataTable.ext.search.push(
-        function (settings, data, dataIndex) {
-            var min = minDate.val();
-            var max = maxDate.val();
-            var date = new Date(data[1]);
-            console.log(date)
-            if (
-                (min === null && max === null) ||
-                (min === null && date <= max) ||
-                (min <= date && max === null) ||
-                (min <= date && date <= max)
-            ) {
-                return true;
-            }
-            return false;
-        }
-    );
-
-    $(document).ready(function () {
-        // Create date inputs
-        minDate = new DateTime($('#min'), {
-            format: 'MMMM Do YYYY'
-        });
-        maxDate = new DateTime($('#max'), {
-            format: 'MMMM Do YYYY'
-        });
-
-        //DataTables initialisation
-        //var table = $('#example1').DataTable();
-        //let table = document.getElementById("example1");
-
-        // Refilter the table
-        $('#min, #max').on('change', function () {
-            table.draw();
-        });
-    });
-</script>
 <script>
     $(function () {
         $("#example1").DataTable({

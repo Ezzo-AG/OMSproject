@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using OMSproject.Data;
@@ -6,8 +7,10 @@ using OMSproject.DTO;
 using OMSproject.Models;
 using OMSproject.Models.ViewModels;
 
+
 namespace OMSproject.Controllers
 {
+    [Authorize]
     public class OrderController : Controller
     {
         //Client clients;
@@ -464,28 +467,39 @@ namespace OMSproject.Controllers
 
         public ActionResult ProfitCalculate()
         {
-            var orders = db.Orders.Include(x => x.OrderDetails).ToList();
-
-            List<ProfetViewModel> profets = new List<ProfetViewModel>();
-            
-            foreach (var order in orders)
+            pftViewModel model = new();
+            try
             {
-                var OrderCoast = 0.0;
-                for (int i = 0; i< order.OrderDetails.Count; i++)
+                var orders = db.Orders.Include(x => x.OrderDetails).ToList();
+
+                List<ProfetViewModel> profets = new List<ProfetViewModel>();
+
+                foreach (var order in orders)
                 {
-                     OrderCoast += db.Products.SingleOrDefault(x => x.Product_Id == order.OrderDetails[i].ProductId).Cost * order.OrderDetails[i].SubQty; 
+                    var OrderCoast = 0.0;
+                    for (int i = 0; i < order.OrderDetails.Count; i++)
+                    {
+                        OrderCoast += db.Products.SingleOrDefault(x => x.Product_Id == order.OrderDetails[i].ProductId).Cost * order.OrderDetails[i].SubQty;
+                    }
+                    profets.Add(new ProfetViewModel
+                    {
+                        OrderId = order.OrderId,
+                        OrderDate = order.DateOFOrder,
+                        OrderCoast = (float)OrderCoast,
+                        OrderSellPrice = order.SellPrice,
+                        Profet = (float)(order.SellPrice - OrderCoast)
+                    });
                 }
-                profets.Add(new ProfetViewModel
-                {
-                    OrderId = order.OrderId,
-                    OrderDate = order.DateOFOrder,
-                    OrderCoast = (float)OrderCoast,
-                    OrderSellPrice = order.SellPrice,
-                    Profet = (float)(order.SellPrice - OrderCoast)
-                });
+
+
+                model.Profet = profets;
+                return View(model);
+            }
+            catch
+            {
+                return View(model);
             }
 
-            return View(profets);
         }
 
 

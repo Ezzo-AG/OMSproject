@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.VisualBasic.Syntax;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+//using Microsoft.CodeAnalysis.VisualBasic.Syntax;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
+//using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using OMSproject.Data;
 using OMSproject.DTO;
 using OMSproject.Models;
@@ -9,6 +10,7 @@ using System.Diagnostics;
 
 namespace OMSproject.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         readonly ApplicationDbContext? db;
