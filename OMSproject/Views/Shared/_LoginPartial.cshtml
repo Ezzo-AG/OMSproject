@@ -2,18 +2,44 @@
 
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
+<div class="bottom-content">
 
-<ul class="navbar-nav">
+    <li class="mode">
+        <div class="sun-moon">
+            <i class="bx bx-moon icon moon"></i>
+            <i class="bx bx-sun icon sun"></i>
+        </div>
+        <span class="mode-text text">Dark mode</span>
+
+        <div class="toggle-switch">
+            <span class="switch"></span>
+        </div>
+    </li>
+
+@*<ul class="navbar-nav">*@
 @if (SignInManager.IsSignedIn(User))
 {
+
+
     <li class="nav-item">
         <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
     </li>
-    <li class="nav-item">
-            <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("", "", new { area = "~/Identity/Pages/Account/Login" })">
+        <li class="">
+            <a href="#">
+                <i class="bx bx-log-out icon"></i>
+                <span class="text nav-text">
+                    <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("", "", new { area = "~/Identity/Pages/Account/Login" })">
+                        <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+                    </form>
+                </span>
+            </a>
+        </li>
+
+@*    <li class="nav-item">
+        <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("", "", new { area = "~/Identity/Pages/Account/Login" })">
             <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Logout</button>
         </form>
-    </li>
+    </li>*@
 }
 else
 {
@@ -24,4 +50,6 @@ else
         <a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
     </li>
 }
-</ul>
+@*</ul>*@
+
+</div>
