@@ -52,11 +52,11 @@
                         @*<table class="table table-row-bordered gy-5" id="myTable">*@
                         <table class="table table-rounded table-row-bordered g-4" id="myTable">
                             <thead >
-                                <tr class="fw-bold fs-6">
-
-                                
-                                    <th style="width: 5%"></th>
-                                
+@*                                <tr class="fw-bold fs-6">
+                                    <th style="width: 5%"></th>*@
+                                    <th name="td" style="visibility : hidden;">
+                                        #
+                                    </th>
                                 <th >Client Name </th>
                                 @*<th onclick="sortTable(0)"> الاسم </th>*@
                                 <th>Address </th>
@@ -80,7 +80,7 @@
                             @for (var i = 0; i < Model.Count; i++)
                             {
                                 <tr>
-                                                     <td name="td" style="visibility : hidden;">
+                                    <td name="td" style="visibility : hidden;">
                                         <input onchange="CheckboxVale(this)" asp-for="@Model[i].IsSelected" value="false">
                                     </td>
                                     <td>
@@ -177,7 +177,7 @@
 
         })
             .buttons().container().appendTo('#myTable_wrapper .col-md-6:eq(0)');
-        $('#example2').DataTable({
+        $('#myTable').DataTable({
             "paging": true,
             "lengthChange": false,
             "searching": false,

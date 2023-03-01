@@ -34,10 +34,10 @@
                                 <p class="fs-6 fw-light  pb-5">Don't Have an account ? <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Sign up</a> Today .</p>
                                 <div class="row">
                                     <div class="col-md-6 mb-4 form-floating ">
-                                        <input asp-for="Input.Email" id="emails" class="form-control" aria-required="true" placeholder="Email" />
-                                        <label for="emails">Email address</label>
+                                        <input asp-for="Input.UserName" id="user" class="form-control" aria-required="true" placeholder="UserName" />
+                                        <label for="emails">User Name</label>
                                         @*<label asp-for="Input.Email" class="form-label"></label>*@
-                                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                                        <span asp-validation-for="Input.UserName" class="text-danger"></span>
                                     </div>
                                     <div class="col-md-6 mb-4 form-floating">
                                         <input asp-for="Input.Password" id="passwords" class="form-control" autocomplete="current-password" aria-required="true" placeholder="Password" />
